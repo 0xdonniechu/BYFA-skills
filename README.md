@@ -1,43 +1,43 @@
-# bto-skills
+# Agent Skills
 
-**Bộ công cụ AI Agent Skills thực chiến dành cho Claude Code, Cursor và autonomous AI agents.**
+**Production-grade AI agent skills for Claude Code, Cursor, and autonomous agent workflows.**
 
-Một skill là một tệp hướng dẫn agent tự đọc và kích hoạt khi gặp đúng bối cảnh công việc. Bạn không cần phải nhớ quy trình thủ công hay dán đi dán lại prompt mỗi lần thao tác — agent tự nhận diện ngữ cảnh, nạp hướng dẫn và thi hành chuẩn xác.
+A skill is a structured instruction set that an agent autonomously loads and executes when encountering a specific operational domain. You do not need to memorize workflows or repeatedly paste prompts — the agent detects context, loads the guidelines, and executes with precision.
 
-Toàn bộ nguyên tắc được chắt lọc từ kinh nghiệm vận hành thực tế: kiểm soát bí mật, nghiên cứu thị trường có đối chiếu nguồn tin, bóc tách sản phẩm, quản trị vòng đời mã nguồn và điều phối đội ngũ multi-agent.
+All principles are distilled from production engineering experience: secrets management, rigorous market research with multi-tier source verification, clean-room product teardowns, structured software development life cycles (SDLC), and multi-agent coordination.
 
 ---
 
-## Danh mục Skills
+## Skills Directory
 
-| Skill | Chức năng & Bối cảnh sử dụng |
+| Skill | Core Capability & Usage Context |
 |---|---|
-| `/bto-researchmarket` | Nghiên cứu thị trường sâu, xác minh dữ liệu 3 tầng (`[CONFIRMED]`, `[SECONDARY]`, `[VENDOR-CLAIMED]`), đào review 1★/2★ tìm content wedge, tính toán TAM/SAM/SOM bằng chuỗi số học, lập Sales Battlecard và đóng gói Case Study chuẩn xác |
-| `/bto-teardown` | Phân rã sản phẩm đối thủ: core features, pricing model, tech stack và luồng trải nghiệm người dùng theo phương pháp clean-room |
-| `/bto-secrets` | Bảo vệ thông tin nhạy cảm: rà soát API key, `.env`, tokens và thông tin xác thực trước khi commit/push |
-| `/bto-sdlc` | Quy trình phát triển phần mềm chuẩn mực: spec trước, code sau, phân đoạn rõ ràng cho feature lớn và refactor |
-| `/bto-agent-team` | Điều phối multi-agent: duyệt một lần chạy tới xong (build → review độc lập → fix → merge → verify) qua nhiều wave |
-| `/bto-whats-next` | Tổng kết cuối phiên làm việc: rà soát việc dở dang, đề xuất bước đi tiếp theo và ghi nhận tiến độ |
-| `/bto-page-quality` | Đánh giá chất lượng trang: tốc độ tải, Core Web Vitals, độ tin cậy giao diện sau launch |
-| `/bto-optimize-mac` | Dọn dẹp ổ đĩa, tối ưu RAM và môi trường phát triển trên macOS an toàn |
-| `/bto-event-review` | Tổng hợp và biên tập nội dung chuyên sâu từ slides, hội thảo và transcripts |
-| `/bto-posthog` | Cấu hình analytics chuẩn mực với PostHog: đo lường chuyển đổi và hiển thị dashboard dữ liệu rõ ràng |
-| `/bto-create-skill` | Bộ khung tiêu chuẩn giúp tự tạo mới hoặc tùy biến skill theo nhu cầu của riêng bạn |
+| `/bto-researchmarket` | In-depth market research: 3-tier fact tagging (`[CONFIRMED]`, `[SECONDARY]`, `[VENDOR-CLAIMED]`), 1★/2★ review mining for content wedges, TAM/SAM/SOM arithmetic chains, Sales Competitor Battlecards, and proof-based Marketing Case Study packaging. |
+| `/bto-teardown` | Clean-room competitor teardowns: core features, monetization models, tech stack analysis, and end-to-end user experience flows. |
+| `/bto-secrets` | Guard sensitive credentials: scan API keys, `.env` files, auth tokens, and secrets prior to commit or push. |
+| `/bto-sdlc` | Structured software development: specification before code, discrete implementation phases, and verified testing gates. |
+| `/bto-agent-team` | Multi-agent orchestration: single-approval pipelines (build → independent review → fix → merge → verify) across execution waves. |
+| `/bto-whats-next` | Session wrap-up: audit pending work items, recommend next steps, and log progress. |
+| `/bto-page-quality` | Post-launch site audits: page load performance, Core Web Vitals, and UI layout stability. |
+| `/bto-optimize-mac` | Safe disk reclamation, RAM inspection, and developer environment hygiene for macOS. |
+| `/bto-event-review` | Conference and meetup synthesis: reconstruct complete talks from slide decks and transcripts. |
+| `/bto-posthog` | Production analytics with PostHog: event tracking setup, proxy configuration, and executive dashboards. |
+| `/bto-create-skill` | Standard template and workflow for building and customizing agent skills. |
 
 ---
 
-## Hướng dẫn cài đặt
+## Installation
 
-### Dành cho Claude Code
+### Claude Code
 
-Chạy lệnh tự động cài đặt toàn bộ skills:
+Install all skills with a single command:
 
 ```bash
 git clone https://github.com/0xdonniechu/bto-skills.git ~/.claude/skills/bto-skills
 ~/.claude/skills/bto-skills/setup
 ```
 
-Hoặc chỉ cài đặt một skill cụ thể (ví dụ: `bto-researchmarket`):
+Or install a specific skill (e.g. `bto-researchmarket`):
 
 ```bash
 mkdir -p ~/.claude/skills/bto-researchmarket
@@ -45,28 +45,28 @@ curl -o ~/.claude/skills/bto-researchmarket/SKILL.md \
   https://raw.githubusercontent.com/0xdonniechu/bto-skills/main/bto-researchmarket/SKILL.md
 ```
 
-### Dành cho Cursor & Agents khác
+### Cursor & Other Agents
 
-Tham khảo hướng dẫn chi tiết tại [HUONG-DAN-CAI-DAT.md](HUONG-DAN-CAI-DAT.md).
-
----
-
-## Kiểm tra sau cài đặt
-
-Mở phiên làm việc mới với agent và thử nghiệm bằng các câu lệnh:
-
-```
-Tôi sắp nghiên cứu thị trường này để đánh giá đối thủ — dùng quy trình nào?
-Tôi sắp build feature mới — có quy trình spec trước code không?
-Giờ làm gì tiếp theo trong session này?
-```
-
-Khi agent tự động nạp framework tương ứng (yêu cầu phân loại nguồn, lập spec trước khi code hoặc kiểm tra việc dở dang), skill đã kích hoạt thành công.
+See the complete guide in [INSTALL.md](INSTALL.md).
 
 ---
 
-## Nguyên tắc cốt lõi
+## Verification
 
-1. **Thực chứng hơn giả định**: Mọi số liệu phải có nguồn gốc rõ ràng hoặc tự tính toán minh bạch.
-2. **Agent hỗ trợ, con người ra quyết định**: Skill giúp agent ghi nhớ quy tắc và giữ kỷ luật thực thi; quyết định cuối cùng và phê duyệt luôn thuộc về bạn.
-3. **Liên tục tối ưu**: Mỗi skill được thiết kế để tự cải tiến qua các phiên làm việc và đóng góp thực tế. Xem thêm tại [CONTRIBUTING.md](CONTRIBUTING.md).
+Open a new agent session and test with prompts such as:
+
+```
+I need to research this market and evaluate competitors — which framework should we follow?
+I am about to build a new feature — do we have a spec-before-code procedure?
+What are our next steps for this session?
+```
+
+When the agent autonomously references the respective framework, the skills are active and ready.
+
+---
+
+## Core Principles
+
+1. **Empirical Evidence Over Assumptions**: Every metric must be cited with primary sources or calculated with transparent math.
+2. **Agent Assistance, Human Authority**: Skills keep agents disciplined; final approval and irreversible actions remain strictly with the user.
+3. **Continuous Optimization**: Skills improve with each operational cycle and real-world deployment. See [CONTRIBUTING.md](CONTRIBUTING.md).
