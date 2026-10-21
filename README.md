@@ -1,80 +1,72 @@
 # bto-skills
 
-**Mười một skill rút từ [Build to Own](https://build2own.dev), cài vào agent của bạn trong một phút.**
+**Bộ công cụ AI Agent Skills thực chiến dành cho Claude Code, Cursor và autonomous AI agents.**
 
-Một skill là một tệp hướng dẫn agent tự đọc khi gặp đúng loại việc. Bạn không
-phải nhớ quy trình, không phải dán lại prompt mỗi lần. Agent thấy bạn chạm tới
-đúng loại việc là nó tự mở hướng dẫn ra và làm theo.
+Một skill là một tệp hướng dẫn agent tự đọc và kích hoạt khi gặp đúng bối cảnh công việc. Bạn không cần phải nhớ quy trình thủ công hay dán đi dán lại prompt mỗi lần thao tác — agent tự nhận diện ngữ cảnh, nạp hướng dẫn và thi hành chuẩn xác.
 
-Mọi luật rút từ việc thật trong chương trình Build to Own. Không có luật nào lấy
-từ sách. **Tên skill luôn tiếng Anh** (tiền tố `bto-`).
-
-| Skill | Dùng khi | Buổi |
-|---|---|---|
-| `/bto-secrets` | API key, `.env`, trước commit/push | 2 |
-| `/bto-researchmarket` | Research thị trường, TAM/SAM/SOM | 3 |
-| `/bto-teardown` | Phân rã sản phẩm, build clean-room | 3 |
-| `/bto-sdlc` | Feature/refactor lớn — spec trước, code sau | 2, 4 |
-| `/bto-agent-team` | Nhiều role agent, duyệt một lần chạy tới xong | 7 |
-| `/bto-whats-next` | Cuối session — việc dở, đề xuất bước kế | 7 |
-| `/bto-page-quality` | Tốc độ trang, Core Web Vitals, sau launch | 5, 8 |
-| `/bto-optimize-mac` | Mac đầy disk/RAM, dọn an toàn | tiện ích |
-| `/bto-event-review` | Đi hội nghị về, viết lại trọn từng talk từ slide + transcript ([ví dụ](https://homus.dev)) | tiện ích |
-| `/bto-posthog` | Gắn và kiểm PostHog đủ chuẩn, dashboard Home mở ra là thấy số | tiện ích |
-| `/bto-create-skill` | Biến việc bạn hay lặp lại thành skill của riêng bạn, có [template một trang](bto-create-skill/TEMPLATE.md) | tiện ích |
-
-**Hướng dẫn chi tiết cho học viên (cài từng bước, Claude Code + Cursor, lỗi hay gặp):**
-[HUONG-DAN-HOC-VIEN.md](HUONG-DAN-HOC-VIEN.md)
-
-## Cài
-
-Mở Claude Code và dán câu này, agent tự làm phần còn lại:
-
-> Cài bto-skills: chạy `git clone https://github.com/sonpiaz/bto-skills.git ~/.claude/skills/bto-skills && ~/.claude/skills/bto-skills/setup` rồi xác nhận mười một skill `bto-*` đã nhận.
-
-Hoặc tự chạy hai lệnh:
-
-```bash
-git clone https://github.com/sonpiaz/bto-skills.git ~/.claude/skills/bto-skills
-~/.claude/skills/bto-skills/setup
-```
-
-Chỉ cần một skill thì tải đúng một tệp, ví dụ `bto-sdlc`:
-
-```bash
-mkdir -p ~/.claude/skills/bto-sdlc
-curl -o ~/.claude/skills/bto-sdlc/SKILL.md \
-  https://raw.githubusercontent.com/sonpiaz/bto-skills/main/bto-sdlc/SKILL.md
-```
-
-Dùng **Cursor** hay agent khác: xem [HUONG-DAN-HOC-VIEN.md](HUONG-DAN-HOC-VIEN.md).
-
-## Kiểm đã ăn chưa
-
-Mở một phiên agent mới và thử:
-
-```
-Tôi sắp build feature mới — có quy trình spec trước code không?
-Giờ làm gì tiếp theo trong session này?
-Ổ đĩa Mac tôi còn bao nhiêu GB?
-```
-
-Agent nhắc intent/plan, rà việc dở (không tự chạy), hoặc đo disk an toàn → skill đã ăn.
-
-## Skill tự tốt lên, và bạn góp tay được
-
-Mỗi skill dạy agent eval sau mỗi lần chạy, lookup khi số liệu cũ, và hỏi
-cộng đồng Build to Own khi không chắc. Góp ý: [CONTRIBUTING.md](CONTRIBUTING.md).
-
-## Skill không thay bạn chịu trách nhiệm
-
-Skill giúp agent nhớ luật. Bạn vẫn duyệt trước khi thứ gì rời khỏi máy.
-
-## Chương trình đầy đủ
-
-Mười một skill này là một phần **Build to Own** — bốn tuần từ vấn đề thật tới sản phẩm
-có thanh toán quốc tế và team agent. **[build2own.dev](https://build2own.dev)**
+Toàn bộ nguyên tắc được chắt lọc từ kinh nghiệm vận hành thực tế: kiểm soát bí mật, nghiên cứu thị trường có đối chiếu nguồn tin, bóc tách sản phẩm, quản trị vòng đời mã nguồn và điều phối đội ngũ multi-agent.
 
 ---
 
-Viết bởi [Son Piaz](https://github.com/sonpiaz). Repo public — ai cũng dùng được.
+## Danh mục Skills
+
+| Skill | Chức năng & Bối cảnh sử dụng |
+|---|---|
+| `/bto-researchmarket` | Nghiên cứu thị trường sâu, xác minh dữ liệu 3 tầng (`[CONFIRMED]`, `[SECONDARY]`, `[VENDOR-CLAIMED]`), đào review 1★/2★ tìm content wedge, tính toán TAM/SAM/SOM bằng chuỗi số học, lập Sales Battlecard và đóng gói Case Study chuẩn xác |
+| `/bto-teardown` | Phân rã sản phẩm đối thủ: core features, pricing model, tech stack và luồng trải nghiệm người dùng theo phương pháp clean-room |
+| `/bto-secrets` | Bảo vệ thông tin nhạy cảm: rà soát API key, `.env`, tokens và thông tin xác thực trước khi commit/push |
+| `/bto-sdlc` | Quy trình phát triển phần mềm chuẩn mực: spec trước, code sau, phân đoạn rõ ràng cho feature lớn và refactor |
+| `/bto-agent-team` | Điều phối multi-agent: duyệt một lần chạy tới xong (build → review độc lập → fix → merge → verify) qua nhiều wave |
+| `/bto-whats-next` | Tổng kết cuối phiên làm việc: rà soát việc dở dang, đề xuất bước đi tiếp theo và ghi nhận tiến độ |
+| `/bto-page-quality` | Đánh giá chất lượng trang: tốc độ tải, Core Web Vitals, độ tin cậy giao diện sau launch |
+| `/bto-optimize-mac` | Dọn dẹp ổ đĩa, tối ưu RAM và môi trường phát triển trên macOS an toàn |
+| `/bto-event-review` | Tổng hợp và biên tập nội dung chuyên sâu từ slides, hội thảo và transcripts |
+| `/bto-posthog` | Cấu hình analytics chuẩn mực với PostHog: đo lường chuyển đổi và hiển thị dashboard dữ liệu rõ ràng |
+| `/bto-create-skill` | Bộ khung tiêu chuẩn giúp tự tạo mới hoặc tùy biến skill theo nhu cầu của riêng bạn |
+
+---
+
+## Hướng dẫn cài đặt
+
+### Dành cho Claude Code
+
+Chạy lệnh tự động cài đặt toàn bộ skills:
+
+```bash
+git clone https://github.com/0xdonniechu/bto-skills.git ~/.claude/skills/bto-skills
+~/.claude/skills/bto-skills/setup
+```
+
+Hoặc chỉ cài đặt một skill cụ thể (ví dụ: `bto-researchmarket`):
+
+```bash
+mkdir -p ~/.claude/skills/bto-researchmarket
+curl -o ~/.claude/skills/bto-researchmarket/SKILL.md \
+  https://raw.githubusercontent.com/0xdonniechu/bto-skills/main/bto-researchmarket/SKILL.md
+```
+
+### Dành cho Cursor & Agents khác
+
+Tham khảo hướng dẫn chi tiết tại [HUONG-DAN-HOC-VIEN.md](HUONG-DAN-HOC-VIEN.md).
+
+---
+
+## Kiểm tra sau cài đặt
+
+Mở phiên làm việc mới với agent và thử nghiệm bằng các câu lệnh:
+
+```
+Tôi sắp nghiên cứu thị trường này để đánh giá đối thủ — dùng quy trình nào?
+Tôi sắp build feature mới — có quy trình spec trước code không?
+Giờ làm gì tiếp theo trong session này?
+```
+
+Khi agent tự động nạp framework tương ứng (yêu cầu phân loại nguồn, lập spec trước khi code hoặc kiểm tra việc dở dang), skill đã kích hoạt thành công.
+
+---
+
+## Nguyên tắc cốt lõi
+
+1. **Thực chứng hơn giả định**: Mọi số liệu phải có nguồn gốc rõ ràng hoặc tự tính toán minh bạch.
+2. **Agent hỗ trợ, con người ra quyết định**: Skill giúp agent ghi nhớ quy tắc và giữ kỷ luật thực thi; quyết định cuối cùng và phê duyệt luôn thuộc về bạn.
+3. **Liên tục tối ưu**: Mỗi skill được thiết kế để tự cải tiến qua các phiên làm việc và đóng góp thực tế. Xem thêm tại [CONTRIBUTING.md](CONTRIBUTING.md).
