@@ -5,7 +5,7 @@ description: Từ ghi âm hoặc transcript của một buổi talk, cùng ảnh
 
 # /bto-event-review
 
-Nghe talk chuyên sâu xong chưa hiểu hết? Đưa agent ảnh slide và transcript (hoặc video), nó viết lại trọn talk thành tài liệu đọc lại được: đủ ý, đúng trình tự, tiếng Việt giữ thuật ngữ tiếng Anh, slide đặt đúng chỗ, có agent khác duyệt lại. Ví dụ đầu ra: [homus.dev](https://homus.dev). Bản gốc: [sonpiaz/event-review](https://github.com/sonpiaz/event-review).
+Nghe talk chuyên sâu xong chưa hiểu hết? Đưa agent ảnh slide và transcript (hoặc video), nó viết lại trọn talk thành tài liệu đọc lại được: đủ ý, đúng trình tự, tiếng Việt giữ thuật ngữ tiếng Anh, slide đặt đúng chỗ, có agent khác duyệt lại. Ví dụ đầu ra: [homus.dev](https://homus.dev). Bản gốc: [0xdonniechu/event-review](https://github.com/0xdonniechu/event-review).
 
 # Event review
 

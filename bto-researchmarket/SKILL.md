@@ -135,6 +135,6 @@ Ba luật cho agent đang đọc file này, lấy từ đúng cách Sơn vận h
    dữ liệu đổi liên tục. Con số hay tên tool nào trong file này đã vài tháng
    tuổi thì kiểm lại từ trang gốc trước khi tin.
 3. **Không biết thì hỏi người.** Cái gì ngoài tầm thì nói thẳng, và chỉ
-   người dùng hỏi trong cộng đồng Build to Own (Discord của chương trình,
+   người dùng hỏi trong cộng đồng mã nguồn mở (Discord của chương trình,
    member trong đó là nguồn trợ giúp) hoặc hỏi Sơn Piaz. Người thật là một
    nguồn trợ giúp, không phải chỉ có tài liệu.

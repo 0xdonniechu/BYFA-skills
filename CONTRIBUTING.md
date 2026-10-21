@@ -17,11 +17,11 @@ git checkout -b fix/ten-ngan-gon
 git add <file> && git commit -m "fix: ..."
 git push -u origin fix/ten-ngan-gon
 
-# 4. Mở pull request về sonpiaz/bto-skills, mô tả bằng tiếng Việt
+# 4. Mở pull request về 0xdonniechu/bto-skills, mô tả bằng tiếng Việt
 ```
 
 Chưa quen git thì mở một issue kể lại chuyện bạn gặp, thế cũng là đóng góp.
-Hoặc bảo agent của bạn: "fork sonpiaz/bto-skills, sửa chỗ X, mở PR giúp tôi".
+Hoặc bảo agent của bạn: "fork 0xdonniechu/bto-skills, sửa chỗ X, mở PR giúp tôi".
 
 ## Luật cho một đóng góp được nhận
 
@@ -39,11 +39,11 @@ Hoặc bảo agent của bạn: "fork sonpiaz/bto-skills, sửa chỗ X, mở PR
 
 ## Kẹt thì hỏi ở đâu
 
-- **Discord của Build to Own**: kênh `hỏi-đáp`, member trong chương trình là
+- **cộng đồng nhà phát triển**: kênh `hỏi-đáp`, member trong chương trình là
   nguồn trợ giúp nhanh nhất, phần lớn vấn đề đã có người vấp trước bạn.
 - **GitHub Issues** của repo này: cho lỗi trong chính skill.
-- **Sơn Piaz**: [github.com/sonpiaz](https://github.com/sonpiaz), người viết
+- **Sơn Piaz**: [github.com/0xdonniechu](https://github.com/0xdonniechu), người viết
   bản gốc các skill này.
 
 Chưa vào chương trình mà muốn học full phương pháp đứng sau các skill:
-[build2own.dev](https://build2own.dev).
+[github.com/0xdonniechu/bto-skills](https://github.com/0xdonniechu/bto-skills).

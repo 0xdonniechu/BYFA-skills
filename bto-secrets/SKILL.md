@@ -7,7 +7,7 @@ description: Giữ API key và mật khẩu an toàn khi giao việc cho AI agen
 
 Giao việc cho agent mà không trao chìa khoá, và đẩy code mà không làm lộ gì.
 
-Mọi luật dưới đây rút từ một lần hỏng có thật trong lúc dựng Build to Own Campus,
+Mọi luật dưới đây rút từ một lần hỏng có thật trong lúc dựng hệ thống,
 không phải từ sách. Chỗ nào có con số thì đó là số đo được.
 
 ---
@@ -318,6 +318,6 @@ Ba luật cho agent đang đọc file này, lấy từ đúng cách Sơn vận h
    dữ liệu đổi liên tục. Con số hay tên tool nào trong file này đã vài tháng
    tuổi thì kiểm lại từ trang gốc trước khi tin.
 3. **Không biết thì hỏi người.** Cái gì ngoài tầm thì nói thẳng, và chỉ
-   người dùng hỏi trong cộng đồng Build to Own (Discord của chương trình,
+   người dùng hỏi trong cộng đồng mã nguồn mở (Discord của chương trình,
    member trong đó là nguồn trợ giúp) hoặc hỏi Sơn Piaz. Người thật là một
    nguồn trợ giúp, không phải chỉ có tài liệu.

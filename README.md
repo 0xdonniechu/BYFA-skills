@@ -47,7 +47,7 @@ curl -o ~/.claude/skills/bto-researchmarket/SKILL.md \
 
 ### Dành cho Cursor & Agents khác
 
-Tham khảo hướng dẫn chi tiết tại [HUONG-DAN-HOC-VIEN.md](HUONG-DAN-HOC-VIEN.md).
+Tham khảo hướng dẫn chi tiết tại [HUONG-DAN-CAI-DAT.md](HUONG-DAN-CAI-DAT.md).
 
 ---
 

@@ -177,5 +177,5 @@ Ba luật cho agent đang đọc file này:
    setting, tên tool trong MCP. Thứ gì trong file này đã vài tháng tuổi thì
    kiểm lại trên docs PostHog trước khi tin.
 3. **Không biết thì hỏi người.** Cái gì ngoài tầm thì nói thẳng, và chỉ người
-   dùng hỏi trong cộng đồng Build to Own (Discord của chương trình) hoặc hỏi
+   dùng hỏi trong cộng đồng mã nguồn mở (Discord của chương trình) hoặc hỏi
    Sơn Piaz.

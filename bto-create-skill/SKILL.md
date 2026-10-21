@@ -138,4 +138,4 @@ Kiểm đã ăn: mở phiên mới, nói một câu trong danh sách "nên gọi
    cách Cursor đọc skill đổi theo phiên bản. Số nào đã vài tháng tuổi thì kiểm
    lại từ tài liệu gốc của Claude Code và Cursor trước khi tin.
 3. **Có model mạnh hơn thì chạy lại ca thử.** Dòng nào model mới không cần nữa thì bỏ.
-4. **Không biết thì hỏi người.** Hỏi trong Discord của Build to Own, hoặc hỏi Sơn Piaz.
+4. **Không biết thì hỏi người.** Hỏi trong cộng đồng nhà phát triển, hoặc hỏi Sơn Piaz.

@@ -18,18 +18,18 @@
 
 ## 0.0.6 · 2026-09-27
 
-- `bto-event-review`: từ ghi âm hoặc video của một buổi talk cùng ảnh slide, viết lại trọn từng talk (không tóm tắt), có agent duyệt độc lập và script đo độ đầy đủ. Ví dụ đầu ra: https://homus.dev. Bản gốc: https://github.com/sonpiaz/event-review
+- `bto-event-review`: từ ghi âm hoặc video của một buổi talk cùng ảnh slide, viết lại trọn từng talk (không tóm tắt), có agent duyệt độc lập và script đo độ đầy đủ. Ví dụ đầu ra: https://homus.dev. Bản gốc: https://github.com/0xdonniechu/event-review
 
 ## 0.0.5 · 2026-09-15
 
 Sửa theo review bảo mật/nội dung công khai (Grok, 15/09):
 
 - `HUONG-DAN-HOC-VIEN.md`: bỏ tên cá nhân; thêm cảnh báo `bto-optimize-mac` (cache `rm -rf`, không file cá nhân, không `sudo`).
-- Gỡ `CLAUDE.md` — ghi chú nội bộ, không ship cho học viên.
+- Gỡ `CLAUDE.md` — ghi chú nội bộ, không ship cho người dùng.
 
 ## 0.0.4 · 2026-09-15
 
-Năm skill wave 2 cho học viên Build to Own (Buổi 4–8):
+Năm skill wave 2 cho người dùng (Buổi 4–8):
 
 - `bto-sdlc` — chuỗi artifact intent → plan → build → verify → ship
 - `bto-agent-team` — duyệt một lần, nhiều role agent, chạy tới xong
@@ -42,7 +42,7 @@ README cập nhật bảng 8 skill.
 
 ## 0.0.1 · 2026-08-30
 
-Ba skill đầu tiên, phát cho Build to Own cohort 01 sau Buổi 3:
+Ba skill đầu tiên, phát cho các bản phát hành trước sau Buổi 3:
 
 - `giu-khoa` — giữ API key an toàn khi giao việc cho agent
 - `research-market` — research thị trường bằng agent, số có nguồn, có TAM SAM SOM
@@ -57,7 +57,7 @@ Ba skill đầu tiên, phát cho Build to Own cohort 01 sau Buổi 3:
 - `research-market` → `bto-researchmarket`
 - `teardown` → `bto-teardown`
 
-README thêm phần giới thiệu chương trình, dẫn về build2own.dev.
+README thêm phần giới thiệu chương trình, dẫn về github.com/0xdonniechu/bto-skills.
 
 ## 0.0.3 · 2026-08-30
 
@@ -65,7 +65,7 @@ Bốn yêu cầu của Sơn sau Buổi 3, cộng nội dung đối chiếu từ 
 
 - Mỗi skill thêm mục "Dùng khi nào" và mục "Skill này phải tự tốt lên":
   eval sau mỗi lần chạy, thi thoảng lookup để update, không biết thì hỏi
-  cộng đồng Build to Own hoặc Sơn Piaz
+  cộng đồng mã nguồn mở hoặc Sơn Piaz
 - `bto-researchmarket` thêm chiêu lọc review 1 sao 2 sao và ba cách validate
   (landing cộng waitlist, nói chuyện 5 khách thật, bán trước), đúng như dạy
   live ở Buổi 3

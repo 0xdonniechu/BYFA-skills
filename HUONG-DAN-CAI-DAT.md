@@ -1,8 +1,8 @@
-# Hướng dẫn cài skill Build to Own (wave 2)
+# Hướng dẫn cài skill Agent Workflows (wave 2)
 
-Tài liệu này dành cho học viên **chưa từng cài skill**. Bảy skill mới bổ sung cho ba skill Buổi 2–3 (`bto-secrets`, `bto-researchmarket`, `bto-teardown`), cộng `bto-create-skill` để bạn tự tạo skill của riêng mình.
+Tài liệu này dành cho người dùng **chưa từng cài skill**. Bảy skill mới bổ sung cho ba skill Buổi 2–3 (`bto-secrets`, `bto-researchmarket`, `bto-teardown`), cộng `bto-create-skill` để bạn tự tạo skill của riêng mình.
 
-Repo: [github.com/sonpiaz/bto-skills](https://github.com/sonpiaz/bto-skills)
+Repo: [github.com/0xdonniechu/bto-skills](https://github.com/0xdonniechu/bto-skills)
 
 ---
 
@@ -48,12 +48,12 @@ Skill hỏi bạn năm câu, viết `SKILL.md` theo [template một trang](bto-c
 
 Mở **Claude Code**, dán nguyên câu này:
 
-> Cài bto-skills: chạy `git clone https://github.com/sonpiaz/bto-skills.git ~/.claude/skills/bto-skills && ~/.claude/skills/bto-skills/setup` rồi xác nhận mười một skill `bto-*` đã nhận.
+> Cài bto-skills: chạy `git clone https://github.com/0xdonniechu/bto-skills.git ~/.claude/skills/bto-skills && ~/.claude/skills/bto-skills/setup` rồi xác nhận mười một skill `bto-*` đã nhận.
 
 Hoặc tự chạy trong Terminal:
 
 ```bash
-git clone https://github.com/sonpiaz/bto-skills.git ~/.claude/skills/bto-skills
+git clone https://github.com/0xdonniechu/bto-skills.git ~/.claude/skills/bto-skills
 ~/.claude/skills/bto-skills/setup
 ```
 
@@ -66,7 +66,7 @@ Ví dụ chỉ `bto-sdlc`:
 ```bash
 mkdir -p ~/.claude/skills/bto-sdlc
 curl -o ~/.claude/skills/bto-sdlc/SKILL.md \
-  https://raw.githubusercontent.com/sonpiaz/bto-skills/main/bto-sdlc/SKILL.md
+  https://raw.githubusercontent.com/0xdonniechu/bto-skills/main/bto-sdlc/SKILL.md
 ```
 
 Đổi `bto-sdlc` thành tên skill bạn cần.
@@ -99,7 +99,7 @@ Cursor đọc skill từ `~/.cursor/skills/` (cá nhân) hoặc `.cursor/skills/
 ### Cách A: Symlink cả repo (giống Claude Code)
 
 ```bash
-git clone https://github.com/sonpiaz/bto-skills.git ~/.cursor/skills/bto-skills
+git clone https://github.com/0xdonniechu/bto-skills.git ~/.cursor/skills/bto-skills
 mkdir -p ~/.cursor/skills
 for d in ~/.cursor/skills/bto-skills/bto-*/; do
   name=$(basename "$d")
@@ -112,7 +112,7 @@ done
 ```bash
 mkdir -p ~/.cursor/skills/bto-whats-next
 curl -o ~/.cursor/skills/bto-whats-next/SKILL.md \
-  https://raw.githubusercontent.com/sonpiaz/bto-skills/main/bto-whats-next/SKILL.md
+  https://raw.githubusercontent.com/0xdonniechu/bto-skills/main/bto-whats-next/SKILL.md
 ```
 
 ### Kiểm đã cài (Cursor)
@@ -156,7 +156,7 @@ Mở phiên agent **mới** sau khi pull.
 
 ## Cần trợ giúp
 
-- Discord Build to Own (kênh cohort)
+- Discord Agent Workflows (kênh cohort)
 - Email / nền tảng học: điều phối viên chương trình sẽ gửi link repo + file này
 - Góp ý skill: [CONTRIBUTING.md](CONTRIBUTING.md) — fork, sửa, mở PR
 
