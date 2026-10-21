@@ -67,6 +67,30 @@ bài blog.
   được nguồn, và vì sao. Mục này tạo niềm tin hơn mọi trích dẫn.
 - Số liệu thị trường ghi rõ theo định nghĩa phân khúc nào, không trộn.
 
+
+
+### 7. Khung Battlecard đối đầu trực diện (Sales Competitor Battlecard)
+
+Khi research đối thủ cạnh tranh để bán hàng hoặc đánh chiếm thị trường, lập bảng đối đầu trực diện cho từng đối thủ ưu tiên:
+
+- **Target Persona & Pitch**: Khách hàng mục tiêu của họ là ai và lời hứa tiếp thị cốt lõi (Core Marketing Promise).
+- **Pricing & Packaging Reality**: Thực tế giá cả, các bậc trả phí, chi phí ẩn (hidden fees), rào cản chi phí thiết lập.
+- **Core Flaw & Vulnerability**: Lỗ hổng cốt lõi bóc từ review 1★/2★ và teardown kỹ thuật (tính năng lỗi thời, hỗ trợ tệ, giao diện khó dùng).
+- **Marketing Claim vs Reality**: Bảng đối chiếu giữa lời quảng cáo trên trang chủ vs thực tế người dùng nhận được.
+- **How to Win (Kill Shot / Content Wedge)**: Góc tiếp cận hoặc tính năng vượt trội hạ gục đối thủ ngay từ vòng tư vấn/nội dung.
+- **Objection Handling Matrix**: Ma trận xử lý phản đối khi khách hàng thắc mắc "Bên đối thủ X đã làm được Y rồi mà?".
+
+### 8. Chuẩn đóng gói Case Study & Bằng chứng thực tế (Marketing Case Study Packaging)
+
+Khi dùng kết quả nghiên cứu hoặc kết quả khách hàng để làm bằng chứng (proof-based content), bắt buộc đóng gói theo chuẩn 6 phần không tính từ mơ hồ:
+
+1. **Snapshot**: Hồ sơ đối tượng/khách hàng, ngành, quy mô, kết quả định lượng ấn tượng nhất.
+2. **The Baseline Friction (Before / Challenge)**: Nỗi đau cụ thể trước khi giải quyết kèm con số thực (ví dụ: mất 35h/tuần, tỉ lệ rớt 24%). Tuyệt đối không dùng tính từ cảm tính ("rất khó khăn", "vô cùng tốn kém").
+3. **Solution Architecture**: Các bước triển khai thực tế, thay đổi quy trình và thời gian hoàn thành.
+4. **Quantified Results (Proof)**: Kết quả đo đạc bằng số thật ($ tiết kiệm được, % tăng trưởng, số giờ cắt giảm) — cấm tính từ chung chung.
+5. **Verifiable Quote / Testimonial**: Lời trích dẫn có thể kiểm chứng từ người thật, vai trò thật.
+6. **Actionable Takeaway**: Một bài học cụ thể mà người đọc có thể áp dụng được ngay vào công việc của họ.
+
 ## Bước 3 — Đổ vào template và tự kiểm
 
 Điền kết quả vào template bản research một trang phát kèm Buổi 3. Không có
