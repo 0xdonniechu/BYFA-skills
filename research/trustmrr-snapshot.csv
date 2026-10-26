@@ -1,0 +1,7 @@
+﻿company,mrr_usd,subscriptions,data_date,status,source
+Postiz,314913,9237,2026-10-25,payment-connected snapshot,https://trustmrr.com/startup/postiz
+Post Bridge,49687,1663,2026-10-25,payment-connected snapshot,https://trustmrr.com/startup/post-bridge
+Marky,22032,480,2026-10-25,payment-connected snapshot,https://trustmrr.com/startup/marky
+Followr,5119,290,2026-10-25,payment-connected snapshot,https://trustmrr.com/startup/followr
+Sentrive,147,3,2026-10-25,payment-connected snapshot,https://trustmrr.com/startup/sentrive
+Supergrow,79479,2315,2026-02-28,STALE: Stripe API key expired; excluded from current chart,https://trustmrr.com/startup/supergrow

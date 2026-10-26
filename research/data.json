@@ -1,0 +1,465 @@
+{
+  "as_of": "2026-10-26",
+  "matrix_columns": [
+    "Brand from URL",
+    "Generate visuals",
+    "Recurring planning",
+    "Publish socials",
+    "Launch paid ads",
+    "Optimize paid ads"
+  ],
+  "matrix": [
+    [
+      "Native",
+      "Full workflow",
+      [
+        "C",
+        "C",
+        "C",
+        "C",
+        "C",
+        "C"
+      ],
+      "https://native.no/; https://native.no/ads-on-autopilot"
+    ],
+    [
+      "Blaze",
+      "Full workflow",
+      [
+        "C",
+        "C",
+        "C",
+        "C",
+        "C",
+        "P"
+      ],
+      "https://www.blaze.ai/faq; https://www.blaze.ai/pricing; https://www.blaze.ai/"
+    ],
+    [
+      "Holo",
+      "Full workflow",
+      [
+        "C",
+        "C",
+        "C",
+        "C",
+        "C",
+        "P"
+      ],
+      "https://tryholo.ai/; https://tech.eu/2026/10/15/vilnius-based-holo-raises-eur5m-to-bring-ai-powered-marketing-to-small-businesses/"
+    ],
+    [
+      "Plai",
+      "Full workflow / ads-led",
+      [
+        "C",
+        "C",
+        "?",
+        "C",
+        "C",
+        "C"
+      ],
+      "https://www.plai.io/; https://www.plai.io/pricing"
+    ],
+    [
+      "Marky",
+      "Social-led",
+      [
+        "C",
+        "C",
+        "P",
+        "C",
+        "?",
+        "?"
+      ],
+      "https://www.mymarky.ai/; https://www.mymarky.ai/pricing"
+    ],
+    [
+      "Mizo",
+      "Social-led",
+      [
+        "C",
+        "C",
+        "C",
+        "C",
+        "?",
+        "?"
+      ],
+      "https://mizo-ai.com/en"
+    ],
+    [
+      "Predis",
+      "Social / creative",
+      [
+        "P",
+        "C",
+        "C",
+        "C",
+        "?",
+        "?"
+      ],
+      "https://help.predis.ai/knowledgebase/en/article/get-started-with-auto-posting-using-predis; https://predis.ai/pricing/"
+    ],
+    [
+      "Marblism / Sonny",
+      "AI employee suite",
+      [
+        "C",
+        "C",
+        "C",
+        "C",
+        "?",
+        "?"
+      ],
+      "https://www.marblism.com/ai-employees/sonny"
+    ],
+    [
+      "Sintra / Soshie",
+      "AI employee suite",
+      [
+        "C",
+        "C",
+        "C",
+        "C",
+        "?",
+        "?"
+      ],
+      "https://www.sintra.com/; https://help.sintra.ai/en/articles/9612920-soshie"
+    ],
+    [
+      "Zeely",
+      "Ads-led",
+      [
+        "P",
+        "C",
+        "?",
+        "?",
+        "C",
+        "P"
+      ],
+      "https://zeely.ai/; https://zeely.ai/price/"
+    ],
+    [
+      "Ocoya",
+      "Social workflow",
+      [
+        "P",
+        "C",
+        "P",
+        "C",
+        "?",
+        "?"
+      ],
+      "https://www.ocoya.com/"
+    ],
+    [
+      "SocialBee",
+      "Social workflow",
+      [
+        "P",
+        "C",
+        "P",
+        "C",
+        "?",
+        "?"
+      ],
+      "https://socialbee.com/pricing/"
+    ],
+    [
+      "Nuelink",
+      "Publishing infrastructure",
+      [
+        "P",
+        "P",
+        "P",
+        "C",
+        "?",
+        "?"
+      ],
+      "https://nuelink.com/; https://help.nuelink.com/article/48-whats-an-automation-and-how-does-it-work"
+    ],
+    [
+      "Postiz",
+      "Publishing infrastructure",
+      [
+        "P",
+        "C",
+        "P",
+        "C",
+        "?",
+        "?"
+      ],
+      "https://postiz.com/; https://postiz.com/pricing"
+    ],
+    [
+      "Followr",
+      "Watchlist",
+      [
+        "?",
+        "P",
+        "P",
+        "P",
+        "?",
+        "?"
+      ],
+      "https://trustmrr.com/startup/followr"
+    ],
+    [
+      "Sentrive",
+      "Watchlist",
+      [
+        "?",
+        "?",
+        "P",
+        "P",
+        "?",
+        "?"
+      ],
+      "https://trustmrr.com/startup/sentrive"
+    ]
+  ],
+  "trustmrr": [
+    {
+      "company": "Postiz",
+      "mrr_usd": 314913,
+      "subscriptions": 9237,
+      "data_date": "2026-10-25",
+      "status": "payment-connected snapshot",
+      "source": "https://trustmrr.com/startup/postiz"
+    },
+    {
+      "company": "Post Bridge",
+      "mrr_usd": 49687,
+      "subscriptions": 1663,
+      "data_date": "2026-10-25",
+      "status": "payment-connected snapshot",
+      "source": "https://trustmrr.com/startup/post-bridge"
+    },
+    {
+      "company": "Marky",
+      "mrr_usd": 22032,
+      "subscriptions": 480,
+      "data_date": "2026-10-25",
+      "status": "payment-connected snapshot",
+      "source": "https://trustmrr.com/startup/marky"
+    },
+    {
+      "company": "Followr",
+      "mrr_usd": 5119,
+      "subscriptions": 290,
+      "data_date": "2026-10-25",
+      "status": "payment-connected snapshot",
+      "source": "https://trustmrr.com/startup/followr"
+    },
+    {
+      "company": "Sentrive",
+      "mrr_usd": 147,
+      "subscriptions": 3,
+      "data_date": "2026-10-25",
+      "status": "payment-connected snapshot",
+      "source": "https://trustmrr.com/startup/sentrive"
+    },
+    {
+      "company": "Supergrow",
+      "mrr_usd": 79479,
+      "subscriptions": 2315,
+      "data_date": "2026-02-28",
+      "status": "STALE: Stripe API key expired; excluded from current chart",
+      "source": "https://trustmrr.com/startup/supergrow"
+    }
+  ],
+  "finance": [
+    [
+      "Native",
+      "Undisclosed; YC F26 confirmed",
+      "35000000",
+      "NOK",
+      "Founder quote reported before launch; no transaction/pre/post-money details",
+      "2000000",
+      "USD ARR",
+      "Founder/vendor claim on YC; not payment-verified",
+      "2026 launch post; NOK 35M report 2026-01-28",
+      "https://www.ycombinator.com/companies/native; https://www.finansavisen.no/medier/2026/01/28/8323464/oskar-westerlin-med-milliarddrom"
+    ],
+    [
+      "Blaze",
+      "Seed investor confirmed; amount undisclosed",
+      "",
+      "",
+      "No confirmed valuation",
+      "",
+      "",
+      "Do not attribute Almanac legacy funding to standalone Blaze",
+      "2025 seed investor record",
+      "https://www.array.vc/portfolio/blazeai"
+    ],
+    [
+      "Holo",
+      "EUR 5000000 seed announced 2026-10-15",
+      "",
+      "",
+      "No confirmed valuation",
+      "5000000",
+      "USD ARR",
+      "Reported milestone, not payment-verified",
+      "2026-10-15",
+      "https://www.cobalt.legal/news-cases/market-one-capital-leads-eur-5-million-seed-round-for-lithuanian-startup-holo/; https://tech.eu/2026/10/15/vilnius-based-holo-raises-eur5m-to-bring-ai-powered-marketing-to-small-businesses/"
+    ],
+    [
+      "Sintra",
+      "USD 17000000 seed announced 2025-06-10",
+      "",
+      "",
+      "No confirmed valuation",
+      "12000000",
+      "USD ARR",
+      "Historical reported milestone; not current ARR",
+      "2025-06-10",
+      "https://www.cobalt.legal/news-cases/practica-capital-backs-lithuanian-ai-startup-in-record-usd-17-million-seed-round/; https://tech.eu/2025/06/10/lithuanian-ai-startup-sintra-secures-17m-seed-empowering-smbs-with-ai-helpers/"
+    ],
+    [
+      "Zeely",
+      "SEC sold USD 8838942 (2026-09-14), USD 2091993 (2026-10-16)",
+      "",
+      "",
+      "No confirmed valuation",
+      "",
+      "",
+      "Separate offerings; do not add historic announcements without reconciliation",
+      "2026-10-16",
+      "https://www.sec.gov/Archives/edgar/data/2155182/000215518226000001/xslFormDX01/primary_doc.xml; https://www.sec.gov/Archives/edgar/data/2155182/000215518226000002/xslFormDX01/primary_doc.xml"
+    ],
+    [
+      "Marblism",
+      "USD 500000 total recorded by CB Insights; secondary evidence",
+      "",
+      "",
+      "No confirmed valuation",
+      "",
+      "",
+      "YC profile confirms company; database funding not independently reconciled",
+      "Database checked 2026-10-26",
+      "https://www.cbinsights.com/company/marblism/financials; https://www.ycombinator.com/companies/marblism"
+    ],
+    [
+      "Predis",
+      "USD 155000 seed in Dealroom; secondary evidence",
+      "",
+      "",
+      "No confirmed valuation",
+      "",
+      "",
+      "Do not use Dealroom modelled enterprise value as transaction valuation",
+      "2022-05 round; checked 2026-10-26",
+      "https://app.dealroom.co/companies/predis_ai"
+    ],
+    [
+      "Ocoya",
+      "USD 30000 seed in CB Insights; secondary evidence",
+      "",
+      "",
+      "No confirmed valuation",
+      "",
+      "",
+      "Conflicting aggregator claim of USD 67M excluded",
+      "2020-11-17 round; checked 2026-10-26",
+      "https://www.cbinsights.com/company/ocoya/financials"
+    ],
+    [
+      "Marky",
+      "AppSumo describes bootstrapped",
+      "",
+      "",
+      "No confirmed valuation",
+      "22032",
+      "USD MRR",
+      "TrustMRR connected snapshot; not audited company revenue",
+      "2026-10-25",
+      "https://appsumo.com/products/marky-v4-0/; https://trustmrr.com/startup/marky"
+    ],
+    [
+      "Mizo",
+      "Not established",
+      "",
+      "",
+      "No confirmed valuation",
+      "",
+      "",
+      "mizo-ai.com is not mizo.tech",
+      "Checked 2026-10-26",
+      "https://mizo-ai.com/en"
+    ],
+    [
+      "Plai",
+      "Not established",
+      "",
+      "",
+      "No confirmed valuation",
+      "",
+      "",
+      "No public amount verified in this research",
+      "Checked 2026-10-26",
+      "https://www.plai.io/"
+    ],
+    [
+      "Nuelink",
+      "Founder describes self-funded in interview",
+      "",
+      "",
+      "No confirmed valuation",
+      "",
+      "",
+      "Not independently audited",
+      "2026-10 interview",
+      "https://assiyaq.com/nuelink-from-moroccan-startup-to-global-social-media-leader/"
+    ],
+    [
+      "SocialBee",
+      "Not established",
+      "",
+      "",
+      "No confirmed valuation",
+      "",
+      "",
+      "No public amount verified in this research",
+      "Checked 2026-10-26",
+      "https://socialbee.com/"
+    ],
+    [
+      "Postiz",
+      "Not established",
+      "",
+      "",
+      "No confirmed valuation",
+      "314913",
+      "USD MRR",
+      "TrustMRR connected snapshot",
+      "2026-10-25",
+      "https://trustmrr.com/startup/postiz"
+    ],
+    [
+      "Followr",
+      "Not established",
+      "",
+      "",
+      "No confirmed valuation",
+      "5119",
+      "USD MRR",
+      "TrustMRR connected snapshot",
+      "2026-10-25",
+      "https://trustmrr.com/startup/followr"
+    ],
+    [
+      "Sentrive",
+      "Founder listing: bootstrapped",
+      "",
+      "",
+      "No confirmed valuation",
+      "147",
+      "USD MRR",
+      "TrustMRR snapshot; founder narrative has different older MRR",
+      "2026-10-25",
+      "https://trustmrr.com/startup/sentrive"
+    ]
+  ]
+}
