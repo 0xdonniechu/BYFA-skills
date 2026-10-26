@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.0.12 · 2026-10-26
+
+- `market-research`: substantial research now defaults to a browser-viewable HTML report with a verified direct URL using existing authorized hosting; keeps sensitive research private and does not create hosting accounts.
+
 ## 0.0.11 · 2026-10-26
 
 - Hợp nhất skill `market-research` hiện có với quy trình `bto-researchmarket`; thêm playbook sourcing, review, market sizing, finance, investor/vendor diligence và bảo toàn chart workflow có sẵn.

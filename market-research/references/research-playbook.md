@@ -105,4 +105,4 @@ Chọn đúng phần, viết bằng ngôn ngữ người dùng nếu họ không
 
 Nếu người dùng muốn proof-based case study, chỉ dùng kết quả thật có thể xác minh: snapshot; baseline; cách triển khai; quantified result; trích dẫn có thể kiểm chứng; takeaway. Thiếu dữ liệu thì không dựng quote, baseline hoặc ROI.
 
-Nếu xuất HTML, nhúng charts/assets hoặc giữ đường dẫn public hợp lệ; kiểm số, nguồn và responsive tables trong browser. Tạo/publish chỉ theo yêu cầu rõ của người dùng.
+Với research thị trường đáng kể, tạo HTML có thể mở trực tiếp trên web và gửi URL đã kiểm tra. Ưu tiên hosting sẵn có trong repo/dự án được người dùng cho phép; giữ biểu đồ, số liệu, bảng và nguồn đồng nhất với báo cáo. Không công khai nghiên cứu nhạy cảm hoặc tạo tài khoản hosting mới; nếu chưa có nơi lưu trữ được phép, bàn giao HTML cục bộ và nêu rõ điều kiện còn thiếu để có link web.

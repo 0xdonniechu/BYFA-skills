@@ -47,7 +47,9 @@ If a commercial opportunity needs validation, offer proportionate options such a
 
 ## Deliver and check
 
-Provide source-linked findings. Create HTML, slides or dashboards only when requested. Keep figures, tables and claims consistent with the research; open rendered output in a browser when available and report any inspection limitation. Never fabricate citations, customer quotes, traction, valuation, validation results or a product test that was not performed.
+For substantial market research, create a browser-ready HTML report and provide a direct URL that opens it on the web, not only a downloadable file. Prefer the active project/repository's existing, user-authorized hosting and keep the published page consistent with the cited research. Check that the URL opens the intended report before handoff. If the research is private/sensitive or no approved hosting destination is available, do not expose it publicly; provide the local HTML and explain what is needed for a web link. Do not create a new hosting account.
+
+Create slides or dashboards when requested. Keep figures, tables and claims consistent with the research; open rendered output in a browser when available and report any inspection limitation. Never fabricate citations, customer quotes, traction, valuation, validation results or a product test that was not performed.
 
 Before handoff, check that:
 
