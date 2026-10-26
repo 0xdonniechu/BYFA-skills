@@ -8,6 +8,7 @@ All principles are distilled from production engineering experience: secrets man
 
 ## Research
 
+- [Mở báo cáo trực tiếp trên trình duyệt](https://0xdonniechu.github.io/BYFA-skills/) — GitHub Pages.
 - [Native.no competitive landscape (26 Oct 2026)](research/native-competitive-2026-10-26.html) — competitor matrix, TrustMRR snapshots, funding/valuation evidence, and a clearly caveated TAM/SAM/SOM scenario.
 
 ---
