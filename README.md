@@ -6,6 +6,10 @@ A skill is a structured instruction set that an agent autonomously loads and exe
 
 All principles are distilled from production engineering experience: secrets management, rigorous market research with multi-tier source verification, clean-room product teardowns, structured software development life cycles (SDLC), and multi-agent coordination.
 
+## Research
+
+- [Native.no competitive landscape (26 Oct 2026)](research/native-competitive-2026-10-26.html) — competitor matrix, TrustMRR snapshots, funding/valuation evidence, and a clearly caveated TAM/SAM/SOM scenario.
+
 ---
 
 ## Skills Directory
