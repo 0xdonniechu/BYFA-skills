@@ -57,7 +57,7 @@ Ba skill đầu tiên, phát cho các bản phát hành trước sau Buổi 3:
 - `research-market` → `bto-researchmarket`
 - `teardown` → `bto-teardown`
 
-README thêm phần giới thiệu chương trình, dẫn về github.com/0xdonniechu/bto-skills.
+README thêm phần giới thiệu chương trình, dẫn về github.com/0xdonniechu/BYFA-skills.
 
 ## 0.0.3 · 2026-08-30
 

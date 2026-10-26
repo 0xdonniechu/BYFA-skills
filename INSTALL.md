@@ -2,7 +2,7 @@
 
 Tài liệu này dành cho người dùng **chưa từng cài skill**. Bảy skill mới bổ sung cho ba skill Buổi 2–3 (`bto-secrets`, `bto-researchmarket`, `bto-teardown`), cộng `bto-create-skill` để bạn tự tạo skill của riêng mình.
 
-Repo: [github.com/0xdonniechu/bto-skills](https://github.com/0xdonniechu/bto-skills)
+Repo: [github.com/0xdonniechu/BYFA-skills](https://github.com/0xdonniechu/BYFA-skills)
 
 ---
 
@@ -48,13 +48,13 @@ Skill hỏi bạn năm câu, viết `SKILL.md` theo [template một trang](bto-c
 
 Mở **Claude Code**, dán nguyên câu này:
 
-> Cài bto-skills: chạy `git clone https://github.com/0xdonniechu/bto-skills.git ~/.claude/skills/bto-skills && ~/.claude/skills/bto-skills/setup` rồi xác nhận mười một skill `bto-*` đã nhận.
+> Cài byfa-skills: chạy `git clone https://github.com/0xdonniechu/BYFA-skills.git ~/.claude/skills/byfa-skills && ~/.claude/skills/byfa-skills/setup` rồi xác nhận mười một skill `bto-*` đã nhận.
 
 Hoặc tự chạy trong Terminal:
 
 ```bash
-git clone https://github.com/0xdonniechu/bto-skills.git ~/.claude/skills/bto-skills
-~/.claude/skills/bto-skills/setup
+git clone https://github.com/0xdonniechu/BYFA-skills.git ~/.claude/skills/byfa-skills
+~/.claude/skills/byfa-skills/setup
 ```
 
 Script `setup` tạo **symlink** từ repo vào `~/.claude/skills/<tên-skill>/`. Chạy lại nhiều lần vẫn an toàn.
@@ -66,7 +66,7 @@ Ví dụ chỉ `bto-sdlc`:
 ```bash
 mkdir -p ~/.claude/skills/bto-sdlc
 curl -o ~/.claude/skills/bto-sdlc/SKILL.md \
-  https://raw.githubusercontent.com/0xdonniechu/bto-skills/main/bto-sdlc/SKILL.md
+  https://raw.githubusercontent.com/0xdonniechu/BYFA-skills/main/bto-sdlc/SKILL.md
 ```
 
 Đổi `bto-sdlc` thành tên skill bạn cần.
@@ -99,9 +99,9 @@ Cursor đọc skill từ `~/.cursor/skills/` (cá nhân) hoặc `.cursor/skills/
 ### Cách A: Symlink cả repo (giống Claude Code)
 
 ```bash
-git clone https://github.com/0xdonniechu/bto-skills.git ~/.cursor/skills/bto-skills
+git clone https://github.com/0xdonniechu/BYFA-skills.git ~/.cursor/skills/byfa-skills
 mkdir -p ~/.cursor/skills
-for d in ~/.cursor/skills/bto-skills/bto-*/; do
+for d in ~/.cursor/skills/byfa-skills/bto-*/; do
   name=$(basename "$d")
   ln -sfn "$d" ~/.cursor/skills/"$name"
 done
@@ -112,7 +112,7 @@ done
 ```bash
 mkdir -p ~/.cursor/skills/bto-whats-next
 curl -o ~/.cursor/skills/bto-whats-next/SKILL.md \
-  https://raw.githubusercontent.com/0xdonniechu/bto-skills/main/bto-whats-next/SKILL.md
+  https://raw.githubusercontent.com/0xdonniechu/BYFA-skills/main/bto-whats-next/SKILL.md
 ```
 
 ### Kiểm đã cài (Cursor)
@@ -132,9 +132,9 @@ Trong Cursor: **Settings → Rules / Skills** (tùy phiên bản) có thể li�
 ## Cập nhật skill sau này
 
 ```bash
-cd ~/.claude/skills/bto-skills   # hoặc ~/.cursor/skills/bto-skills
+cd ~/.claude/skills/byfa-skills   # hoặc ~/.cursor/skills/byfa-skills
 git pull
-~/.claude/skills/bto-skills/setup   # Claude Code: refresh symlink
+~/.claude/skills/byfa-skills/setup   # Claude Code: refresh symlink
 ```
 
 Mở phiên agent **mới** sau khi pull.
@@ -147,7 +147,7 @@ Mở phiên agent **mới** sau khi pull.
 |---|---|---|
 | Agent không nhắc quy trình skill | Phiên mở **trước** khi cài | Đóng, mở phiên mới |
 | `setup` báo "bo qua … đã tồn tại" | Bạn đã có folder skill trùng tên (tự viết) | Đổi tên folder cũ, hoặc chỉ curl một file SKILL.md |
-| `git clone` báo folder đã có | Clone lần 2 | `cd ~/.claude/skills/bto-skills && git pull` |
+| `git clone` báo folder đã có | Clone lần 2 | `cd ~/.claude/skills/byfa-skills && git pull` |
 | Cursor không thấy skill | Đặt sai chỗ (`skills-cursor` là của Cursor, **không** ghi vào đó) | Dùng `~/.cursor/skills/bto-*/` |
 | Symlink hỏng sau khi xóa repo | Xóa nhầm thư mục clone | Clone lại + chạy `setup` |
 | Skill tiếng Anh (`bto-optimize-mac`) agent trả lời lẫn ngôn ngữ | Body skill là English | Bình thường; hỏi bằng tiếng Việt vẫn được |

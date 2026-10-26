@@ -13,7 +13,7 @@ for d in "$SRC"/*/; do
   [ -f "$d/SKILL.md" ] || continue
   target="$DEST/$name"
   if [ -e "$target" ] && [ ! -L "$target" ]; then
-    echo "bo qua $name: $target da ton tai va khong phai do bto-skills tao ra"
+    echo "bo qua $name: $target da ton tai va khong phai do byfa-skills tao ra"
     continue
   fi
   ln -sfn "$SRC/$name" "$target"

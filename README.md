@@ -37,8 +37,8 @@ All principles are distilled from production engineering experience: secrets man
 Install all skills with a single command:
 
 ```bash
-git clone https://github.com/0xdonniechu/bto-skills.git ~/.claude/skills/bto-skills
-~/.claude/skills/bto-skills/setup
+git clone https://github.com/0xdonniechu/BYFA-skills.git ~/.claude/skills/byfa-skills
+~/.claude/skills/byfa-skills/setup
 ```
 
 Or install a specific skill (e.g. `bto-researchmarket`):
@@ -46,7 +46,7 @@ Or install a specific skill (e.g. `bto-researchmarket`):
 ```bash
 mkdir -p ~/.claude/skills/bto-researchmarket
 curl -o ~/.claude/skills/bto-researchmarket/SKILL.md \
-  https://raw.githubusercontent.com/0xdonniechu/bto-skills/main/bto-researchmarket/SKILL.md
+  https://raw.githubusercontent.com/0xdonniechu/BYFA-skills/main/bto-researchmarket/SKILL.md
 ```
 
 ### Cursor & Other Agents

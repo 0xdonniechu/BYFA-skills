@@ -1,4 +1,4 @@
-# Đóng góp vào bto-skills
+# Đóng góp vào byfa-skills
 
 Skill là tài liệu sống. Bạn dùng nó, thấy nó thiếu hoặc sai, sửa nó, thì
 người sau đỡ vấp đúng chỗ bạn vừa vấp. Đó là toàn bộ vòng đời của repo này.
@@ -7,8 +7,8 @@ người sau đỡ vấp đúng chỗ bạn vừa vấp. Đó là toàn bộ vò
 
 ```bash
 # 1. Fork repo này trên GitHub (nút Fork góc phải), rồi clone bản fork về
-git clone https://github.com/<tên-bạn>/bto-skills.git
-cd bto-skills
+git clone https://github.com/<tên-bạn>/BYFA-skills.git
+cd BYFA-skills
 
 # 2. Tạo branch, sửa đúng file SKILL.md liên quan
 git checkout -b fix/ten-ngan-gon
@@ -17,11 +17,11 @@ git checkout -b fix/ten-ngan-gon
 git add <file> && git commit -m "fix: ..."
 git push -u origin fix/ten-ngan-gon
 
-# 4. Mở pull request về 0xdonniechu/bto-skills, mô tả bằng tiếng Việt
+# 4. Mở pull request về 0xdonniechu/BYFA-skills, mô tả bằng tiếng Việt
 ```
 
 Chưa quen git thì mở một issue kể lại chuyện bạn gặp, thế cũng là đóng góp.
-Hoặc bảo agent của bạn: "fork 0xdonniechu/bto-skills, sửa chỗ X, mở PR giúp tôi".
+Hoặc bảo agent của bạn: "fork 0xdonniechu/BYFA-skills, sửa chỗ X, mở PR giúp tôi".
 
 ## Luật cho một đóng góp được nhận
 
@@ -46,4 +46,4 @@ Hoặc bảo agent của bạn: "fork 0xdonniechu/bto-skills, sửa chỗ X, m�
   bản gốc các skill này.
 
 Chưa vào chương trình mà muốn học full phương pháp đứng sau các skill:
-[github.com/0xdonniechu/bto-skills](https://github.com/0xdonniechu/bto-skills).
+[github.com/0xdonniechu/BYFA-skills](https://github.com/0xdonniechu/BYFA-skills).
