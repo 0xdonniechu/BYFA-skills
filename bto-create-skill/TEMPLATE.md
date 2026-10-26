@@ -1,87 +1,87 @@
 ---
-name: ten-skill
-description: <Làm gì, một câu>. Dùng khi <việc cụ thể>, hoặc khi nói "<cụm 1>", "<cụm 2>", "<english phrase>". Không dùng khi <việc nghe giống nhưng khác, và nên dùng gì thay>.
+name: skill-name
+description: <What it does, one sentence>. Use when <concrete job>, or when saying "<phrase 1>", "<phrase 2>", "<english phrase>". Don't use when <sound-alike-but-different job, and what to use instead>.
 ---
 <!--
-Template SKILL.md một trang. Copy vào ~/.claude/skills/<ten-skill>/SKILL.md rồi điền.
-Xoá mọi khối comment HTML khi xong. Thân file giữ dưới 150 dòng.
+One-page SKILL.md template. Copy to ~/.claude/skills/<skill-name>/SKILL.md then fill in.
+Delete all HTML comment blocks when done. Keep the body under 150 lines.
 
-name        chữ thường, số, gạch nối; trùng tên thư mục; tiếng Anh.
-description nói KHI NÀO dùng, không tóm tắt các bước. Liệt kê rộng tay các cụm bạn
-            hay nói, cả tiếng Việt lẫn tiếng Anh. Không để ": " (hai chấm + cách)
-            trong câu, YAML sẽ không đọc được. Kiểm bằng python3 + yaml.safe_load.
+name        lowercase, digits, hyphens; matches the folder name; English.
+description says WHEN to use, doesn't summarize the steps. List generously the phrases you
+            actually say, in English. No ": " (colon + space)
+            in the sentence — YAML won't parse it. Check with python3 + yaml.safe_load.
 -->
 
-# /ten-skill
+# /skill-name
 
-<!-- Hai câu: skill này giúp gì, đầu vào là gì, đầu ra là gì. -->
+<!-- Two sentences: what this skill does, what goes in, what comes out. -->
 
-## Dùng khi nào
+## When to use
 
-<!-- 2 tới 4 tình huống thật. Mỗi dòng một tình huống. -->
-- 
+<!-- 2 to 4 real situations. One situation per line. -->
+-
 
-## Không dùng khi
+## Don't use when
 
-<!-- Câu nghe giống nhưng không phải việc này. Ghi nên dùng gì thay. -->
-- 
+<!-- Sound-alike phrases that are not this job. Note what to use instead. -->
+-
 
-## Đọc trước
+## Read first
 
-<!-- Thứ agent phải đọc trước khi làm, theo thứ tự: README, spec, file cấu hình.
-     Là file thì chỉ trỏ tới file, không chép nội dung vào đây. Không phải file
-     (vài bài viết cũ, một đoạn mẫu) thì ghi "hỏi bạn dán vào chat". Không có thì xoá mục này. -->
-1. 
+<!-- What the agent must read before working, in order: README, spec, config files.
+     For files, point at the file only — don't copy content in here. For non-files
+     (a few old posts, a sample snippet), write "ask you to paste into chat". Delete this section if none. -->
+1.
 
-## Các bước
+## Steps
 
-<!-- Theo đúng thứ tự bạn đã làm tay. Mỗi bước ghi: làm gì, và biết là xong bằng gì.
-     Bước đụng tiền, secret, production, gửi ra ngoài: ghi lệnh cụ thể và
-     "dừng, hỏi người dùng trước khi làm". -->
+<!-- In exactly the order you did it by hand. Each step records: what to do, and how to know it's done.
+     Steps touching money, secrets, production, outbound sends: write the exact command and
+     "stop, ask the user before acting". -->
 
-### 1. <Tên bước>
-- Làm: 
-- Xong khi: 
+### 1. <Step name>
+- Do:
+- Done when:
 
-### 2. <Tên bước>
-- Làm: 
-- Xong khi: 
+### 2. <Step name>
+- Do:
+- Done when:
 
-## Không làm
+## Don't
 
-<!-- Thứ agent tuyệt đối không tự làm. Mỗi dòng nên kèm chuyện đã hỏng thật. -->
-- 
+<!-- Things the agent must never do alone. Each line should carry a real failure story. -->
+-
 
-## Xong khi
+## Done when
 
-<!-- Một thứ nhìn thấy hoặc đo được: file nào có, lệnh nào xanh, con số nào đạt. -->
-- 
+<!-- One visible or measurable thing: which file exists, which command is green, which number is hit. -->
+-
 
 ## Eval
 
-<!-- 3 tới 5 chỉ số đếm được. Ít nhất một chỉ số đo kết quả cho người dùng.
-     "Trong file có chữ X" không phải phép đo. -->
+<!-- 3 to 5 countable metrics. At least one measures the outcome for the user.
+     "'File contains X' is not a measurement." -->
 
-| Chỉ số | Cách đo | Đích |
+| Metric | How to measure | Target |
 |---|---|---|
-| Gọi đúng lúc | 5 câu nên gọi + 5 câu nghe giống nhưng không nên gọi | ≥ 9/10 |
-| Chỗ người dùng phải sửa tay | đếm mỗi lần chạy | về 0 |
-| <kết quả đạt "Xong khi"> | <lệnh hoặc file để kiểm> | <đích> |
+| Invoked at the right time | 5 should-invoke + 5 sound-alike-but-shouldn't phrases | ≥ 9/10 |
+| Places the user must fix by hand | count per run | down to 0 |
+| <result meets "Done when"> | <command or file to check> | <target> |
 
-## Sổ feedback
+## Feedback log
 
-<!-- Mới nhất ở trên. Mỗi lần sửa lưng agent về việc của skill: thêm một dòng,
-     và sửa đúng mục liên quan trong file này ngay lúc đó. -->
+<!-- Newest on top. Each time you correct the agent on the skill's job: add a row,
+     and fix the related section in this file right then. -->
 
-| Ngày | Chuyện gì xảy ra | Đã sửa gì |
+| Date | What happened | What changed |
 |---|---|---|
-| <dd/mm/yyyy> | Tạo skill, chạy thử trên ca <tên ca> | v1 |
+| <dd/mm/yyyy> | Created skill, trialed on case <case name> | v1 |
 
-## Skill này phải tự tốt lên
+## This skill must improve itself
 
-1. **Eval sau mỗi lần chạy.** Chấm theo bảng Eval, thiếu bước nào thì đề xuất sửa
-   thẳng vào file này và thêm một dòng Sổ feedback.
-2. **Thi thoảng lookup để update.** Số liệu, tên tool, giá đã vài tháng tuổi thì
-   kiểm lại từ nguồn gốc trước khi tin.
-3. **Có model mạnh hơn thì chạy lại ca thử.** Dòng nào không còn cần thì bỏ.
-4. **Không biết thì hỏi người**, đừng đoán.
+1. **Eval after every run.** Grade against the Eval table; any missing step gets a proposed fix
+   straight into this file plus one Feedback log row.
+2. **Look things up occasionally to update.** Numbers, tool names, prices a few months old get
+   rechecked against the origin before trusting.
+3. **With a stronger model, rerun the trial case.** Drop lines no longer needed.
+4. **When unsure, ask a human** — don't guess.

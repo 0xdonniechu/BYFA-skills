@@ -1,49 +1,47 @@
-# Đóng góp vào byfa-skills
+# Contributing to byfa-skills
 
-Skill là tài liệu sống. Bạn dùng nó, thấy nó thiếu hoặc sai, sửa nó, thì
-người sau đỡ vấp đúng chỗ bạn vừa vấp. Đó là toàn bộ vòng đời của repo này.
+A skill is a living document. You use it, find something missing or wrong, fix it, and the
+next person avoids tripping where you tripped. That is the entire lifecycle of this repo.
 
-## Cách đóng góp, bốn bước
+## How to contribute, four steps
 
 ```bash
-# 1. Fork repo này trên GitHub (nút Fork góc phải), rồi clone bản fork về
-git clone https://github.com/<tên-bạn>/BYFA-skills.git
+# 1. Fork this repo on GitHub (Fork button, top right), then clone your fork
+git clone https://github.com/<your-name>/BYFA-skills.git
 cd BYFA-skills
 
-# 2. Tạo branch, sửa đúng file SKILL.md liên quan
-git checkout -b fix/ten-ngan-gon
+# 2. Create a branch, edit the relevant SKILL.md file
+git checkout -b fix/short-name
 
-# 3. Commit với mô tả VÌ SAO sửa, không chỉ sửa cái gì
+# 3. Commit describing WHY you fixed it, not just what you changed
 git add <file> && git commit -m "fix: ..."
-git push -u origin fix/ten-ngan-gon
+git push -u origin fix/short-name
 
-# 4. Mở pull request về 0xdonniechu/BYFA-skills, mô tả bằng tiếng Việt
+# 4. Open a pull request to 0xdonniechu/BYFA-skills, describe it in English
 ```
 
-Chưa quen git thì mở một issue kể lại chuyện bạn gặp, thế cũng là đóng góp.
-Hoặc bảo agent của bạn: "fork 0xdonniechu/BYFA-skills, sửa chỗ X, mở PR giúp tôi".
+New to git? Open an issue retelling what happened to you — that counts as a contribution too.
+Or tell your agent: "fork 0xdonniechu/BYFA-skills, fix X, open a PR for me".
 
-## Luật cho một đóng góp được nhận
+## Rules for an accepted contribution
 
-1. **Mỗi luật mới phải kèm một chuyện hỏng thật.** Bạn vấp ở đâu, mất bao
-   lâu, sửa thế nào. Luật không có chuyện đứng sau là lý thuyết, sẽ không
-   được nhận. Toàn bộ repo này viết theo nguyên tắc đó.
-2. **Viết tiếng Việt, thuật ngữ kỹ thuật giữ nguyên tiếng Anh.** `webhook`
-   là webhook, không phải "móc nối web".
-3. **Không key, không secret, không dữ liệu người thật, không đường dẫn máy
-   cá nhân** trong bất kỳ file nào.
-4. **Tên skill mới theo dạng `bto-<english-name>`** (ngoại lệ dùng chung đã có là `market-research`), một folder một
-   `SKILL.md`, chạy được ngay sau khi symlink.
-5. Đề xuất đổi hẳn một quy trình thì mở issue bàn trước, đừng gửi thẳng một
-   PR viết lại cả file.
+1. **Every new rule must come with a real failure story.** Where you tripped, how long
+   it cost, how you fixed it. A rule with no story behind it is theory and will not
+   be accepted. This entire repo is written on that principle.
+2. **Write in English, keep technical terms as-is.** A `webhook` is a webhook.
+3. **No keys, no secrets, no real-person data, no personal machine paths** in any file.
+4. **New skill names follow the `bto-<english-name>` form** (the existing shared exception is `market-research`), one folder
+   per `SKILL.md`, runnable right after symlinking.
+5. To propose replacing an entire workflow, open an issue to discuss first — don't send
+   a PR rewriting a whole file outright.
 
-## Kẹt thì hỏi ở đâu
+## Where to ask when stuck
 
-- **cộng đồng nhà phát triển**: kênh `hỏi-đáp`, member trong chương trình là
-  nguồn trợ giúp nhanh nhất, phần lớn vấn đề đã có người vấp trước bạn.
-- **GitHub Issues** của repo này: cho lỗi trong chính skill.
-- **Sơn Piaz**: [github.com/0xdonniechu](https://github.com/0xdonniechu), người viết
-  bản gốc các skill này.
+- **developer community**: the `q-and-a` channel; program members are
+  the fastest source of help — someone has tripped over most issues before you.
+- **GitHub Issues** of this repo: for bugs inside the skills themselves.
+- **Son Piaz**: [github.com/0xdonniechu](https://github.com/0xdonniechu), the original
+  author of these skills.
 
-Chưa vào chương trình mà muốn học full phương pháp đứng sau các skill:
+Not in the program but want to learn the full method behind the skills:
 [github.com/0xdonniechu/BYFA-skills](https://github.com/0xdonniechu/BYFA-skills).

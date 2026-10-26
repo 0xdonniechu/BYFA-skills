@@ -1,7 +1,7 @@
 ---
 name: bto-whats-next
 description: |
-  Triage phiên làm việc — trả lời "giờ làm gì tiếp?" bằng cách rà toàn session tìm việc dở, đề xuất bước kế, và phụ thuộc của thay đổi lớn. Dùng khi nói "làm gì tiếp", "what's next", "còn gì", "tóm lại session". Chỉ đọc và đề xuất — không tự làm.
+  Triage the working session — answer "what next?" by sweeping the whole session for unfinished work, proposing next steps and dependencies of large changes. Use when saying "what next", "what's left", "session recap". Read and propose only — never start doing the work.
 allowed-tools:
   - Bash
   - Read
@@ -11,44 +11,44 @@ allowed-tools:
 
 # /bto-whats-next
 
-Trả lời **"nên làm gì tiếp?"**. Tổng hợp trạng thái session hiện tại, ưu tiên rõ. **Read-only** — thu thập bằng chứng, đề xuất; **không** bắt đầu làm việc.
+Answer **"what should I do next?"**. Summarize the current session state with clear priorities. **Read-only** — gather evidence, propose; **never** start working.
 
-Ngôn ngữ output = ngôn ngữ hội thoại (thường là tiếng Việt). Tên PR/commit giữ tiếng Anh.
+Output language = the conversation language. PR/commit names stay English.
 
-Khớp Buổi 7: ranh giới việc agent tự quyết vs việc phải chờ bạn duyệt.
-
----
-
-## 1. Thu thập bằng chứng (song song, rẻ)
-
-Chạy song song; bỏ qua mục không áp dụng:
-
-- **Thread lỏng trong chat này** — câu hỏi chưa được trả lời; "sẽ làm tiếp / pending"; đã merge staging chưa lên prod; task nền còn chạy; việc hoãn ("để sau").
-- **PR mở** trong repo session chạm: `gh pr list --state open --json number,title,headRefName` (mỗi repo một lần).
-- **Merged chưa prod** (nếu repo có nhánh staging): `git rev-list --count origin/main..origin/staging` và log ngắn — cái nào của session này vs session khác.
-- **Task nền** — shell/agent background còn sống.
-- **Ghi chú dự án** (tuỳ chọn): `README`, `docs/START-HERE.md`, hoặc file TODO repo — **không bắt buộc** có `MEMORY.md`.
-- **Deploy / env** session này tạo mà chưa propagate.
-
-Giữ vài lệnh nhanh. Không đào code sâu trừ khi mơ hồ.
+Matches Session 7: the boundary between work agents decide alone and work that must wait for your approval.
 
 ---
 
-## 2. Tổng hợp — đúng 4 mục, có ưu tiên
+## 1. Gather evidence (parallel, cheap)
 
-Mỗi item ghi rõ **ai sở hữu** (🧑 bạn vs 🤖 agent). Dẫn PR#/file để click.
+Run in parallel; skip what doesn't apply:
 
-1. **🔵 Chưa xong** — PR mở, chờ bạn test/duyệt, đã merge staging chưa prod, task nền, thread dở. Đánh dấu blocker.
-2. **🟡 Đề xuất** — việc leverage cao nhất, xếp hạng. Gồm đề xuất trước đó bạn chưa chốt. Một dòng + trade-off.
-3. **🔴 Ảnh hưởng & phụ thuộc** — thay đổi lớn session này: cross-repo, thứ tự merge (X trước Y), rủi ro trước promote prod (đổi route/API, schema, secret, migration).
-4. **✅ Đã làm** — recap 2–4 dòng.
+- **Loose threads in this chat** — unanswered questions; "will continue / pending"; merged-to-staging-not-yet-prod; still-running background tasks; deferred work ("later").
+- **Open PRs** in repos the session touched: `gh pr list --state open --json number,title,headRefName` (once per repo).
+- **Merged but not prod** (if the repo has a staging branch): `git rev-list --count origin/main..origin/staging` plus a short log — which belong to this session vs another session.
+- **Background tasks** — live shell/agent background jobs.
+- **Project notes** (optional): `README`, `docs/START-HERE.md`, or the repo TODO file — `MEMORY.md` is **not** required.
+- **Deploys / envs** this session created but not yet propagated.
+
+Keep a few quick commands. No deep code digging unless ambiguous.
 
 ---
 
-## Quy tắc
+## 2. Summarize — exactly 4 sections, prioritized
 
-- **Đề xuất, không execute.** Kết thúc bằng hỏi bạn chọn mục nào.
-- **Ưu tiên 1–2 việc** thật sự quan trọng.
-- **Thành thật về rủi ro prod** — batch staging lớn không được gọi là an toàn nếu chưa QA.
-- **Cross-repo / cross-env** — fix ở repo A thường cần deploy/promote ở repo B; kiểm cả hai.
-- Session trivial / không pending → nói thẳng 2 dòng, đừng bịa việc.
+Each item states its **owner** (🧑 you vs 🤖 agent). Link PR#/files for clicking.
+
+1. **🔵 Unfinished** — open PRs, waiting on your test/approval, merged-to-staging-not-prod, background tasks, loose threads. Mark blockers.
+2. **🟡 Recommendations** — highest-leverage work, ranked. Includes earlier proposals you haven't decided. One line + tradeoff.
+3. **🔴 Impact & dependencies** — this session's large changes: cross-repo, merge order (X before Y), risks before prod promotion (route/API changes, schema, secrets, migrations).
+4. **✅ Done** — 2–4 line recap.
+
+---
+
+## Rules
+
+- **Propose, don't execute.** End by asking which item you pick.
+- **Prioritize 1–2 things** that truly matter.
+- **Be honest about prod risk** — a large staging batch must not be called safe without QA.
+- **Cross-repo / cross-env** — a fix in repo A usually needs a deploy/promote in repo B; check both.
+- Trivial session / nothing pending → say so plainly in 2 lines, don't invent work.

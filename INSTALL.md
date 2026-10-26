@@ -1,67 +1,67 @@
-# Hướng dẫn cài skill Agent Workflows (wave 2)
+# Installing Agent Workflows skills (wave 2)
 
-Tài liệu này dành cho người dùng **chưa từng cài skill**. Các skill của repo có mười một workflow: mười skill `bto-*` và một skill dùng chung tên `market-research`.
+This document is for users who have **never installed a skill**. This repo's skills cover eleven workflows: ten `bto-*` skills and one shared skill named `market-research`.
 
 Repo: [github.com/0xdonniechu/BYFA-skills](https://github.com/0xdonniechu/BYFA-skills)
 
 ---
 
-## Skill là gì?
+## What is a skill?
 
-Một skill là file `SKILL.md` — bộ quy trình agent **tự đọc** khi bạn giao đúng loại việc. Bạn không phải nhớ từng bước; agent thấy đúng ngữ cảnh thì mở hướng dẫn và làm theo.
+A skill is a `SKILL.md` file — a procedure set the agent **reads itself** when you hand it the right kind of work. You don't memorize steps; the agent sees the right context, opens the guide, and follows it.
 
-Tên skill luôn **tiếng Anh**, có tiền tố `bto-`. Nội dung hướng dẫn trong file có thể tiếng Việt hoặc tiếng Anh tùy skill.
+Skill names are always **English**, prefixed with `bto-`. Guide content in the files is English.
 
 ---
 
-## Bảy skill mới, dùng khi nào
+## Seven new skills, when to use them
 
-| Skill | Buổi học | Dùng khi | Không dùng khi | Ví dụ câu gọi |
+| Skill | Session | Use when | Don't use when | Example invocation |
 |---|---|---|---|---|
-| **bto-sdlc** | 2, 4 | Feature mới, refactor lớn, cần spec trước code | Sửa một dòng, hỏi nhanh, việc ops một lần | *"Viết intent cho tính năng dark mode"* · *"Làm theo chuỗi SDLC, duyệt plan trước khi code"* |
-| **bto-agent-team** | 7 | Thay đổi nhiều phần (backend + frontend…), muốn duyệt một lần rồi agent chạy tới xong | Một file, một bug nhỏ | *"Chia wave cho ticket dashboard, viết brief rồi spawn role"* · *"Duyệt một lần, chạy build → review → merge"* |
-| **bto-whats-next** | 7 | Cuối session, không biết làm gì tiếp; cần rà việc dở | Đang giữa việc, muốn agent làm luôn | *"Giờ làm gì tiếp?"* · *"Tóm lại session còn gì chưa xong?"* |
-| **bto-page-quality** | 5, 8 | Trang chậm, Core Web Vitals, đo trước/sau deploy, analytics sau launch | Backend thuần, chưa có site live | *"Trang landing LCP bao nhiêu?"* · *"Đo chất lượng trang trước khi launch"* |
-| **bto-optimize-mac** | — (tiện ích) | Mac đầy disk, RAM cao, nhiều agent/build cùng lúc | Máy Windows/Linux (skill này cho macOS) | *"Ổ đĩa còn mấy GB, dọn an toàn giúp tôi"* · *"Máy chậm, đo RAM rồi đề xuất dọn"* |
-| **bto-event-review** | — (tiện ích) | Đi hội nghị, meetup về, có ghi âm hoặc transcript và ảnh slide, muốn đọc lại trọn từng talk | Chỉ cần tóm tắt ngắn, hay viết bài đăng mạng xã hội | *"Event review cho 3 talk hôm qua, đây là transcript và thư mục ảnh slide"* · *"Viết lại trọn talk này bằng tiếng Việt"* |
-| **bto-posthog** | — (tiện ích) | Sản phẩm đã có trang chạy thật, muốn biết người dùng vào đâu, bấm gì, event có về không | Chưa có site live, hoặc chỉ cần hỏi một con số lẻ | *"Kiểm PostHog của trang landing, event không về"* · *"Dựng dashboard tổng quan để mở project là thấy số"* |
+| **bto-sdlc** | 2, 4 | New feature, large refactor, need spec before code | One-line fix, quick question, one-off ops work | *"Write the intent for the dark mode feature"* · *"Follow the SDLC chain, approve the plan before coding"* |
+| **bto-agent-team** | 7 | Multi-part change (backend + frontend…), want one approval then the agent runs to done | One file, one small bug | *"Split waves for the dashboard ticket, write the brief then spawn roles"* · *"One approval, run build → review → merge"* |
+| **bto-whats-next** | 7 | End of session, unsure what to do next; need to sweep unfinished work | Mid-task, want the agent to just do it | *"What next?"* · *"Summarize what is still unfinished this session?"* |
+| **bto-page-quality** | 5, 8 | Slow page, Core Web Vitals, measure before/after deploy, post-launch analytics | Pure backend, no live site yet | *"What is the landing page LCP?"* · *"Measure page quality before launch"* |
+| **bto-optimize-mac** | — (utility) | Mac disk full, high RAM, many agents/builds at once | Windows/Linux machine (this skill is for macOS) | *"How many GB are left on disk, clean up safely for me"* · *"Machine is slow, measure RAM then propose cleanup"* |
+| **bto-event-review** | — (utility) | Back from a conference or meetup with a recording or transcript plus slide images, want to reread each full talk | Only need a short summary, or a social media post | *"Event review for yesterday's 3 talks, here is the transcript and the slide image folder"* · *"Rewrite this talk in full in English"* |
+| **bto-posthog** | — (utility) | Product has a real live site, want to know where users go, what they click, whether events arrive | No live site yet, or only asking for one stray number | *"Audit the landing page PostHog, events are not arriving"* · *"Build an overview dashboard so opening the project shows the numbers"* |
 
-**Lưu ý:** `bto-whats-next` chỉ **đề xuất**, không tự làm. `bto-agent-team` yêu cầu bạn duyệt brief trước khi chạy wave.
+**Note:** `bto-whats-next` only **recommends**, never acts by itself. `bto-agent-team` requires you to approve the brief before running waves.
 
-**`/bto-optimize-mac`:** skill này có thể **xoá cache tạo lại được** (ví dụ `rm -rf` thư mục npm/bun/Xcode DerivedData trong skill) — **không bao giờ** xoá file cá nhân (ảnh, transcript, dữ liệu dự án), và **không dùng `sudo`**.
+**`/bto-optimize-mac`:** this skill may **delete regenerable caches** (e.g. `rm -rf` on npm/bun/Xcode DerivedData folders inside the skill) — **never** personal files (photos, transcripts, project data), and **never use `sudo`**.
 
 ---
 
-## Tự tạo skill của riêng bạn (0.0.9)
+## Create your own skill (0.0.9)
 
-| Skill | Dùng khi | Không dùng khi | Ví dụ câu gọi |
+| Skill | Use when | Don't use when | Example invocation |
 |---|---|---|---|
-| **bto-create-skill** | Một việc nhiều bước bạn đã làm từ 2 lần, muốn agent nhớ luôn cách làm | Việc chỉ làm một lần (viết prompt là đủ), hoặc lỗi máy tự chặn được (làm hook, script) | *"Làm thành skill việc vừa rồi"* · *"Tạo skill viết release note cho repo này"* |
+| **bto-create-skill** | A multi-step job you have done 2+ times and want the agent to always remember | One-off work (a prompt is enough), or machine-blockable errors (make a hook or script) | *"Turn what I just did into a skill"* · *"Create a release-note skill for this repo"* |
 
-Skill hỏi bạn năm câu, viết `SKILL.md` theo [template một trang](bto-create-skill/TEMPLATE.md), chạy thử trên một ca thật trong phiên mới, rồi cài vào máy.
+The skill asks you five questions, writes `SKILL.md` from the [one-page template](bto-create-skill/TEMPLATE.md), trials it on a real case in a fresh session, then installs it on your machine.
 
 ---
 
-## Cách cài — Claude Code (khuyến nghị)
+## Install — Claude Code (recommended)
 
-### Cách A: Cài cả repo (mọi skill, một lệnh)
+### Method A: Install the whole repo (all skills, one command)
 
-Mở **Claude Code**, dán nguyên câu này:
+Open **Claude Code**, paste this entire line:
 
-> Cài byfa-skills: chạy `git clone https://github.com/0xdonniechu/BYFA-skills.git ~/.claude/skills/byfa-skills && ~/.claude/skills/byfa-skills/setup` rồi xác nhận mười một skill đã nhận (mười tên `bto-*` và `market-research`).
+> Install byfa-skills: run `git clone https://github.com/0xdonniechu/BYFA-skills.git ~/.claude/skills/byfa-skills && ~/.claude/skills/byfa-skills/setup` then confirm all eleven skills are picked up (ten `bto-*` names and `market-research`).
 
-Hoặc tự chạy trong Terminal:
+Or run it yourself in Terminal:
 
 ```bash
 git clone https://github.com/0xdonniechu/BYFA-skills.git ~/.claude/skills/byfa-skills
 ~/.claude/skills/byfa-skills/setup
 ```
 
-Script `setup` tạo **symlink** từ repo vào `~/.claude/skills/<tên-skill>/` và gỡ symlink `bto-researchmarket` đã cũ nếu nó vẫn trỏ chính xác tới thư mục skill đã bỏ. Chạy lại nhiều lần vẫn an toàn.
+The `setup` script creates **symlinks** from the repo into `~/.claude/skills/<skill-name>/` and removes the legacy `bto-researchmarket` symlink only when it points exactly at the removed skill folder. Re-running is safe.
 
-### Cách B: Chỉ một skill
+### Method B: A single skill
 
-Ví dụ chỉ `bto-sdlc` (skill đơn file):
+Example with just `bto-sdlc` (single-file skill):
 
 ```bash
 mkdir -p ~/.claude/skills/bto-sdlc
@@ -69,36 +69,36 @@ curl -o ~/.claude/skills/bto-sdlc/SKILL.md \
   https://raw.githubusercontent.com/0xdonniechu/BYFA-skills/main/bto-sdlc/SKILL.md
 ```
 
-Đổi `bto-sdlc` thành tên skill bạn cần.
+Swap `bto-sdlc` for the skill name you need.
 
-`market-research` có kèm playbook, hướng dẫn biểu đồ và script/assets; cài riêng skill này bằng các lệnh đầy đủ ở phần **Installation → Claude Code** trong [README.md](README.md). Chỉ tải `SKILL.md` sẽ thiếu tài liệu và công cụ được skill tham chiếu.
+`market-research` ships with a playbook, chart guide, and scripts/assets; install that skill alone with the full commands in **Installation → Claude Code** in [README.md](README.md). Downloading only `SKILL.md` will miss the referenced docs and tools.
 
-### Kiểm đã cài (Claude Code)
+### Verify the install (Claude Code)
 
-1. **Đóng phiên cũ, mở phiên Claude Code mới** (skill chỉ nạp lúc start).
-2. Hỏi thử:
+1. **Close the old session, open a new Claude Code session** (skills only load at start).
+2. Ask something like:
 
 ```
-Tôi sắp build feature mới. Có quy trình spec trước code không?
+I'm about to build a new feature. Is there a spec-before-code procedure?
 ```
 
-Agent nhắc `intent/`, plan, duyệt trước khi code → **bto-sdlc** đã ăn.
+The agent mentions `intent/`, plan, approval before code → **bto-sdlc** is live.
 
-3. Hoặc kiểm file:
+3. Or check the file:
 
 ```bash
 ls ~/.claude/skills/bto-sdlc/SKILL.md
-# hoặc nếu dùng setup:
+# or if installed via setup:
 readlink ~/.claude/skills/bto-sdlc
 ```
 
 ---
 
-## Cách cài — Cursor
+## Install — Cursor
 
-Cursor đọc skill từ `~/.cursor/skills/` (cá nhân) hoặc `.cursor/skills/` (trong repo dự án).
+Cursor reads skills from `~/.cursor/skills/` (personal) or `.cursor/skills/` (inside a project repo).
 
-### Cách A: Symlink cả repo (giống Claude Code)
+### Method A: Symlink the whole repo (like Claude Code)
 
 ```bash
 git clone https://github.com/0xdonniechu/BYFA-skills.git ~/.cursor/skills/byfa-skills
@@ -114,14 +114,14 @@ if [ -L "$legacy" ] && [ "$(readlink "$legacy")" = "$HOME/.cursor/skills/byfa-sk
 fi
 ```
 
-Nếu chỉ cài `market-research` cho Cursor, clone repo và link nguyên thư mục skill để có đủ references và chart assets:
+To install only `market-research` for Cursor, clone the repo and link the whole skill folder so references and chart assets come along:
 
 ```bash
 git clone https://github.com/0xdonniechu/BYFA-skills.git ~/.cursor/skills/byfa-skills
 ln -s ~/.cursor/skills/byfa-skills/market-research ~/.cursor/skills/market-research
 ```
 
-### Cách B: Một skill
+### Method B: A single skill
 
 ```bash
 mkdir -p ~/.cursor/skills/bto-whats-next
@@ -129,51 +129,51 @@ curl -o ~/.cursor/skills/bto-whats-next/SKILL.md \
   https://raw.githubusercontent.com/0xdonniechu/BYFA-skills/main/bto-whats-next/SKILL.md
 ```
 
-### Kiểm đã cài (Cursor)
+### Verify the install (Cursor)
 
-1. Mở **Agent** mới trong Cursor (chat agent, không phải tab edit thường).
-2. Gõ: *"Giờ làm gì tiếp theo trong session này?"* — agent nên rà PR/việc dở, **không** tự chạy code.
-3. Kiểm file:
+1. Open a **new Agent** in Cursor (agent chat, not a regular edit tab).
+2. Type: *"What should I do next in this session?"* — the agent should sweep PRs/unfinished work, **not** run code by itself.
+3. Check the file:
 
 ```bash
 ls ~/.cursor/skills/bto-whats-next/SKILL.md
 ```
 
-Trong Cursor: **Settings → Rules / Skills** (tùy phiên bản) có thể liệt kê skill đã discover.
+In Cursor: **Settings → Rules / Skills** (depending on version) may list discovered skills.
 
 ---
 
-## Cập nhật skill sau này
+## Updating skills later
 
 ```bash
-cd ~/.claude/skills/byfa-skills   # hoặc ~/.cursor/skills/byfa-skills
+cd ~/.claude/skills/byfa-skills   # or ~/.cursor/skills/byfa-skills
 git pull
-~/.claude/skills/byfa-skills/setup   # Claude Code: refresh symlink
+~/.claude/skills/byfa-skills/setup   # Claude Code: refresh symlinks
 ```
 
-Mở phiên agent **mới** sau khi pull.
+Open a **new** agent session after pulling.
 
 ---
 
-## Lỗi hay gặp
+## Common errors
 
-| Triệu chứng | Nguyên nhân | Cách sửa |
+| Symptom | Cause | Fix |
 |---|---|---|
-| Agent không nhắc quy trình skill | Phiên mở **trước** khi cài | Đóng, mở phiên mới |
-| `setup` báo "bo qua … đã tồn tại" | Bạn đã có folder skill trùng tên (tự viết) | Đổi tên folder cũ, hoặc chỉ curl một file SKILL.md |
-| `git clone` báo folder đã có | Clone lần 2 | `cd ~/.claude/skills/byfa-skills && git pull` |
-| Cursor không thấy skill | Đặt sai chỗ (`skills-cursor` là của Cursor, **không** ghi vào đó) | Link thư mục skill từ `~/.cursor/skills/byfa-skills/`, gồm cả `market-research/` |
-| Symlink hỏng sau khi xóa repo | Xóa nhầm thư mục clone | Clone lại + chạy `setup` |
-| Skill tiếng Anh (`bto-optimize-mac`) agent trả lời lẫn ngôn ngữ | Body skill là English | Bình thường; hỏi bằng tiếng Việt vẫn được |
+| Agent never mentions the skill workflow | Session opened **before** installing | Close it, open a new session |
+| `setup` reports "skipping … already exists" | You already have a skill folder with the same name (self-written) | Rename the old folder, or curl a single SKILL.md file |
+| `git clone` reports the folder exists | Second clone | `cd ~/.claude/skills/byfa-skills && git pull` |
+| Cursor doesn't see the skill | Placed in the wrong spot | Link the skill folder from `~/.cursor/skills/byfa-skills/`, including `market-research/` |
+| Broken symlink after deleting the repo | Accidentally deleted the clone folder | Clone again + run `setup` |
+| Agent answers in an unexpected language | Request language unclear | Normal; phrase the request in the language you want answered |
 
 ---
 
-## Cần trợ giúp
+## Need help
 
-- Discord Agent Workflows (kênh cohort)
-- Email / nền tảng học: điều phối viên chương trình sẽ gửi link repo + file này
-- Góp ý skill: [CONTRIBUTING.md](CONTRIBUTING.md) — fork, sửa, mở PR
+- Program community channel for Q&A
+- Email / learning platform: the program coordinator will send the repo link + this file
+- Skill feedback: [CONTRIBUTING.md](CONTRIBUTING.md) — fork, fix, open a PR
 
 ---
 
-*Cập nhật: 28/09/2026, thêm bto-create-skill và bto-posthog (11 skill), bto-event-review. 15/09/2026, wave 2: bto-sdlc, bto-agent-team, bto-whats-next, bto-page-quality, bto-optimize-mac.*
+*Updated: 09/28/2026, added bto-create-skill and bto-posthog (11 skills), bto-event-review. 09/15/2026, wave 2: bto-sdlc, bto-agent-team, bto-whats-next, bto-page-quality, bto-optimize-mac.*

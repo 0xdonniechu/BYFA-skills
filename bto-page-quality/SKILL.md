@@ -1,91 +1,91 @@
 ---
 name: bto-page-quality
-description: Đo và cải thiện chất lượng trang web — tốc độ, Core Web Vitals, trải nghiệm theo quốc gia, hiển thị trên search, cache edge. Dùng khi hỏi "trang chậm", LCP/INP/CLS, bounce theo nước, điểm Lighthouse, hoặc trước/sau thay đổi frontend. Khớp Buổi 5 (log, cảnh báo) và Buổi 8 (đo sau launch).
+description: Measure and improve web page quality — speed, Core Web Vitals, per-country experience, search visibility, edge cache. Use when asking "slow page", LCP/INP/CLS, per-country bounce, Lighthouse scores, or before/after frontend changes. Matches Session 5 (logs, alerts) and Session 8 (post-launch measurement).
 ---
 
 # /bto-page-quality
 
-Một câu hỏi: **site có tốt không, và với ai?** Trả lời bằng nhiều nguồn — không một tab duy nhất.
+One question: **is the site good, and for whom?** Answer it from multiple sources — never one tab alone.
 
 ---
 
-## Bốn bẫy đã từng gây kết luận sai
+## Four traps that once caused wrong conclusions
 
-**1. Headless browser chiếm p75 trang ít traffic.** PostHog/Web Vitals có thể báo LCP 20–30s trong khi PageSpeed mobile ~99. Mẫu hai cụm: nhanh hoặc >10s, không giữa — thường là bot Linux desktop (FCP = LCP). Lọc LCP ≥ 10s trước khi tin tab RUM thô.
+**1. Headless browsers dominate low-traffic page p75.** PostHog/Web Vitals may report LCP of 20–30s while mobile PageSpeed reads ~99. The sample has two clusters: fast or >10s, nothing between — usually Linux-desktop bots (FCP = LCP). Filter LCP ≥ 10s before trusting the raw RUM tab.
 
-**2. Operator không phải thị trường.** `/admin` với vài chục sample có thể là một người. Loại path admin/internal khỏi báo cáo công khai.
+**2. The operator is not the market.** `/admin` with a few dozen samples may be one person. Exclude admin/internal paths from public reports.
 
-**3. Một lần chạy Lighthouse mobile không phải đo.** Cùng code, cùng ngày, delta hàng trăm ms là bình thường. Mobile: median ≥3 lần; spread nhỏ hơn delta mới là delta. Spread = 0 có thể là cache PSI — so across reports, không trong một report.
+**3. One mobile Lighthouse run is not a measurement.** Same code, same day, deltas of hundreds of ms are normal. Mobile: median of ≥3 runs; only a spread smaller than the delta counts as a delta. Spread = 0 may be PSI cache — compare across reports, not within one report.
 
-**4. CrUX thiếu quốc gia ≠ "ổn ở đó".** Chỉ có đủ traffic Chrome thật mới publish. Không có row = chưa đủ data, không phải nhanh.
+**4. Missing CrUX country ≠ "fine there".** Only enough real Chrome traffic gets published. No row = not enough data yet, not fast.
 
 ---
 
-## Năm nguồn — mỗi nguồn trả lời một câu
+## Five sources — each answers one question
 
-| Nguồn | Câu hỏi duy nhất | Cách lấy (generic) |
+| Source | The one question | How to get it (generic) |
 |---|---|---|
-| **field** — CrUX | Chrome user thật đo gì; số Google ranking dùng | CrUX API hoặc BigQuery `chrome-ux-report` |
-| **lab** — PageSpeed | Input cố định → deploy nào gây thay đổi | PageSpeed Insights API |
-| **rum** — analytics | Country × path; trang chậm *chỉ* ở đâu đó | PostHog, Plausible, GA4 BigQuery, … |
-| **search** — Search Console | Google **show** gì; market thấy mà không click | GSC API |
-| **edge** — headers | HTML từ cache gần user hay bay xa | `curl -I` production |
+| **field** — CrUX | What real Chrome users measure; the numbers Google ranks on | CrUX API or BigQuery `chrome-ux-report` |
+| **lab** — PageSpeed | Fixed input → which deploy caused the change | PageSpeed Insights API |
+| **rum** — analytics | Country × path; where exactly the page is *only* slow | PostHog, Plausible, GA4 BigQuery, … |
+| **search** — Search Console | What Google **shows**; what the market sees without clicking | GSC API |
+| **edge** — headers | Whether HTML comes from cache near the user or flies far | `curl -I` production |
 
-CrUX API không có country; BigQuery `country_summary` có — ~1.5 GB/scan, lag ~2 tháng. Dùng sizing reach, không chỉ speed.
+The CrUX API has no country split; BigQuery `country_summary` does — ~1.5 GB/scan, ~2-month lag. Use for reach sizing, not just speed.
 
 ---
 
-## Script đo trong repo (khuyến nghị)
+## In-repo measurement script (recommended)
 
-Tạo một lệnh (ví dụ `npm run quality:page` hoặc script trong `scripts/`) gom nguồn:
+Create one command (e.g. `npm run quality:page` or a script in `scripts/`) gathering the sources:
 
 ```bash
-# Ví dụ shape — thay bằng repo bạn
-bun run quality:page                  # full (~ vài phút nếu có PSI)
-bun run quality:page --skip=lab       # bỏ Lighthouse
+# Example shape — adapt to your repo
+bun run quality:page                  # full (~ minutes if PSI included)
+bun run quality:page --skip=lab       # skip Lighthouse
 bun run quality:page --only=rum
 bun run quality:page --json
 bun run quality:page --days=7
 ```
 
-Secret đọc từ env (`CRUX_API_KEY`, analytics key, GSC service account JSON). Script **fail loudly** khi thiếu nguồn — không in zero giả.
+Secrets come from env (`CRUX_API_KEY`, analytics key, GSC service account JSON). The script **fails loudly** on missing sources — never prints fake zeros.
 
 ---
 
-## Sửa cái script tìm ra
+## Fix what the script finds
 
-**Trang logged-in quan trọng hơn landing** nếu khách trả tiền dùng dashboard hàng ngày. Cả hai trên list thì ưu tiên app/authenticated trước marketing.
+**The logged-in page matters more than landing** if paying customers use the dashboard daily. Both on the list means prioritizing app/authenticated over marketing.
 
-**Cache HTML ở edge + App Router RSC** dễ gãy: một URL, hai body (`vary: rsc`). Cache rule match nhầm → client navigation nhận HTML document. Trước khi cache HTML: verify RSC vẫn bypass; có rollback snapshot; không overwrite snapshot rollback.
+**Edge-cached HTML + App Router RSC** breaks easily: one URL, two bodies (`vary: rsc`). A mismatched cache rule → client navigation receives an HTML document. Before caching HTML: verify RSC still bypasses; keep a rollback snapshot; never overwrite the rollback snapshot.
 
-**Rank tốt, CTR thấp → xem QUERY trước title.** Brand query (`tên bạn + api`) tự nhiên CTR thấp ở page phụ. Chỉ sửa title khi query là intent không-brand. Loại `site:` search tự gây impression.
+**Good rank, low CTR → look at the QUERY before the title.** Brand queries (`your name + api`) naturally CTR low on sub-pages. Only edit titles for non-brand-intent queries. `site:` searches self-generate impressions.
 
-**Byte weight là lever bạn kiểm soát.** Budget ảnh (KB, max width), guard SSR payload trong CI.
+**Byte weight is the lever you control.** Image budgets (KB, max width), SSR payload guards in CI.
 
 ---
 
-## Gap thường gặp (ưu tiên theo giá trị/giờ)
+## Common gaps (prioritized by value/hour)
 
-| Gap | Hậu quả | Fix |
+| Gap | Consequence | Fix |
 |---|---|---|
-| Không uptime monitor bên thứ ba | "Không hỏng" không có witness | UptimeRobot/Better Stack free tier |
-| Crash email bị filter | Production die im lặng | Bỏ filter hoặc route Telegram |
-| Node/runtime EOL | Build fail đột ngột | Theo deadline platform |
-| RLS/table mới thiếu policy | Data leak flag | Audit + CI guard |
-| Không CWV gate CI | Deploy regress LCP im lặng | `quality:page --json` + threshold |
+| No third-party uptime monitor | "Not broken" has no witness | UptimeRobot/Better Stack free tier |
+| Crash emails filtered | Production dies silently | Remove the filter or route to Telegram |
+| Node/runtime EOL | Sudden build failure | Follow platform deadlines |
+| New RLS/table missing policy | Data leak flag | Audit + CI guard |
+| No CWV gate in CI | Deploys regress LCP silently | `quality:page --json` + threshold |
 
-Workflow tuần: cron GitHub Actions chạy report vào summary; cần secret trong repo settings.
-
----
-
-## Email / alert nên skim hàng tháng
-
-Search Console (indexing, structured data), analytics weekly digest, deploy fail platform, host crash, DB security advisor, DMARC XML — bổ sung những gì API không expose.
+Weekly workflow: a GitHub Actions cron runs the report into the summary; needs secrets in repo settings.
 
 ---
 
-## Mở rộng skill
+## Email / alerts worth skimming monthly
 
-Thêm nguồn chỉ khi trả lời câu hỏi mà năm nguồn trên không trả lời được. Ngưỡng đổi thì đổi trong script kèm lý do đo được.
+Search Console (indexing, structured data), analytics weekly digest, platform deploy failures, host crashes, DB security advisor, DMARC XML — add back whatever the APIs don't expose.
 
-**Rule of three:** lần thứ ba viết ad-hoc query CWV/GSC cho cùng câu hỏi → đưa vào script/skill.
+---
+
+## Extending the skill
+
+Add a source only when it answers a question the five sources above cannot. When thresholds change, change them in the script with a measured reason.
+
+**Rule of three:** the third time you write an ad-hoc CWV/GSC query for the same question → put it in the script/skill.

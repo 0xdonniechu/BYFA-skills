@@ -1,107 +1,107 @@
 ---
 name: bto-agent-team
-description: Playbook duyệt một lần rồi chạy tới xong — build → review độc lập → sửa → merge → verify — với nhiều agent theo role (backend, frontend, design, data) trong các wave. Dùng khi nói "chia wave", "duyệt một lần chạy tới xong", "/bto-agent-team", hoặc giao thay đổi nhiều phần cùng lúc. 
+description: A one-approval run-to-done playbook — build → independent review → fix → merge → verify — with multiple role agents (backend, frontend, design, data) across waves. Use when saying "split waves", "one approval run to done", "/bto-agent-team", or handing over a multi-part change at once.
 ---
 
 # /bto-agent-team
 
-Mô hình: gom hết ngữ cảnh → **một lần duyệt** → agent chạy tới xong (build, review, sửa, merge, test, verify) → bạn chỉ kiểm kết quả cuối.
+The model: gather all context → **one approval** → agents run to done (build, review, fix, merge, test, verify) → you only check the final result.
 
-Ngày: duyệt + viết brief. Đêm: agent chạy. Hai vai tách biệt trên **một máy**:
+Day: approve + write the brief. Night: agents run. Two separate roles on **one machine**:
 
-- **Executor** — spawn agent theo role, push code, giữ báo cáo.
-- **Coordinator** — review, merge, apply migration, đo sau deploy. **Không** tự sửa code feature.
+- **Executor** — spawns role agents, pushes code, keeps reports.
+- **Coordinator** — reviews, merges, applies migrations, measures after deploy. Does **not** edit feature code itself.
 
-**Người viết không bao giờ tự duyệt code của mình.**
-
----
-
-## 0. Trước khi chạy: một file brief, một lần duyệt
-
-Viết `docs/plans/handoff/<date>-<work>-wave<N>.md` (hoặc thư mục plan của repo) với đủ các mục:
-
-1. **Đọc trước** — tối đa 3 file (plan, bằng chứng, START-HERE nếu có).
-2. **Trạng thái xuất phát** — cái gì đã live, số đo hiện tại.
-3. **Setup** — một worktree hoặc nhánh per role; lock file per role; tên file scratchpad **không trùng**; cài dependency đủ (kể cả sub-package).
-4. **Contract per ticket** — bảng: hạng mục · file được phép chạm · bằng chứng chấp nhận (một con số hoặc guard đỏ khi vi phạm). Contract cross-role (shape API, tên event, cache key) viết ở đây, không thương lượng trong chat.
-5. **Luật** — phần §3 dưới + luật riêng repo.
-6. **Handoff** — file report: 5 trường/ticket (output · done · evidence · left · next owner) + thời gian/token.
-
-Liệt kê **mọi quyền** run sẽ cần (DB prod, merge, secret, env, gửi mail) trong cùng tin duyệt. Bị classifier chặn giữa chừng: ghi đúng lệnh để bạn chạy, làm tiếp phần khác.
-
-**Prompt dài:** đặt brief trong file; lệnh spawn chỉ một câu ngắn trỏ tới file đó. Prompt cắt giữa chuỗi = agent không start.
+**A writer never reviews their own code.**
 
 ---
 
-## 1. Roles (executor spawn; mỗi role = một job)
+## 0. Before running: one brief file, one approval
 
-| Role | Sở hữu | Model gợi ý | Deliverable |
+Write `docs/plans/handoff/<date>-<work>-wave<N>.md` (or the repo's plan folder) with all sections:
+
+1. **Read first** — at most 3 files (plan, evidence, START-HERE if present).
+2. **Starting state** — what is live, current numbers.
+3. **Setup** — one worktree or branch per role; lock file per role; **unique** scratchpad file names; dependencies installed (sub-packages included).
+4. **Per-ticket contract** — table: item · files allowed to touch · acceptance evidence (one number or a red guard on violation). Cross-role contracts (API shape, event names, cache keys) go here, not negotiated in chat.
+5. **Rules** — §3 below + repo-specific rules.
+6. **Handoff** — report file: 5 fields/ticket (output · done · evidence · left · next owner) + time/tokens.
+
+List **every permission** the run will need (prod DB, merge, secrets, env, sending mail) in the same approval message. Classifier blocked mid-run: record the exact command for you to run, continue with the rest.
+
+**Long prompts:** put the brief in a file; the spawn command is one short sentence pointing at that file. A prompt cut mid-string means the agent never starts.
+
+---
+
+## 1. Roles (executor spawns; each role = one job)
+
+| Role | Owns | Suggested model | Deliverable |
 |---|---|---|---|
-| Backend | server, migration, RPC | mạnh | shape endpoint + số before/after |
-| Frontend | page, hook, component | mạnh | key cache, skeleton, số before/after |
-| Design | design system, primitive | vừa | spec + screenshot chấp nhận |
-| Data | script đo, dashboard | vừa | baseline + link + ngưỡng |
-| Reviewer (coordinator) | không edit | mạnh | MERGE / FIX FIRST kèm file:dòng |
+| Backend | server, migration, RPC | strong | endpoint shape + before/after numbers |
+| Frontend | page, hook, component | strong | cache keys, skeleton, before/after numbers |
+| Design | design system, primitives | medium | spec + acceptance screenshots |
+| Data | measurement scripts, dashboard | medium | baseline + link + thresholds |
+| Reviewer (coordinator) | no edits | strong | MERGE / FIX FIRST with file:line |
 
-Luật: hai agent không cùng một file (lock); design trước frontend khi dùng chung component; migration writer dừng sau dry-run, giao file cho coordinator; frontend phụ thuộc backend shape merge sau backend deploy.
-
----
-
-## 2. Pipeline mỗi PR (coordinator)
-
-1. Executor gửi: số PR, ticket, bảng before/after, guard đã chạy.
-2. Coordinator chạy **full CI local** trên PR head song song CI remote — CI đã từng miss.
-3. Coordinator đọc slice nhạy cảm (auth, cache, migration, tiền).
-4. Review agent độc lập với checklist rủi ro cụ thể; phải có file:dòng, scenario, verdict. Spot-check — agent cũng báo sai.
-5. Fix list về executor: BLOCKING / fold-in-if-cheap / next-wave. Cùng nhánh, SHA mới.
-6. Verify fix trong code, CI xanh, local xanh → squash-merge → đo production → ghi số → PR kế.
-
-Thứ tự merge: backend → deploy → migration cần code mới → frontend.
+Rules: two agents never share a file (locks); design before frontend when sharing components; migration writer stops after dry-run, hands the file to the coordinator; frontend depending on backend shape merges after backend deploys.
 
 ---
 
-## 3. Luật không thương lượng (mỗi cái từng incident thật)
+## 2. Per-PR pipeline (coordinator)
 
-- Branch từ `origin/main` mới nhất; không stack PR; `git status` sau mỗi rebase.
-- Rule quan trọng → guard chứng minh đỏ khi vi phạm có chủ ý; guard duyệt cây, không liệt tay file.
-- Review mọi nhánh RETURN của endpoint với mọi consumer (fallback shape lệch = crash).
-- GET không ghi (hover không được tạo bản ghi).
-- Cache/trigger phụ không rollback write chính (EXCEPTION + reconcile).
-- View với `security_invoker`; kiểm anon surface sau migration.
-- Đọc `error` từ mọi RPC/DB; SELECT không giới hạn qua helper phân trang; clamp query param.
-- Migration: dry-run script riêng (ROLLBACK, `ON_ERROR_STOP`); apply từng file; `lock_timeout`; index CONCURRENTLY khi cần.
-- Đo thứ quyết định: cùng transaction, cùng độ ấm, hai lần; biết body nào đang live trước khi gán nhãn.
-- Tên scratchpad unique per agent.
-- Worktree mới: cài đủ sub-package dependency.
-- Không `pkill -f`, không kill theo cổng; chỉ PID bạn start.
-- Runner local phải fail khi log rỗng; CI là signal of record.
-- Free GitHub không có branch protection: **đợi check xanh** trước `gh pr merge`; không dùng `--auto` như cách chờ.
-- Prefetch server-side HTML = mọi thứ endpoint trả về có thể lọt cache/proxy — không prefetch endpoint có secret.
+1. Executor sends: PR number, ticket, before/after table, guards already run.
+2. Coordinator runs **full local CI** on the PR head alongside remote CI — CI has missed before.
+3. Coordinator reads the sensitive slice (auth, cache, migration, money).
+4. Independent review agent with a concrete risk checklist; must have file:line, scenario, verdict. Spot-check — agents also report wrong.
+5. Fix list back to executor: BLOCKING / fold-in-if-cheap / next-wave. Same branch, new SHA.
+6. Verify the fix in code, CI green, local green → squash-merge → measure production → record numbers → next PR.
+
+Merge order: backend → deploy → migration needing new code → frontend.
 
 ---
 
-## 4. Quota / gián đoạn
+## 3. Non-negotiable rules (each from a real incident)
 
-≥ 80% quota: mỗi agent commit + push WIP theo unit; executor giữ block `## RESUME` ở đầu report (branch, commit, file đang làm, lệnh kế, per role), refresh 15 phút; không bước không thu hồi trong 15 phút cuối.
+- Branch from latest `origin/main`; no stacked PRs; `git status` after every rebase.
+- Important rule → a guard that proves red on deliberate violation; guards sweep the tree, never hand-list files.
+- Review every RETURN branch of endpoints against every consumer (skewed fallback shape = crash).
+- GET never writes (hover must not create records).
+- Secondary cache/triggers never roll back the primary write (EXCEPTION + reconcile).
+- Views with `security_invoker`; check the anon surface after migration.
+- Read `error` from every RPC/DB; unbounded SELECTs go through a pagination helper; clamp query params.
+- Migrations: separate dry-run script (ROLLBACK, `ON_ERROR_STOP`); apply file by file; `lock_timeout`; CONCURRENTLY indexes when needed.
+- Measure what decides: same transaction, same warmth, twice; know which body is live before labeling.
+- Unique scratchpad names per agent.
+- New worktrees: install all sub-package dependencies.
+- No `pkill -f`, no kill-by-port; only PIDs you started.
+- Local runners must fail on empty logs; CI is the signal of record.
+- Free GitHub has no branch protection: **wait for green checks** before `gh pr merge`; don't use `--auto` as a way to wait.
+- Server-side HTML prefetch = everything the endpoint returns may land in cache/proxy — never prefetch secret-bearing endpoints.
 
 ---
 
-## 5. Đóng một wave
+## 4. Quota / interruption
 
-Executor: report (5 trường/ticket, token/time, lessons, next-wave, việc bạn phải làm tay) → docs PR → coordinator merge.
-
-Coordinator: số production sau deploy, START-HERE cập nhật, brief wave kế viết xong **trước** khi executor rảnh.
-
-Wave cuối: FINAL report một trang — before/after per wave, incident, việc manual, nợ còn lại.
+At ≥ 80% quota: every agent commits + pushes WIP per unit; executor keeps a `## RESUME` block at the report head (branch, commit, file in progress, next command, per role), refreshed every 15 minutes; no unrecoverable step in the last 15 minutes.
 
 ---
 
-## 6. Permission boundary (Buổi 7)
+## 5. Closing a wave
 
-Ghi rõ trong brief và `AGENTS.md`:
+Executor: report (5 fields/ticket, tokens/time, lessons, next-wave, your manual tasks) → docs PR → coordinator merges.
 
-- Agent nào đọc/ghi/chạy lệnh/gọi API nào.
-- Việc nào agent tự quyết, việc nào **chờ bạn duyệt** (production deploy, mail khách, tiêu API tiền).
-- Mỗi agent có identity (tên, log) để audit.
+Coordinator: production numbers after deploy, START-HERE updated, next wave's brief written **before** the executor idles.
 
-Ba sai lầm chết người cần chặn ở tầng tool: tự deploy prod, tự gửi mail khách, tự tiêu tiền API.
+Final wave: one-page FINAL report — before/after per wave, incidents, manual work, remaining debt.
+
+---
+
+## 6. Permission boundary (Session 7)
+
+State clearly in the brief and `AGENTS.md`:
+
+- Which agent reads/writes/runs commands/calls which API.
+- Which tasks agents decide alone, which **wait for your approval** (production deploys, customer mail, paid API spend).
+- Every agent has an identity (name, log) for audit.
+
+Three fatal mistakes to block at the tool layer: self-deploying prod, self-sending customer mail, self-spending API money.

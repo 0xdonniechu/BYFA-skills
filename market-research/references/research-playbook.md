@@ -1,108 +1,108 @@
 # Market research playbook
 
-Mở file này cho research sâu. Chọn các phần phù hợp với câu hỏi; không biến checklist thành mục tiêu tự thân.
+Open this file for deep research. Pick the sections that fit the question; don't turn the checklist into an end in itself.
 
-## 1. Câu hỏi và phạm vi
+## 1. Question and scope
 
-Trước khi tìm, ghi:
+Before searching, write down:
 
-> Tôi cần biết **[điều gì]** về **[phân khúc/thị trường/đối tượng]** để quyết định **[hành động]**.
+> I need to know **[what]** about **[segment/market/audience]** in order to decide **[action]**.
 
-Nêu thời điểm chốt, địa lý, ICP, kênh, ngôn ngữ, loại khách hàng, tiền tệ, time horizon và giới hạn evidence. Nếu người dùng hỏi một đối thủ, không tự mở rộng thành market census; nếu hỏi toàn thị trường, không dừng ở danh sách hãng nổi bật.
+State the cutoff date, geography, ICP, channels, language, customer type, currency, time horizon, and evidence limits. If the user asks about one competitor, don't expand it into a market census on your own; if they ask about the whole market, don't stop at a list of prominent vendors.
 
-## 2. Nguồn và độ tin cậy
+## 2. Sources and reliability
 
-| Loại evidence | Ví dụ | Cách dùng |
+| Evidence type | Examples | How to use |
 |---|---|---|
-| Primary record/data | cơ quan nhà nước, filing, pricing/help center, investor/company release, API gốc | Chỉ xác nhận đúng trường dữ liệu hoặc claim mà trang ghi. Filing xác nhận issuer đã nộp lời khai, không tự xác nhận lời khai đúng. |
-| Secondary | báo chí, analyst/database, investor portfolio, review platform | Ghi rõ tác giả, methodology/date và lợi ích có thể ảnh hưởng. Tìm nguồn gốc nếu có. |
-| Vendor claim | trang chủ, sales copy, founder quote, product demo | Gắn `[VENDOR-CLAIMED]`; không gọi là kết quả độc lập. |
-| Derived / scenario | phép tính từ đầu vào đã trích, mô hình sizing | In công thức, input labels, giả định và phạm vi; gắn `[INFERENCE]` hoặc `[ASSUMPTION]`. |
+| Primary record/data | government agencies, filings, pricing/help centers, investor/company releases, original APIs | Confirm only the exact data field or claim the page states. A filing confirms the issuer submitted a statement; it does not itself confirm the statement is true. |
+| Secondary | press, analyst/database, investor portfolios, review platforms | Note author, methodology/date, and interests that may shape it. Trace to the origin where available. |
+| Vendor claim | homepage, sales copy, founder quotes, product demos | Tag `[VENDOR-CLAIMED]`; don't call it an independent result. |
+| Derived / scenario | calculations from cited inputs, sizing models | Print the formula, input labels, assumptions, and range; tag `[INFERENCE]` or `[ASSUMPTION]`. |
 
-Ưu tiên ngày phát hành và “last updated” thay vì chỉ ngày truy cập. Khi nguồn mâu thuẫn, trình bày hai phiên bản và giải thích vì sao chọn/không chọn; đừng âm thầm lấy số thuận cho thesis.
+Prefer release dates and "last updated" over access date alone. When sources conflict, present both versions and explain why you picked/didn't pick each; don't silently take the number that suits the thesis.
 GitHub-specific facts such as stars, license, default branch and last push belong to the GitHub API/repository itself, not a blog post or copied profile.
-Ghi nhận lợi ích của nguồn, selection/survivorship bias và khả năng nhiều bài chỉ sao chép cùng một nguồn gốc. Chủ động tìm evidence phản chứng và lời giải thích thay thế; nhiều bài lặp lại một claim không thành nhiều xác nhận độc lập.
+Note the source's interests, selection/survivorship bias, and the chance that many articles merely copy the same origin. Actively seek counter-evidence and alternative explanations; many articles repeating one claim does not make multiple independent confirmations.
 
-## 3. Song song hóa có kiểm soát
+## 3. Controlled parallelization
 
-Dùng tối đa 2–3 luồng độc lập khi tác vụ rộng và công cụ delegation sẵn có:
+Use at most 2–3 independent streams when the task is broad and delegation tooling is available:
 
-1. Competitor/product/pricing: nguồn gốc và packaging.
-2. Customer evidence: review, forum, community; cả tích cực và tiêu cực.
-3. Market/funding/finance: định nghĩa thị trường, dữ liệu chính thức, round/funding/traction.
+1. Competitor/product/pricing: origins and packaging.
+2. Customer evidence: reviews, forums, community; both positive and negative.
+3. Market/funding/finance: market definition, official data, rounds/funding/traction.
 
-Mỗi brief phải có cùng câu hỏi, scope, ngày chốt, mẫu cần trả về và hợp đồng evidence: URL gốc, ngày truy cập, nhãn, phép tính/định nghĩa, bất đồng và unknown. Không yêu cầu agent đoán từ summary. Người tổng hợp tự mở lại ít nhất một claim quan trọng ở mỗi luồng hoặc mọi claim có thể đổi kết luận. Nếu chưa có delegation, chạy các luồng lần lượt và ghi rõ limitation.
+Each brief must carry the same question, scope, cutoff date, the return template, and the evidence contract: original URL, access date, labels, calculations/definitions, disagreements, and unknowns. Don't ask agents to guess from summaries. The synthesizer re-opens at least one important claim per stream, or every claim that could flip the conclusion. Without delegation, run the streams sequentially and state the limitation.
 
 ## 4. Competitor research
 
-Xây longlist từ nhiều truy vấn và danh mục khác nhau, sau đó phân loại:
+Build a longlist from varied queries and directories, then classify:
 
-- **Direct:** cùng buyer/job và thay thế phần lớn workflow.
-- **Adjacent:** trùng một phần workflow hoặc buyer.
-- **Substitute:** dịch vụ, agent tự dựng, agency, spreadsheet hoặc quy trình thủ công.
+- **Direct:** same buyer/job and replaces most of the workflow.
+- **Adjacent:** overlaps part of the workflow or buyer.
+- **Substitute:** services, self-built agents, agencies, spreadsheets, or manual processes.
 
-Nêu quy tắc đưa vào shortlist và những nhóm còn thiếu. Đối chiếu trang pricing, product docs, integration, permissions và limits. Ghi chu kỳ thanh toán, số account/channel/brand/user, credit/token, giới hạn dùng, media spend, phí theo spend, onboarding và add-on. Không quy đổi token/credit thành đơn vị tương đương nếu không biết tỷ lệ tiêu hao.
+State the shortlist inclusion rule and which groups are still missing. Cross-check pricing pages, product docs, integrations, permissions, and limits. Record billing cycle, account/channel/brand/user counts, credits/tokens, usage limits, media spend, spend-based fees, onboarding, and add-ons. Don't convert tokens/credits into equivalent units without knowing the burn rate.
 
-Ma trận capability chỉ mã hóa bằng chứng được mô tả: `C` rõ, `P` một phần/điều kiện/phụ thuộc người hoặc bên ngoài, `?` không tìm thấy evidence đủ. Kèm nguồn trong từng row hoặc cột. Không lấy feature list từ đối thủ làm phán quyết cuối.
+A capability matrix encodes only described evidence: `C` clear, `P` partial/conditional/human- or third-party-dependent, `?` no sufficient evidence found. Cite sources per row or column. Don't treat a competitor's feature list as the final verdict.
 
-Battlecard chỉ khi cần bán hàng/định vị:
+Battlecard only when needed for sales/positioning:
 
-| Mục | Bằng chứng cần có |
+| Item | Evidence required |
 |---|---|
-| Persona và pitch | Persona theo nguồn, lời hứa gắn nhãn vendor claim |
-| Giá/package | chu kỳ, giới hạn, khoản phát sinh, thiết lập |
-| Claim và trải nghiệm | claim đối chiếu với docs/review/test; không xem review là fact |
-| Risk/weakness | pattern có nhiều evidence, mẫu và phản chứng; unknown không phải flaw |
-| Wedge to test | khác biệt có thể kiểm chứng, chưa gọi là “kill shot” |
-| Objection response | trả lời chính xác bằng chức năng có evidence, không hạ thấp đối thủ |
+| Persona and pitch | Sourced persona, promise labeled as vendor claim |
+| Price/package | cycle, limits, incidentals, setup |
+| Claims and experience | claims cross-checked against docs/reviews/tests; reviews are not facts |
+| Risk/weakness | multi-evidence patterns, samples and counter-evidence; unknown is not a flaw |
+| Wedge to test | verifiable difference, don't call it a "kill shot" yet |
+| Objection response | answer precisely with evidenced features, don't belittle competitors |
 
 ## 5. Customer/review evidence
 
-Nếu có review phù hợp, lấy cả 1★/2★ lẫn 4★/5★. Ghi platform, rating, tổng mẫu, kỳ review, ngày, invitation/verification markers nếu có. Review là self-selected report; không khẳng định nguyên nhân, chính sách hoặc lỗi đã được xác minh. Trích ngắn, ưu tiên paraphrase và link trực tiếp. Phân biệt review về sản phẩm cụ thể với toàn suite/agency/support.
+When fitting reviews exist, take both 1★/2★ and 4★/5★. Record platform, rating, total sample, review period, date, and invitation/verification markers where present. Reviews are self-selected reports; don't assert causes, policies, or verified bugs. Quote briefly, prefer paraphrase with direct links. Distinguish reviews of the specific product from the whole suite/agency/support.
 
 ## 6. TAM / SAM / SOM
 
-Dùng khi quyết định market entry, pricing, build-for-sale hoặc khi người dùng yêu cầu sizing. Có thể trình bày model proxy thay vì tuyên bố “thị trường trị giá”:
+Use when deciding market entry, pricing, build-for-sale, or when the user requests sizing. A proxy model may be presented instead of declaring "the market is worth":
 
 ```text
-TAM = số account có nhu cầu theo định nghĩa × annual spend/revenue phù hợp
-SAM = TAM accounts × share đúng ICP/địa lý/kênh/ngôn ngữ/khả năng phục vụ
-SOM = SAM accounts × share tiếp cận/chuyển đổi khả thi trong time horizon
+TAM = accounts with demand per definition × fitting annual spend/revenue
+SAM = TAM accounts × share matching ICP/geography/channel/language/servability
+SOM = SAM accounts × reachable/convertible share within the time horizon
 ```
 
-Tách count khỏi value. Nêu nguồn cho customer count và annual price/spend; không trộn advertiser count với số doanh nghiệp, ngân sách quảng cáo với phần mềm, hoặc survey share với toàn bộ population nếu định nghĩa không khớp. SAM/SOM percentages phải là `[ASSUMPTION]` hoặc đo từ pipeline/capacity; đưa low/base/high scenario và sensitivity. Kiểm tra bottom-up bằng sales capacity, conversion, ACV và chu kỳ bán. Nếu missing denominator/material input, để range/unknown và nói cần dữ liệu nào; không điền số để hoàn thành bảng.
+Separate count from value. Source the customer count and annual price/spend; don't mix advertiser counts with business counts, ad budgets with software, or survey shares with whole populations when definitions don't match. SAM/SOM percentages must be `[ASSUMPTION]` or measured from pipeline/capacity; give low/base/high scenarios and sensitivity. Sanity-check bottom-up with sales capacity, conversion, ACV, and sales cycle. When denominators/material inputs are missing, leave range/unknown and say what data is needed; don't fill numbers to complete the table.
 
 ## 7. Funding, revenue, valuation
 
-Dùng bảng có entity, currency, amount, round/filing/status, date, source class, valuation status và caveat. Tách funding amount khỏi valuation; một round funding không tiết lộ valuation nếu nguồn không nói. Tách market cap (public shares × price at timestamp), private-round valuation, asking price, modeled EV, revenue, ARR/MRR, GMV và total funding. Đừng gán pháp nhân cùng tên cho cùng một sản phẩm nếu chưa chứng minh.
+Use a table with entity, currency, amount, round/filing/status, date, source class, valuation status, and caveat. Separate funding amount from valuation; a funding round does not disclose valuation unless the source says so. Separate market cap (public shares × price at timestamp), private-round valuation, asking price, modeled EV, revenue, ARR/MRR, GMV, and total funding. Don't assign same-named legal entities to the same product without proof.
 
-Với TrustMRR hoặc payment-connected services: ghi exact page metric, `data updated` timestamp, access date, active subscription definition và trạng thái connection/staleness. Nói rõ đó là dữ liệu account được kết nối, có thể đổi và không đại diện tự động cho consolidated/audited revenue hoặc profit.
+For TrustMRR or payment-connected services: record the exact page metric, `data updated` timestamp, access date, active subscription definition, and connection/staleness status. State clearly that this is connected-account data, may change, and does not automatically represent consolidated/audited revenue or profit.
 
-Không suy private-company valuation từ ARR/MRR multiple trừ khi người dùng yêu cầu scenario; nếu làm, gọi là sensitivity model, nêu multiple là assumption và không gọi là observed valuation.
+Don't infer private-company valuation from ARR/MRR multiples unless the user requests a scenario; if you do, call it a sensitivity model, state the multiple is an assumption, and don't call it an observed valuation.
 
 ## 8. Investor / fund diligence
 
-Tùy câu hỏi, ghi fund size, vintage, stage, typical check, geography, thesis, relevant portfolio, recent activity, source date và fit/mismatch. Xác minh facts qua fund/company/filing; database profiles là secondary. Phân biệt public thesis với khả năng đầu tư thực tế. Không suy ra current dry powder/check availability từ portfolio cũ.
+Depending on the question, record fund size, vintage, stage, typical check, geography, thesis, relevant portfolio, recent activity, source date, and fit/mismatch. Verify facts via fund/company/filing; database profiles are secondary. Distinguish public thesis from actual investability. Don't infer current dry powder/check availability from old portfolios.
 
 ## 9. Vendor / technology research
 
-Ghi chức năng thực tế, integration/permission, data flow, dependency, lock-in, pricing basis, security/compliance claims và operational cost. Yêu cầu security/compliance certification phải kiểm tra issuer/certificate scope và ngày. Chưa thử thì nói “theo tài liệu”, không viết như kết quả test. Không gửi dữ liệu người dùng vào vendor để “thử” nếu chưa được cho phép.
+Record actual functionality, integrations/permissions, data flow, dependencies, lock-in, pricing basis, security/compliance claims, and operational cost. Security/compliance certification claims must be checked against issuer/certificate scope and date. Untried means write "per documentation", never as test results. Don't send user data to a vendor to "try it" without permission.
 
-## 10. Gói báo cáo
+## 10. Report package
 
-Chọn đúng phần, viết bằng ngôn ngữ người dùng nếu họ không yêu cầu khác; report sâu thường có:
+Pick the right sections, write in the user's language unless they ask otherwise; a deep report usually has:
 
-1. Câu hỏi quyết định, phạm vi, ngày chốt.
-2. Kết luận / lựa chọn có điều kiện.
-3. Phân nhóm thị trường và ma trận so sánh.
+1. Decision question, scope, cutoff date.
+2. Conclusion / conditional options.
+3. Market grouping and comparison matrix.
 4. Pricing / packaging.
-5. Customer evidence và phản chứng.
-6. Market sizing model khi phù hợp.
-7. Funding, revenue, valuation khi liên quan.
-8. Risk, data gaps, numbers rejected.
-9. Phương pháp, nguồn và ngày truy cập.
-10. Next step / thí nghiệm; không tuyên bố outcome chưa đo.
+5. Customer evidence and counter-evidence.
+6. Market sizing model when fitting.
+7. Funding, revenue, valuation when relevant.
+8. Risk, data gaps, rejected numbers.
+9. Method, sources, and access dates.
+10. Next step / experiment; don't claim unmeasured outcomes.
 
-Nếu người dùng muốn proof-based case study, chỉ dùng kết quả thật có thể xác minh: snapshot; baseline; cách triển khai; quantified result; trích dẫn có thể kiểm chứng; takeaway. Thiếu dữ liệu thì không dựng quote, baseline hoặc ROI.
+When the user wants a proof-based case study, use only real verifiable results: snapshot; baseline; deployment method; quantified result; checkable quotes; takeaway. Missing data means no fabricated quotes, baselines, or ROI.
 
-Với research thị trường đáng kể, tạo HTML có thể mở trực tiếp trên web và gửi URL đã kiểm tra. Ưu tiên hosting sẵn có trong repo/dự án được người dùng cho phép; giữ biểu đồ, số liệu, bảng và nguồn đồng nhất với báo cáo. Không công khai nghiên cứu nhạy cảm hoặc tạo tài khoản hosting mới; nếu chưa có nơi lưu trữ được phép, bàn giao HTML cục bộ và nêu rõ điều kiện còn thiếu để có link web.
+For substantial market research, produce an HTML file that opens directly on the web and send the verified URL. Prefer existing hosting inside the user-authorized repo/project; keep charts, numbers, tables, and sources consistent with the report. Don't publish sensitive research or create new hosting accounts; without an authorized hosting location, hand over the local HTML and state clearly what is still missing for a web link.

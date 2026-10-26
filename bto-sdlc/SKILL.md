@@ -1,97 +1,97 @@
 ---
 name: bto-sdlc
-description: Chuỗi artifact intent → plan → build → verify → ship cho mọi việc đủ lớn trong repo. Dùng khi bạn bắt đầu feature mới, refactor lớn, hoặc nói "viết intent", "làm theo plan", "/bto-sdlc". Không dùng cho sửa một dòng, chẩn đoán nhanh, hay việc vận hành một lần.
+description: The intent → plan → build → verify → ship artifact chain for any repo work big enough. Use when starting a new feature, a large refactor, or saying "write the intent", "follow the plan", "/bto-sdlc". Not for one-line fixes, quick diagnosis, or one-off ops work.
 ---
 
 # /bto-sdlc
 
-Mỗi phase kết thúc bằng một artifact commit vào repo. Session sau (hoặc agent khác) chỉ cần đọc file đó, không cần lịch sử chat.
+Each phase ends with an artifact committed to the repo. The next session (or another agent) only needs to read that file — no chat history required.
 
-Bạn vừa là người đặt yêu cầu vừa là người build — mọi cổng duyệt gom thành: **bạn duyệt artifact trước khi phase kế chạy.**
+You are both the requester and the builder — all approval gates collapse into: **you approve the artifact before the next phase runs.**
 
-Chuỗi nằm trong thư mục `intent/` của repo:
+The chain lives in the repo's `intent/` folder:
 
 ```
 intent/
-  2026-09-01-dark-mode.md        # WHY + WHAT (intent, đã duyệt)
-  2026-09-01-dark-mode.plan.md   # HOW (plan, tự đủ nghĩa)
+  2026-09-01-dark-mode.md        # WHY + WHAT (intent, approved)
+  2026-09-01-dark-mode.plan.md   # HOW (plan, self-explanatory)
 ```
 
-Khớp Buổi 2 và Buổi 4: spec trước code sau; verify từng lớp thay vì đọc từng dòng.
+Matches Sessions 2 and 4: spec before code; verify per layer instead of reading every line.
 
 ---
 
 ## Phase 1 — Intent (why + what)
 
-Khi bạn mô tả feature hoặc vấn đề: agent hỏi vài câu sắc (3–6 câu) cho tới khi phạm vi rõ — ràng buộc kỹ thuật, hệ thống bị ảnh hưởng, cái gì **không** làm. Rồi viết `intent/<yyyy-mm-dd>-<slug>.md`:
+When you describe a feature or problem: the agent asks a few sharp questions (3–6) until scope is clear — technical constraints, affected systems, what is **not** being done. Then it writes `intent/<yyyy-mm-dd>-<slug>.md`:
 
 ```markdown
 ---
 status: draft   # draft → approved → planned → building → verified → shipped (PR #n)
 ---
 # <Title>
-**Problem** — cái gì đang đau, bằng lời của bạn.
-**Outcome** — khi xong thì có gì; tiêu chí thành công (đo được).
-**Constraints** — tech, ngân sách, chính sách (lean, không thêm dependency, …).
-**Out of scope** — việc này cố ý KHÔNG làm.
-**Open questions** — chưa chốt (trống = sẵn sàng duyệt).
+**Problem** — what hurts, in your words.
+**Outcome** — what exists when done; success criteria (measurable).
+**Constraints** — tech, budget, policy (lean, no new dependency, …).
+**Out of scope** — what this deliberately does NOT do.
+**Open questions** — undecided (empty = ready to approve).
 ```
 
-Bạn sửa → `status: approved`, commit. **Không viết plan trước khi intent được duyệt.**
+You edit → `status: approved`, commit. **No plan before the intent is approved.**
 
-Nếu là sản phẩm mới: intent phải nêu đường kiếm tiền (ai trả, trả vì gì).
+For a new product: the intent must state the money path (who pays, paying for what).
 
 ---
 
 ## Phase 2 — Plan (how)
 
-Chỉ feed file intent vào chế độ plan. Việc lớn hoặc kiến trúc: tách review sản phẩm và review kỹ thuật trước khi chốt. Hỏi: "cái gì có thể gãy?" Output `intent/<slug>.plan.md`:
+Feed only the intent file into plan mode. Large or architectural work: split product review and technical review before finalizing. Ask: "what could break?" Output `intent/<slug>.plan.md`:
 
-- **Files** — mọi file sẽ chạm, theo thứ tự làm.
-- **Risks** — có thể gãy gì, và cách kiểm bắt được.
-- **Proof** — lệnh/bằng chứng chứng minh xong (test, build, screenshot, curl). "Xong" được định nghĩa ở đây, trước khi gõ code.
+- **Files** — every file to touch, in work order.
+- **Risks** — what could break, and which check catches it.
+- **Proof** — commands/evidence proving done (test, build, screenshot, curl). "Done" is defined here, before any code is typed.
 
-Bạn chấp nhận plan → `status: planned`, commit. Plan là hợp đồng bàn giao: agent implement chỉ đọc plan, không đọc chat.
+You accept the plan → `status: planned`, commit. The plan is the handoff contract: the implementing agent reads only the plan, not the chat.
 
 ---
 
 ## Phase 3 — Build
 
-Quy tắc repo bình thường (một logical unit một lúc; worktree nếu song song). Thêm:
+Normal repo rules (one logical unit at a time; worktrees if parallel). Plus:
 
-- Lệch plan → **cập nhật plan.md trong cùng commit**. Diff phải khớp plan.
-- Bắt đầu code → `status: building`.
+- Deviated from the plan → **update plan.md in the same commit**. Diff must match plan.
+- Starting code → `status: building`.
 
 ---
 
 ## Phase 4 — Verify
 
-Chạy đúng mục **Proof** trong plan. Người viết **không** tự duyệt: pass review độc lập (`code-reviewer` hoặc agent review khác) với intent + plan làm hợp đồng. Proof xanh → `status: verified`.
+Run exactly the plan's **Proof** section. The writer does **not** self-approve: pass an independent review (`code-reviewer` or another review agent) with intent + plan as the contract. Green proof → `status: verified`.
 
-Lỗi lặp lần thứ hai ở bất kỳ repo nào → ghi ngay vào `CLAUDE.md` hoặc `lessons.md` của repo đó.
+Any error repeating a second time in any repo → record immediately in that repo's `CLAUDE.md` or `lessons.md`.
 
 ---
 
 ## Phase 5 — Ship
 
-Merge theo flow repo (feature branch → PR → main; hoặc uat → main nếu repo bạn đặt như vậy). Sau merge: `status: shipped (PR #n)` trong intent — chuỗi đóng, git history là audit trail.
+Merge per repo flow (feature branch → PR → main; or uat → main if your repo does that). After merge: `status: shipped (PR #n)` in the intent — chain closed, git history is the audit trail.
 
 ---
 
-## Phase 6 — Maintain (vòng lặp)
+## Phase 6 — Maintain (the loop)
 
-Health check, cron, email cảnh báo có thể tự flag issue. Quy ước: issue đáng làm và lớn hơn sửa một dòng → bắt đầu bằng intent file mới trong repo sở hữu. Sửa nhỏ, bounded → PR thẳng, bỏ qua chuỗi.
-
----
-
-## Evals — regression cho quy trình
-
-Thư mục `evals/` per repo: mỗi file một case — **Task** (prompt thật) + **Expect** (kết quả kiểm được). Mỗi incident production và mỗi lần "agent làm sai" → thêm case vĩnh viễn.
-
-Chạy evals **trước khi merge** thay đổi `CLAUDE.md`, skill, hoặc hook — config làm pass rate tụt thì không merge. 5 case đã tốt hơn 0.
+Health checks, cron, and alert emails may auto-flag issues. Convention: a worthwhile issue bigger than a one-line fix → starts with a new intent file in the owning repo. Small bounded fixes → straight PR, skip the chain.
 
 ---
 
-## Khi KHÔNG dùng
+## Evals — regression for the process
 
-Sửa một dòng, chẩn đoán, ops một lần — chuỗi là overhead. Nghi ngờ: nếu đáng feature branch thì đáng intent file.
+An `evals/` folder per repo: one file per case — **Task** (a real prompt) + **Expect** (a checkable result). Every production incident and every "agent did it wrong" → one permanent case.
+
+Run evals **before merging** changes to `CLAUDE.md`, skills, or hooks — config that drops the pass rate doesn't merge. 5 cases beats 0.
+
+---
+
+## When NOT to use
+
+One-line fixes, diagnosis, one-off ops — the chain is overhead. Rule of thumb: if it deserves a feature branch, it deserves an intent file.

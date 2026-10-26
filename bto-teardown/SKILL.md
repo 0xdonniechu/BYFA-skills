@@ -1,124 +1,124 @@
 ---
 name: bto-teardown
-description: Phân rã một sản phẩm có sẵn để hiểu ruột của nó, viết thành bản đặc tả sạch, rồi build bản của riêng mình trong một phiên làm việc mới chỉ đọc đặc tả. Đúng phương pháp clean-room hai đội mà ngành công nghệ dùng để học từ đối thủ không phạm luật. Kích hoạt khi nói "teardown", "phân rã sản phẩm", "reverse engineer", "build cái tương tự X", "sản phẩm X hoạt động thế nào".
+description: Decompose an existing product to understand its insides, write it up as a clean specification, then build your own version in a fresh working session that reads only the spec. The two-team clean-room method the tech industry uses to learn from competitors without breaking the law. Triggered when saying "teardown", "decompose a product", "reverse engineer", "build something like X", "how does product X work".
 ---
 
 # /bto-teardown
 
-Học từ đối thủ bằng cách phân rã, không phải bằng cách chép. Hai đội, một bức
-tường: đội A đọc sản phẩm gốc và viết đặc tả, đội B chỉ đọc đặc tả và build.
-Đội B chưa từng thấy bản gốc, nên thứ build ra là của bạn.
+Learn from competitors by decomposing, not by copying. Two teams, one wall:
+team A reads the original product and writes the spec, team B reads only the spec
+and builds. Team B has never seen the original, so what gets built is yours.
 
-Cách làm này có án lệ thật, kể ở Buổi 3: một công ty nhỏ phân rã máy tính
-IBM bằng đúng mô hình hai đội này, bị IBM kiện, và thắng kiện, vì đội build
-chưa từng nhìn thấy sản phẩm gốc. Từ vụ đó ngành công nghệ có từ khoá
-teardown và reverse engineer, làm đúng luật.
+This method has a real case behind it, told in Session 3: a small company decomposed
+IBM computers using exactly this two-team model, got sued by IBM, and won, because the build
+team had never seen the original product. From that case the tech industry got the keywords
+teardown and reverse engineer, done within the law.
 
-## Dùng khi nào
+## When to use
 
-Sau khi đã research thị trường và chọn được mảnh để vào. Research market trả
-lời "vào mảnh nào", teardown trả lời "bản gốc hoạt động ra sao để mình build
-bản của mình". Đi ngược thứ tự là phân rã một sản phẩm mà chưa biết có đáng
-build hay không.
+After market research has picked the segment to enter. Market research answers
+"which segment to enter"; teardown answers "how the original works so I can build
+my own version". Reversing the order means decomposing a product before knowing whether it's
+worth building.
 
-## Bước 0 — Đáng build không, trả lời trước khi tốn giờ
+## Step 0 — Worth building? Answer before spending hours
 
-Ba câu, viết ra giấy:
+Three questions, written down:
 
-1. Vì sao sản phẩm này, vì sao bây giờ, và người dùng cụ thể của BẠN là ai?
-2. Wedge của bạn là gì: chép cái lõi cộng cải thiện đúng chỗ nào?
-3. Bạn định build để tự dùng, ship công khai, hay xa hơn? Càng xa thì luật
-   sạch phòng bên dưới càng phải giữ chặt từ ngày đầu.
+1. Why this product, why now, and who exactly is YOUR user?
+2. What is your wedge: copy the core plus improve exactly where?
+3. Are you building for yourself, shipping publicly, or further? The further out, the tighter
+   the clean-room rules below must hold from day one.
 
-Trả lời xong mà kết luận là "chưa đáng" thì dừng ở đây. Đó là kết quả tốt,
-không phải thất bại.
+If the answer comes out "not worth it yet", stop here. That is a good result,
+not a failure.
 
-## Bước 1 — Gom nguồn, chỉ nguồn công khai
+## Step 1 — Gather sources, public only
 
-Kéo mọi thứ về một thư mục `input/`: video demo, trang chủ, trang pricing,
-docs, screenshot, repo nếu họ open source. Video thì cho agent xem transcript
-cộng chụp frame theo mốc thời gian (tool mở [watch-cli](https://github.com/0xdonniechu/watch-cli)
-làm sẵn việc này, hoặc tự chụp màn hình từng đoạn).
+Pull everything into one `input/` folder: demo videos, homepage, pricing pages,
+docs, screenshots, the repo if they open-sourced it. For video, have the agent watch the transcript
+plus capture frames at timestamps (the [watch-cli](https://github.com/0xdonniechu/watch-cli)
+tool does this ready-made, or screenshot each segment yourself).
 
-**Chỉ dùng thứ công khai.** Không crack, không lấy dữ liệu sau login của
-người khác, không mua tài khoản để trích xuất code.
+**Public things only.** No cracking, no taking someone else's post-login data,
+no buying accounts to extract code.
 
-## Bước 2 — Phân rã ra core, không tả vỏ
+## Step 2 — Decompose to the core, not the shell
 
-Từ `input/`, cho agent bóc thành các file phân tích:
-
-```
-features.md        sản phẩm làm được gì, từng tính năng một
-ui-states.md       các màn hình, trạng thái, luồng người dùng
-api-endpoints.md   sản phẩm nói chuyện với server bằng những đường nào
-tech-stack.md      chạy bằng gì, tự build phần nào, thuê phần nào
-pricing.md         giá từng gói, tính tiền theo gì · cột bắt buộc
-```
-
-**Luật sạch phòng, không thương lượng:** trong mọi file phân tích, mô tả bằng
-lời, KHÔNG dán quá 3 dòng code, không chép nguyên văn đoạn chữ nào dài quá
-một câu. Trích nguyên văn chỉ dành cho chuỗi ngắn có tính dữ kiện (nhãn nút,
-thông báo lỗi).
-
-## Bước 3 — Viết đặc tả sạch (spec)
-
-Từ các file phân tích, viết `SPEC.md`: mỗi tính năng mô tả người dùng nhận
-được gì, kích hoạt bằng gì, vào gì ra gì, các trạng thái, lỗi thì sao, và
-**cái gì KHÔNG làm**. Đúng khung spec một trang đã học ở Buổi 2, nhân lên
-theo từng tính năng.
-
-Bài kiểm: mở một phiên agent MỚI, dán SPEC, bảo build thử một tính năng. Nó
-hỏi lại về hành vi (thay vì chỉ hỏi về lựa chọn kỹ thuật) nghĩa là spec chưa
-đủ, viết tiếp.
-
-## Bước 4 — Đặt tên riêng và tìm wedge
-
-- **Đặt tên sản phẩm của bạn, khác hẳn tên gốc.** Cấm mọi kiểu `X-clone`,
-  `X-port`, `my-X`. Tên thư mục nằm vĩnh viễn trong git log; một cái tên
-  `stripe-clone` là tự thú trước mọi cuộc audit sau này.
-- **First-principles audit:** hỏi "nếu không biết sản phẩm gốc tồn tại, spec
-  tối thiểu để giải đúng nỗi đau của người dùng tôi là gì?". So với SPEC:
-  thứ có trong SPEC mà không có trong câu trả lời thì cân nhắc bỏ hẳn; thứ
-  có trong câu trả lời mà SPEC thiếu chính là wedge của bạn. Không có bước
-  này thì ra một bản copy tốt hơn 5%, không phải sản phẩm khác 10 lần.
-
-## Bước 5 — Build sau bức tường
-
-Mở **thư mục mới, phiên agent mới**. Chép vào đúng hai file: `SPEC.md` và
-danh sách việc v0.1. Câu lệnh đầu tiên của phiên đó:
+From `input/`, have the agent break it into analysis files:
 
 ```
-Chỉ đọc SPEC.md trong thư mục này. Không đọc bất kỳ thứ gì bên ngoài.
-Không hỏi tôi về hành vi, chỉ hỏi về lựa chọn kỹ thuật. Build phần 1.
+features.md        what the product does, feature by feature
+ui-states.md       screens, states, user flows
+api-endpoints.md   which routes the product talks to the server on
+tech-stack.md      what it runs on, what it builds itself, what it rents
+pricing.md         each plan's price, billed on what · required column
 ```
 
-Từ lúc này, phiên cũ không sinh code, phiên mới không xem bản gốc. Thiếu gì
-trong spec thì quay lại phiên cũ sửa spec, rồi chép bản mới sang.
+**Clean-room rule, non-negotiable:** in every analysis file, describe in your own
+words, paste NO MORE than 3 lines of code, never copy any passage longer than
+one sentence verbatim. Verbatim quotes are only for short factual strings (button labels,
+error messages).
 
-## Bước 6 — Đối chiếu
+## Step 3 — Write the clean spec
 
-Chạy cùng một luồng người dùng trên bản gốc và bản của bạn, so bằng mắt:
-hành vi có tương đương không, chỗ nào cố tình khác (wedge) thì ghi rõ là cố
-tình. Đạt thì ship, chưa đạt thì quay lại bước 5.
+From the analysis files, write `SPEC.md`: for each feature, what the user gets,
+what triggers it, inputs and outputs, states, what happens on error, and
+**what it does NOT do**. Exactly the one-page spec frame learned in Session 2, multiplied
+per feature.
 
-## Nhớ một câu
+The test: open a FRESH agent session, paste the SPEC, ask it to trial-build one feature. If
+it asks back about behavior (instead of only technical choices), the spec is
+thin — keep writing.
 
-Teardown để hiểu vì sao họ thắng, rồi làm khác đi ở khoảng trống. Kết luận
-"làm y hệt nhưng rẻ hơn" nghĩa là chưa xong, quay lại matrix thị trường tìm
-mảnh chưa ai đứng.
+## Step 4 — Your own name and your wedge
 
-## Skill này phải tự tốt lên
+- **Name your product, nothing like the original.** Ban every `X-clone`,
+  `X-port`, `my-X` pattern. The folder name lives forever in git log; a
+  `stripe-clone` name is a confession before every future audit.
+- **First-principles audit:** ask "if I didn't know the original product existed, what is the minimum
+  spec that solves my user's pain?". Against the SPEC:
+  things in the SPEC but not in the answer get considered for removal; things
+  in the answer but missing from the SPEC are your wedge. Without this step
+  you get a copy 5% better, not a product 10x different.
 
-Ba luật cho agent đang đọc file này, lấy từ đúng cách Sơn vận hành skill:
+## Step 5 — Build behind the wall
 
-1. **Eval sau mỗi lần chạy.** Xong việc thì tự chấm ngắn theo checklist của
-   skill: thiếu bước nào, chỗ nào người dùng phải sửa tay. Có chỗ đáng sửa
-   thì đề xuất người dùng cập nhật thẳng vào file SKILL.md này. Skill là tài
-   liệu sống có feedback loop, mỗi lần chạy phải tốt lên một chút.
-2. **Thi thoảng lookup để update.** Giá, công cụ, và cách các trang tổ chức
-   dữ liệu đổi liên tục. Con số hay tên tool nào trong file này đã vài tháng
-   tuổi thì kiểm lại từ trang gốc trước khi tin.
-3. **Không biết thì hỏi người.** Cái gì ngoài tầm thì nói thẳng, và chỉ
-   người dùng hỏi trong cộng đồng mã nguồn mở (Discord của chương trình,
-   member trong đó là nguồn trợ giúp) hoặc hỏi Sơn Piaz. Người thật là một
-   nguồn trợ giúp, không phải chỉ có tài liệu.
+Open a **new folder, new agent session**. Copy in exactly two files: `SPEC.md` and
+the v0.1 task list. That session's first command:
+
+```
+Read only the SPEC.md in this folder. Read nothing outside it.
+Don't ask me about behavior, only about technical choices. Build part 1.
+```
+
+From here on, the old session writes no code, the new session never sees the original. Anything missing
+in the spec goes back to the old session to fix the spec, then copy the new version over.
+
+## Step 6 — Compare
+
+Run the same user flow on the original and on yours, compare by eye:
+is the behavior equivalent, and where it deliberately differs (the wedge), record it as deliberate.
+Pass means ship; fail means back to step 5.
+
+## Remember one sentence
+
+Teardown to understand why they win, then do it differently in the gap. A
+"do exactly the same but cheaper" conclusion means unfinished — back to the market matrix to find
+an unoccupied segment.
+
+## This skill must improve itself
+
+Three rules for the agent reading this file, taken from exactly how Son runs skills:
+
+1. **Eval after every run.** When done, self-grade briefly against the skill's checklist:
+   which steps were missing, where the user had to fix by hand. Anything worth fixing,
+   propose the user update straight into this SKILL.md file. A skill is a living
+   document with a feedback loop; every run must make it slightly better.
+2. **Look things up occasionally to update.** Prices, tools, and how sites organize
+   data change constantly. Any number or tool name in this file a few months
+   old gets rechecked against the original page before trusting.
+3. **When unsure, ask a human.** Whatever is out of scope, say so plainly, and only
+   the user asks in the open-source community (the program Discord,
+   members in it are a help source) or asks Son Piaz. A real person is a
+   help source, not just documentation.

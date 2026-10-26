@@ -1,11 +1,11 @@
 ---
 name: bto-event-review
-description: Từ ghi âm hoặc transcript của một buổi talk, cùng ảnh chụp slide hoặc file slide, viết lại trọn vẹn và trung thực từng talk (không phải tóm tắt), mỗi talk một trang HTML kèm một trang mục lục. Dùng khi bạn muốn hiểu hết các talk ở một hội nghị, meetup hay sự kiện đã tham dự, khi nói "event review", "viết lại các talk này", "biến ghi âm thành tài liệu", "write up these talks", hoặc đưa transcript kèm một thư mục ảnh slide. Có thể chọn ngôn ngữ đầu ra, khi đó văn viết bằng ngôn ngữ đó còn technical term giữ tiếng Anh. Không dùng cho tóm tắt ngắn, ghi chú một video lẻ, hay bài đăng mạng xã hội về sự kiện.
+description: From a talk recording or transcript, plus slide photos or slide files, rewrite each talk fully and faithfully (never a summary), one HTML page per talk plus one index page. Use when you want to fully understand the talks at a conference, meetup, or event you attended, when saying "event review", "write up these talks", or handing over a transcript with a slide-photo folder. The output language is selectable; prose is written in that language while technical terms stay in English. Not for short summaries, single-video notes, or event social media posts.
 ---
 
 # /bto-event-review
 
-Nghe talk chuyên sâu xong chưa hiểu hết? Đưa agent ảnh slide và transcript (hoặc video), nó viết lại trọn talk thành tài liệu đọc lại được: đủ ý, đúng trình tự, tiếng Việt giữ thuật ngữ tiếng Anh, slide đặt đúng chỗ, có agent khác duyệt lại. Ví dụ đầu ra: [homus.dev](https://homus.dev). Bản gốc: [0xdonniechu/event-review](https://github.com/0xdonniechu/event-review).
+Finished a deep talk but didn't catch everything? Give the agent slide photos and the transcript (or video); it rewrites the whole talk as a re-readable document: every idea, correct order, prose in your language with English technical terms, slides placed correctly, reviewed by a second agent. Example output: [homus.dev](https://homus.dev). Original: [0xdonniechu/event-review](https://github.com/0xdonniechu/event-review).
 
 # Event review
 
@@ -97,8 +97,8 @@ python3 scripts/check_doc.py <output_dir>/<slug>.html <event_dir>/raw/<slug>.md 
 | E6 | reader score 1–5 after reading | ask the reader | ≥ 4 |
 | E7 | reviewer: missing / wrong items | review file | 0 wrong, ≤ 3 small missing |
 
-Notes on E1: when the target language differs from the talk (for example English talk, Vietnamese page), word counts differ by language; measured full rewrites into Vietnamese land at 1.04–1.44. Links blocked for bots (LinkedIn often answers 999) go in as plain text, not links.
-Glossary: `references/glossary-vi.json` lists Vietnamese renderings that would lose an English technical term. Make one for your target language in the same shape.
+Notes on E1: when the target language differs from the talk (for example an English talk rendered as a German page), word counts differ by language; measured full rewrites land around 1.0–1.5 depending on the language pair. Links blocked for bots (LinkedIn often answers 999) go in as plain text, not links.
+Glossary: `references/glossary-vi.json` lists renderings that would lose an English technical term. Make one for your target language in the same shape.
 
 ## Personal notes (optional, off by default)
 If you pass your own session notes, the writer places each note inline in the section where the speaker covers that point, as `<p class="note"><b>My note during the session:</b> "..."</p>`. These go **only into a personal copy** (`<slug>.personal.html`) that is never published. The published `<slug>.html` never contains them.

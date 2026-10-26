@@ -1,323 +1,323 @@
 ---
 name: bto-secrets
-description: Giữ API key và mật khẩu an toàn khi giao việc cho AI agent, và đẩy code lên GitHub mà không làm lộ gì. Dùng khi chạm tới API key, secret, .env, 1Password, biến môi trường, khi nối một API hay MCP mới, trước khi commit hoặc push, khi dựng CI, khi cho người thứ hai hoặc một agent khác vào repo, và khi "merge rồi mà trang không đổi". Rút từ những lần hỏng thật, mỗi luật kèm chuyện đã xảy ra.
+description: Keep API keys and passwords safe when delegating work to an AI agent, and push code to GitHub without leaking anything. Use when touching API keys, secrets, .env, 1Password, environment variables, when connecting a new API or MCP, before a commit or push, when setting up CI, when letting a second person or another agent into the repo, and when hitting "merged but the page didn't change". Distilled from real failures; every rule comes with a story of what happened.
 ---
 
 # /bto-secrets
 
-Giao việc cho agent mà không trao chìa khoá, và đẩy code mà không làm lộ gì.
+Delegate work to agents without handing over the keys, and push code without leaking anything.
 
-Mọi luật dưới đây rút từ một lần hỏng có thật trong lúc dựng hệ thống,
-không phải từ sách. Chỗ nào có con số thì đó là số đo được.
-
----
-
-## Khi nào dùng
-
-Đọc file này trước khi làm bất cứ việc nào sau đây:
-
-- Chạm tới API key, secret, `.env`, biến môi trường
-- Nối một API hoặc MCP mới vào agent
-- Commit hoặc push, nhất là lần đầu của một dự án
-- Cho người thứ hai, hoặc một agent khác, vào repo của mình
-- Dựng CI, hoặc quyết định luật nào cần tự động kiểm
-- Gặp câu "merge rồi mà trang không đổi"
+Every rule below comes from a real failure during system building,
+not from a book. Wherever there is a number, it is a measured number.
 
 ---
 
-## 1. Hai loại chìa khoá, đừng nhầm
+## When to use
 
-**Public key** giống số tài khoản ngân hàng. Ai biết cũng được, họ chỉ chuyển tiền
-vào được thôi.
+Read this file before doing any of the following:
 
-**Private key**, còn gọi secret key, giống mật khẩu Internet Banking. Lộ là mất.
-
-Rắc rối là nhiều dịch vụ gọi cả hai đều là "API key". Luật một dòng:
-
-> Key nào bắt đầu bằng `sk_`, `sb_secret_`, `secret`, `service_role`, hoặc dịch vụ
-> gọi nó là **secret**, thì **không bao giờ rời khỏi máy bạn**.
+- Touch API keys, secrets, `.env`, environment variables
+- Connect a new API or MCP into the agent
+- Commit or push, especially a project's first one
+- Let a second person, or another agent, into your repo
+- Set up CI, or decide which rules need automated checks
+- Hit the phrase "merged but the page didn't change"
 
 ---
 
-## 2. Lưu ở đâu, ba tầng
+## 1. Two kinds of keys, don't confuse them
 
-| Tầng | Công cụ | Dùng khi |
+A **public key** is like a bank account number. Anyone may know it; they can only
+transfer money in.
+
+A **private key**, also called a secret key, is like an Internet Banking password. Leaked means lost.
+
+The trouble is many services call both an "API key". One-line rule:
+
+> Any key starting with `sk_`, `sb_secret_`, `secret`, `service_role`, or one the
+> service calls a **secret**, **never leaves your machine**.
+
+---
+
+## 2. Where to store them, three tiers
+
+| Tier | Tool | Use when |
 |---|---|---|
-| Quản lý mật khẩu | 1Password, Bitwarden, Doppler | Nguồn sự thật cho cả team. Agent phải hỏi quyền mỗi lần lấy |
-| Secret của chính nền tảng | Vercel env, GitHub Actions secrets, Supabase Vault, Cloudflare Workers secrets | Key chỉ dùng cho một dịch vụ |
-| Kho khoá chuyên dụng | AWS Secrets Manager, Google Secret Manager, HashiCorp Vault | Nhiều môi trường, cần nhật ký ai lấy key lúc nào |
+| Password manager | 1Password, Bitwarden, Doppler | Source of truth for the whole team. The agent must ask permission on every fetch |
+| The platform's own secrets | Vercel env, GitHub Actions secrets, Supabase Vault, Cloudflare Workers secrets | Key used by a single service only |
+| Dedicated key store | AWS Secrets Manager, Google Secret Manager, HashiCorp Vault | Many environments, need a log of who fetched which key when |
 
-Trên máy thì macOS Keychain, `.env` nằm trong `.gitignore` không ngoại lệ, và
-`.env.example` chỉ chứa **tên biến, không chứa giá trị**.
+On your machine: macOS Keychain, `.env` in `.gitignore` with no exceptions, and
+`.env.example` containing **variable names only, never values**.
 
-### Bốn chỗ người ta thật sự mất key
+### Four places people actually lose keys
 
-Không chỗ nào nằm trong bảng trên:
+None of them are in the table above:
 
 ```
-export API_KEY=...   trong .zshrc
-nhắn key vào Slack hoặc Zalo cho chính mình
-để trong Notion, Google Keep, Apple Notes
-clipboard, tức vừa bấm sao chép xong rồi quên
+export API_KEY=...   in .zshrc
+pasting a key into Slack or Zalo to yourself
+keeping it in Notion, Google Keep, Apple Notes
+the clipboard — just copied and then forgotten
 ```
 
-### Chuyện clipboard, đo được chứ không phải doạ
+### The clipboard story, measured not threatened
 
-Ba điều đo được trên macOS:
+Three measured facts on macOS:
 
-1. **Clipboard là bề mặt nhạy cảm duy nhất hệ điều hành không gác.** Camera,
-   micro, quay màn hình, bàn phím đều bật hộp thoại xin phép. Clipboard thì
-   không. Một máy đang chạy khoảng 475 tiến trình, và mọi tiến trình đều đọc
-   được clipboard, im lặng, không để lại dấu.
-2. **"Trên máy tôi" không còn đúng.** Universal Clipboard đẩy nó qua iCloud sang
-   iPhone và iPad. Chép trên Mac, dán được trên điện thoại. Ba thiết bị chứ
-   không phải một.
-3. **Nó nằm đó tới khi bị đè.** Clipboard không có hạn.
+1. **The clipboard is the only sensitive surface the OS doesn't guard.** Camera,
+   microphone, screen recording, and keyboard all trigger permission dialogs. The clipboard
+   doesn't. A running machine has around 475 processes, and every process can read
+   the clipboard, silently, leaving no trace.
+2. **"On my machine" no longer holds.** Universal Clipboard pushes it over iCloud to
+   your iPhone and iPad. Copy on the Mac, paste on the phone. Three devices, not
+   one.
+3. **It stays there until overwritten.** The clipboard has no expiry.
 
-Gỡ mất một lệnh, chạy ngay khi vừa xong việc với key:
+One command to clear it, run right after you're done with a key:
 
 ```bash
 pbcopy < /dev/null
 ```
 
-**Nói cho đúng, và đây là chỗ đáng học hơn cả cái lệnh:** không chứng minh được
-là *có kẻ đang rình*. Chỉ chứng minh được là *ai cũng đọc được*. Câu đúng là: xoá
-clipboard không phải vì có kẻ rình, mà vì một credential còn sống đang nằm trên
-bề mặt duy nhất không có kiểm soát truy cập, đã đồng bộ sang hai thiết bị khác,
-và sẽ nằm đó vô thời hạn.
+**To say it right — and this is the part more worth learning than the command:** you can't prove
+*someone is watching*. You can only prove *everyone can read it*. The correct statement is: clear
+the clipboard not because someone is watching, but because a live credential is sitting on
+the only surface with no access control, already synced to two other devices,
+and will sit there indefinitely.
 
-Phân biệt **rủi ro đo được** với **sợ hãi chung chung** là kỹ năng, không phải
-tiểu tiết.
+Telling **measured risk** apart from **vague fear** is a skill, not a detail.
 
 ---
 
-## 3. Bốn luật khi giao việc cho agent
+## 3. Four rules when delegating to agents
 
-Chép bốn dòng này vào `AGENTS.md` của dự án bạn.
+Copy these four lines into your project's `AGENTS.md`.
 
-### Luật 1. Đưa tên biến, đừng đưa giá trị
-
-```
-SAI     Gọi API Linear giúp tôi, key là lin_api_a1b2c3...
-ĐÚNG    Key nằm ở biến LINEAR_API_KEY. Đọc từ process.env, đừng in ra.
-```
-
-Dán chuỗi key vào khung chat là nó nằm vĩnh viễn trong lịch sử hội thoại và
-trong log của bên thứ ba. Bạn không xoá được. Tên biến thì ai đọc cũng vô hại.
-
-### Luật 2. Đừng để nó in key ra màn hình
-
-Agent hay tự làm ba việc này để tự kiểm tra:
+### Rule 1. Give the variable name, not the value
 
 ```
-SAI     console.log('key:', process.env.API_KEY)
+WRONG     Call the Linear API for me, the key is lin_api_a1b2c3...
+RIGHT     The key lives in LINEAR_API_KEY. Read it from process.env, don't print it.
+```
+
+Pasting a key string into the chat means it lives forever in conversation history and
+in third-party logs. You can't delete it. A variable name is harmless to any reader.
+
+### Rule 2. Don't let it print the key on screen
+
+Agents habitually do these three things to self-check:
+
+```
+WRONG     console.log('key:', process.env.API_KEY)
         echo $API_KEY
-        curl -v ...                    cờ -v in cả header Authorization
+        curl -v ...                    the -v flag prints the Authorization header too
 
-ĐÚNG    echo ${API_KEY:0:8}...                     chỉ tám ký tự đầu
-        [ -n "$API_KEY" ] && echo "co key"         chỉ kiểm có hay không
-        curl -s ... -o /dev/null -w "%{http_code}" chỉ xem mã trả về
+RIGHT     echo ${API_KEY:0:8}...                     first eight characters only
+        [ -n "$API_KEY" ] && echo "key present"     presence check only
+        curl -s ... -o /dev/null -w "%{http_code}"  status code only
 ```
 
-Terminal của bạn có thể đang share màn hình hoặc đang ghi hình. Log của nền tảng
-và của CI cũng lưu lại.
+Your terminal may be screen-shared or recorded. Platform
+and CI logs keep everything too.
 
-### Luật 3. Quét trước khi push, kể cả repo private
+### Rule 3. Scan before pushing, even private repos
 
 ```bash
 git diff --cached | grep -inE "sk-[a-zA-Z0-9]{20}|sb_secret_[A-Za-z0-9_-]{10}|AKIA[0-9A-Z]{16}|ghp_[a-zA-Z0-9]{36}|xox[baprs]-|-----BEGIN"
 ```
 
-Có kết quả là dừng. Hôm nay private, mai bạn đổi ý mở mã nguồn, là lộ hết những
-gì đã nằm trong lịch sử.
+Any hit means stop. Private today, tomorrow you change your mind and open-source it, and everything
+already in history leaks.
 
-### Luật 4. Lộ rồi thì xoay key, đừng đi xoá commit
+### Rule 4. Leaked means rotate the key, don't go deleting commits
 
-**Git giữ mọi blob vĩnh viễn.** Ba điều này đã được kiểm chứ không phải suy đoán:
+**Git keeps every blob forever.** These three are verified, not guessed:
 
-- Xoá file ở commit sau **không** xoá nó khỏi lịch sử
-- Force-push sau `git filter-repo` **không** xoá nó khỏi các bản sao đã clone
-- Chuyển repo sang private **không** xoá nó, vì fork dùng chung kho object
+- Deleting a file in a later commit does **not** remove it from history
+- Force-pushing after `git filter-repo` does **not** remove it from already-cloned copies
+- Switching the repo to private does **not** remove it, because forks share the object store
 
-Việc duy nhất còn tác dụng là vào dịch vụ đó, huỷ key cũ, tạo key mới.
+The only thing that still works is going to that service, revoking the old key, creating a new one.
 
 ---
 
-## 4. Cách để agent chạm được mà không cầm chìa
+## 4. Letting the agent reach keys without holding them
 
-Đây là mô hình nên hướng tới, không phải `.env`.
+This is the model to aim for, not `.env`.
 
 ```
-ĐỂ TRONG .env                       ĐỂ TRONG 1PASSWORD
-agent cần một khoá                  agent cần một khoá
+KEEP IN .env                      KEEP IN 1PASSWORD
+agent needs one key               agent needs one key
    ↓                                   ↓
-nó tự mở file .env                  nó chỉ có tên chỗ cất: op://...
+it opens the .env file itself     it only has the storage name: op://...
    ↓                                   ↓
-có khoá, gọi API                    1Password nhận yêu cầu
+has the key, calls the API        1Password receives the request
                                        ↓
-Không ai được hỏi.                  MÁY HỎI VÂN TAY CỦA BẠN   ← khác biệt ở đây
-Không bước nào ở giữa.                 ↓
-Không để lại dấu vết.               trả khoá cho đúng lệnh đó
-                                    giá trị không hiện ra màn hình
+Nobody gets asked.                YOUR FINGERPRINT ON THE MACHINE   ← the difference is here
+No step in between.                    ↓
+No trace left.                    returns the key to exactly that command
+                                   the value never appears on screen
 ```
 
-Toàn bộ khác biệt nằm trong đúng một ô: có một con người bấm ngón tay.
+The entire difference sits in exactly one box: a human pressing a finger.
 
-Cài một lần: 1Password → `Settings` → `Developer` → bật `Command-Line Interface`.
-Rồi giao cho agent:
+One-time setup: 1Password → `Settings` → `Developer` → enable `Command-Line Interface`.
+Then hand to the agent:
 
 ```
-Hãy lấy toàn bộ mã khoá đang nằm trong .env của tôi, đẩy lên 1Password,
-sắp xếp thành từng vault theo từng dự án.
-Không in giá trị của key nào ra màn hình.
+Take all the secret keys currently in my .env, push them up to 1Password,
+organized into one vault per project.
+Don't print any key's value on screen.
 ```
 
-**Đánh đổi, nói thẳng:** cách này chậm hơn, vì mỗi lần agent cần là bạn phải chạm
-vân tay. Dự án không có dữ liệu nhạy cảm thì `.env` là đủ. Có dữ liệu khách hàng,
-có tiền, có tài khoản ngân hàng thì đổi lấy sự bất tiện đó là xứng.
+**The tradeoff, stated plainly:** this is slower, because every time the agent needs something you must touch
+your fingerprint. A project with no sensitive data is fine on `.env`. With customer data,
+money, or bank accounts, that inconvenience is worth it.
 
 ---
 
-## 5. Khoá nằm đúng một chỗ là rủi ro chưa ai đặt tên
+## 5. A key living in exactly one place is a risk nobody named
 
-Khoá toàn quyền database của Campus từng **chỉ tồn tại trong biến môi trường trên
-Vercel**. Không bản lưu nào khác. Vercel hỏng hoặc ai xoay nhầm là mất, và không
-khôi phục được từ đâu.
+The Campus all-power database key once **existed only as an environment variable on
+Vercel**. No other copy anywhere. If Vercel broke or someone rotated it by mistake, it was gone, with
+no recovery from anywhere.
 
-> Khoá quan trọng nhất phải nằm ở **ít nhất hai chỗ**, và **một trong hai chỗ đó
-> phải hỏi con người** trước khi đưa ra.
+> The most important key must live in **at least two places**, and **one of those
+> places must ask a human** before handing it out.
 
-Kiểm dự án của bạn ngay: mỗi khoá đang nằm ở mấy chỗ?
+Audit your project now: how many places does each key live in?
 
 ---
 
-## 6. Ba thứ không bao giờ commit
+## 6. Three things never to commit
 
-**Khoá bảo mật.** Không API key, không token, không `.env`.
+**Security keys.** No API keys, no tokens, no `.env`.
 
-**Danh sách người dùng thật.** Không `.xlsx`, không `.csv` có tên và email thật.
-Một lần lỡ commit hơn trăm người là không lấy lại được, và nếu ai đó yêu cầu xoá
-dữ liệu của họ thì bạn không làm được.
+**Real user lists.** No `.xlsx`, no `.csv` with real names and emails.
+One accidental commit of a hundred-plus people can't be taken back, and if someone requests
+deletion of their data, you can't comply.
 
-**Tệp nặng.** Video, ảnh gốc, bản dựng. Chúng đi qua kho riêng, không qua git.
+**Heavy files.** Video, original images, builds. They go through a separate store, not git.
 
-Trước mỗi commit nhìn `git status` một lượt, và `git add <file cụ thể>` chứ đừng
+Before every commit, glance at `git status` once, and `git add <specific file>` — never
 `git add -A`.
 
 ---
 
-## 7. Làm chung với người thứ hai, và với agent khác
+## 7. Working with a second person, and with another agent
 
-### Đặt luật đúng chỗ agent thật sự đọc
+### Put the rules where agents actually read
 
-Agent chỉ tự nạp `AGENTS.md` hoặc `CLAUDE.md` ở **gốc đúng repo nó đang đứng**.
-Viết hướng dẫn tuyệt vời mà để ở repo khác thì nó không bao giờ đọc tới. Đây là
-lỗi đã xảy ra, và nó làm mất một buổi.
+An agent only auto-loads `AGENTS.md` or `CLAUDE.md` at the **exact repo root it stands in**.
+Brilliant guidance left in another repo never gets read. This
+mistake happened, and it cost a session.
 
-### Viết ra danh sách "dừng lại và hỏi người"
+### Write out a "stop and ask a human" list
 
-Agent có quyền kỹ thuật không có nghĩa là nó được tự quyết. Danh sách của Campus:
+Technical permission for an agent doesn't mean it may decide alone. The Campus list:
 
-1. Chạy bất kỳ lệnh nào có `--apply`, vì cờ đó ghi thật
-2. Push thẳng vào `main`
-3. Đụng vào danh tính người dùng
-4. Xoá hoặc sửa dữ liệu người khác đã nộp
-5. Đổi khoá phiên đăng nhập, vì đổi là đá văng toàn bộ người đang đăng nhập
+1. Run any command with `--apply`, because that flag writes for real
+2. Push straight to `main`
+3. Touch user identity
+4. Delete or edit data someone else submitted
+5. Change login session keys, because changing kicks out everyone currently logged in
 
-### Bắt agent kéo bản mới nhất trước khi làm
+### Make the agent pull latest before working
 
 ```bash
 git checkout main && git pull
 ```
 
-Repo đổi mỗi ngày, và phần lớn thứ đổi là **luật làm việc** chứ không phải nội
-dung. Làm trên bản cũ là làm theo luật đã bị sửa, và cái sai đó chỉ lộ sau khi
-đã push.
+The repo changes daily, and most of what changes is **working rules**, not
+content. Working on an old copy means working under rules already
+edited, and that error only surfaces after
+pushing.
 
 ---
 
-## 8. Tài liệu không phải là bảo đảm
+## 8. Documentation is not a guarantee
 
-Viết luật vào `CONTRIBUTING.md` không ngăn được ai làm sai. Chỉ CI mới ngăn.
+Writing rules into `CONTRIBUTING.md` stops nobody from erring. Only CI stops them.
 
-Campus từng có năm workflow và **không cái nào chạy trên pull request**. Mọi bảo
-đảm nằm ở việc người ta nhớ.
+Campus once had five workflows and **none ran on pull requests**. Every guarantee
+lived in people's memory.
 
-Bộ kiểm tối thiểu cho một dự án nhỏ, chạy trên mọi pull request:
+The minimum check set for a small project, running on every pull request:
 
 ```yaml
-- Không tệp cấm, không chuỗi giống khoá trong repo
-- Test cũ không gãy
-- File máy sinh ra phải khớp với nguồn của nó
-- Mọi đường dẫn tới tệp ngoài phải trỏ vào thứ có thật
+- No forbidden files, no key-like strings in the repo
+- Old tests don't break
+- Machine-generated files must match their source
+- Every path to an outside file must point at something real
 ```
 
-Và mỗi bước khi đỏ phải **in ra phải làm gì**, không chỉ in ra là sai.
+And each step, when red, must **print what to do**, not just print that it's wrong.
 
-**Một cửa kiểm hay báo sai còn tệ hơn không có cửa nào**, vì người ta sẽ học cách
-bỏ qua nó. Chạy thử trên dữ liệu thật trước khi bật.
-
----
-
-## 9. Merge xong chưa chắc đã lên trang
-
-Nền tảng deploy có thể chặn theo **tác giả commit**. Vercel chỉ build khi người
-tạo commit nằm trong team. Không nằm trong đó thì lượt deploy hiện
-`Deployment was blocked`, code vẫn đúng chỗ trên `main`, mà trang không đổi.
-
-Nó chặn cả `github-actions[bot]`, tức chặn luôn workflow tự động của bạn.
-
-Gặp câu "merge rồi mà trang không đổi" thì **kiểm quyền deploy trước khi đi tìm
-lỗi trong code**.
+**One flaky check gate is worse than no gate**, because people learn to
+ignore it. Trial it on real data before turning it on.
 
 ---
 
-## 10. Luật xuyên suốt: lỗi im lặng là loại đắt nhất
+## 9. Merged doesn't mean it's on the page
 
-Bốn lần hỏng trong một tuần dựng Campus, không lần nào có thông báo lỗi:
+A deploy platform may block by **commit author**. Vercel only builds when the
+commit creator is on the team. Outside it, the deploy shows
+`Deployment was blocked`, the code sits correctly on `main`, yet the page doesn't change.
 
-| Hỏng gì | Trông như thế nào |
+It blocks `github-actions[bot]` too — blocking your own automation workflow.
+
+Hitting "merged but the page didn't change" means **check deploy permissions before hunting
+for bugs in the code**.
+
+---
+
+## 10. The through-line rule: silent failure is the most expensive kind
+
+Four failures in one Campus build week, none with an error message:
+
+| What broke | What it looked like |
 |---|---|
-| Vercel chặn deploy | merge xong, trang không đổi |
-| Video lên kho thiếu, 1 MB cho 19 phút | kho trả HTTP 200, script báo xong |
-| Quên dịch lại nội dung | commit sạch, trang không đổi một chữ |
-| File bị chặn sai định dạng | báo đỏ mà không nói vì sao |
+| Vercel blocked the deploy | merged, page unchanged |
+| Video uploaded to the store short, 1 MB for 19 minutes | store returned HTTP 200, script reported done |
+| Forgot to re-translate content | clean commit, page unchanged by a single word |
+| File blocked on wrong format | red report with no reason why |
 
-Cả bốn đều **trông như đã xong**.
+All four **looked done**.
 
-> Mỗi đường đi phải có một chỗ báo khi việc đáng lẽ xảy ra thì không xảy ra.
-> Không có chỗ đó thì im lặng bị đọc thành thành công.
+> Every path must have one place that reports when the thing that should have happened didn't happen.
+> Without that place, silence reads as success.
 
-Áp vào mọi thứ bạn build: sau khi ghi, đọc lại và so. Sau khi tải lên, đo lại
-kích thước. Sau khi merge, kiểm xem nó có thật sự lên không.
+Apply to everything you build: after writing, read back and compare. After uploading,
+re-measure the size. After merging, check it really went up.
 
 ---
 
-## Bảng tra nhanh
+## Quick lookup
 
-| Tình huống | Làm gì |
+| Situation | Do this |
 |---|---|
-| Vừa copy một key | `pbcopy < /dev/null` sau khi dùng xong |
-| Agent xin key để gọi API | Đưa tên biến, không đưa giá trị |
-| Sắp push lần đầu | Quét theo Luật 3, kiểm `.gitignore` có `.env` |
-| Lỡ dán key vào chat | Xoay key ngay. Đừng xoá commit, vô ích |
-| Cho người mới vào repo | Viết `AGENTS.md` ở gốc repo đó |
-| Merge rồi mà trang không đổi | Kiểm quyền deploy trước, đừng sửa code |
-| Nghi một tệp lên thiếu | Đọc lại kích thước trên kho, so với bản ở máy |
-| Sắp mua một công cụ mới | Hỏi trước: nó có API không |
+| Just copied a key | `pbcopy < /dev/null` after use |
+| Agent asks for a key to call an API | Give the variable name, not the value |
+| About to push for the first time | Scan per Rule 3, check `.gitignore` has `.env` |
+| Accidentally pasted a key into chat | Rotate the key now. Don't delete commits, useless |
+| Onboarding someone new to the repo | Write `AGENTS.md` at that repo's root |
+| Merged but the page didn't change | Check deploy permissions first, don't touch code |
+| Suspect a file uploaded short | Re-read the size on the store, compare with local |
+| About to buy a new tool | Ask first: does it have an API |
 
-## Skill này phải tự tốt lên
+## This skill must improve itself
 
-Ba luật cho agent đang đọc file này, lấy từ đúng cách Sơn vận hành skill:
+Three rules for the agent reading this file, taken from exactly how Son runs skills:
 
-1. **Eval sau mỗi lần chạy.** Xong việc thì tự chấm ngắn theo checklist của
-   skill: thiếu bước nào, chỗ nào người dùng phải sửa tay. Có chỗ đáng sửa
-   thì đề xuất người dùng cập nhật thẳng vào file SKILL.md này. Skill là tài
-   liệu sống có feedback loop, mỗi lần chạy phải tốt lên một chút.
-2. **Thi thoảng lookup để update.** Giá, công cụ, và cách các trang tổ chức
-   dữ liệu đổi liên tục. Con số hay tên tool nào trong file này đã vài tháng
-   tuổi thì kiểm lại từ trang gốc trước khi tin.
-3. **Không biết thì hỏi người.** Cái gì ngoài tầm thì nói thẳng, và chỉ
-   người dùng hỏi trong cộng đồng mã nguồn mở (Discord của chương trình,
-   member trong đó là nguồn trợ giúp) hoặc hỏi Sơn Piaz. Người thật là một
-   nguồn trợ giúp, không phải chỉ có tài liệu.
+1. **Eval after every run.** When done, self-grade briefly against the skill's checklist:
+   which steps were missing, where the user had to fix by hand. Anything worth fixing,
+   propose the user update straight into this SKILL.md file. A skill is a living
+   document with a feedback loop; every run must make it slightly better.
+2. **Look things up occasionally to update.** Prices, tools, and how sites organize
+   data change constantly. Any number or tool name in this file a few months
+   old gets rechecked against the original page before trusting.
+3. **When unsure, ask a human.** Whatever is out of scope, say so plainly, and only
+   the user asks in the open-source community (the program's Discord,
+   members in it are a help source) or asks Son Piaz. A real person is a
+   help source, not just documentation.

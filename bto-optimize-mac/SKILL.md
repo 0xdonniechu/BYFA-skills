@@ -1,6 +1,6 @@
 ---
 name: bto-optimize-mac
-description: Đo trước rồi mới dọn RAM và ổ đĩa trên macOS một cách an toàn. Cache sinh lại được thì tự dọn; dữ liệu cá nhân thì liệt kê ra để bạn duyệt; không bao giờ kill process bừa. Dùng khi ổ đĩa đầy, RAM cao (memory pressure), máy chậm, hoặc trước khi chạy build nặng. Gọi bằng "dọn máy", "ổ đĩa đầy", "tối ưu RAM", "optimize mac".
+description: Measure first, then safely reclaim RAM and disk on macOS. Regenerable caches are cleaned automatically; personal data is listed for your approval; never kill processes blindly. Use when the disk is full, RAM is high (memory pressure), the machine is slow, or before a heavy build. Invoke with "clean up my machine", "disk full", "optimize RAM", "optimize mac".
 ---
 
 # /bto-optimize-mac
