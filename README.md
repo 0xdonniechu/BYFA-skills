@@ -17,7 +17,7 @@ All principles are distilled from production engineering experience: secrets man
 
 | Skill | Core Capability & Usage Context |
 |---|---|
-| `/bto-researchmarket` | In-depth market research: 3-tier fact tagging (`[CONFIRMED]`, `[SECONDARY]`, `[VENDOR-CLAIMED]`), 1★/2★ review mining for content wedges, TAM/SAM/SOM arithmetic chains, Sales Competitor Battlecards, and proof-based Marketing Case Study packaging. |
+| `/market-research` | Decision-oriented research across markets, competitors, investors, and vendors; source tiers, counter-evidence, explicit sizing assumptions, pricing/funding matrices, and uncertainty labels. |
 | `/bto-teardown` | Clean-room competitor teardowns: core features, monetization models, tech stack analysis, and end-to-end user experience flows. |
 | `/bto-secrets` | Guard sensitive credentials: scan API keys, `.env` files, auth tokens, and secrets prior to commit or push. |
 | `/bto-sdlc` | Structured software development: specification before code, discrete implementation phases, and verified testing gates. |
@@ -42,12 +42,21 @@ git clone https://github.com/0xdonniechu/BYFA-skills.git ~/.claude/skills/byfa-s
 ~/.claude/skills/byfa-skills/setup
 ```
 
-Or install a specific skill (e.g. `bto-researchmarket`):
+Or install the research skill alone:
 
 ```bash
-mkdir -p ~/.claude/skills/bto-researchmarket
-curl -o ~/.claude/skills/bto-researchmarket/SKILL.md \
-  https://raw.githubusercontent.com/0xdonniechu/BYFA-skills/main/bto-researchmarket/SKILL.md
+mkdir -p ~/.claude/skills/market-research
+curl -o ~/.claude/skills/market-research/SKILL.md \
+  https://raw.githubusercontent.com/0xdonniechu/BYFA-skills/main/market-research/SKILL.md
+mkdir -p ~/.claude/skills/market-research/references ~/.claude/skills/market-research/assets
+curl -o ~/.claude/skills/market-research/references/research-playbook.md \
+  https://raw.githubusercontent.com/0xdonniechu/BYFA-skills/main/market-research/references/research-playbook.md
+curl -o ~/.claude/skills/market-research/references/positioning.md \
+  https://raw.githubusercontent.com/0xdonniechu/BYFA-skills/main/market-research/references/positioning.md
+curl -o ~/.claude/skills/market-research/assets/positioning_chart.py \
+  https://raw.githubusercontent.com/0xdonniechu/BYFA-skills/main/market-research/assets/positioning_chart.py
+curl -o ~/.claude/skills/market-research/assets/positioning_example.json \
+  https://raw.githubusercontent.com/0xdonniechu/BYFA-skills/main/market-research/assets/positioning_example.json
 ```
 
 ### Cursor & Other Agents

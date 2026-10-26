@@ -53,7 +53,7 @@ Chưa rõ câu nào thì hỏi tiếp câu đó, đừng đoán rồi viết. Kh
 
 Copy [TEMPLATE.md](TEMPLATE.md), điền theo năm câu trả lời. Luật viết:
 
-- **`name`**: chữ thường, số, gạch nối (`kebab-case`), trùng tên thư mục, tiếng Anh.
+- **`name`**: chữ thường, số, gạch nối (`kebab-case`), trùng tên thư mục, tiếng Anh. Dùng tiền tố `bto-` cho skill riêng của bộ; giữ tên `market-research` cho workflow research dùng chung.
 - **`description`**: làm gì (một câu) · dùng khi nào (các cụm từ bạn hay nói) ·
   không dùng khi nào. Nói **khi nào dùng**, đừng tóm tắt hết các bước: agent đọc
   mô tả rồi làm theo mô tả mà bỏ qua thân file. Agent thường gọi skill **ít hơn**

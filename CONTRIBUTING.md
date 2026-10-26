@@ -32,7 +32,7 @@ Hoặc bảo agent của bạn: "fork 0xdonniechu/BYFA-skills, sửa chỗ X, m�
    là webhook, không phải "móc nối web".
 3. **Không key, không secret, không dữ liệu người thật, không đường dẫn máy
    cá nhân** trong bất kỳ file nào.
-4. **Tên skill mới theo dạng `bto-<english-name>`**, một folder một
+4. **Tên skill mới theo dạng `bto-<english-name>`** (ngoại lệ dùng chung đã có là `market-research`), một folder một
    `SKILL.md`, chạy được ngay sau khi symlink.
 5. Đề xuất đổi hẳn một quy trình thì mở issue bàn trước, đừng gửi thẳng một
    PR viết lại cả file.

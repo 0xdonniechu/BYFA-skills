@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.0.11 · 2026-10-26
+
+- Hợp nhất skill `market-research` hiện có với quy trình `bto-researchmarket`; thêm playbook sourcing, review, market sizing, finance, investor/vendor diligence và bảo toàn chart workflow có sẵn.
+- Bỏ thư mục `bto-researchmarket`, cập nhật README/cài đặt/đóng góp; `setup` gỡ symlink cũ chỉ khi nó trỏ chính xác vào skill đã bỏ.
+- Bảo toàn chart tool SVG; làm rõ khi nào dùng matrix, sizing và các phép định giá; bổ sung Eval và feedback dựa trên ca Native research.
+
 ## 0.0.10 · 2026-09-28
 
 - Thêm `bto-create-skill`, skill tạo skill: hỏi trước việc này có nên là skill không (việc một lần thì viết prompt, lỗi máy chặn được thì làm hook hoặc script), rồi hỏi năm câu, viết `SKILL.md`, chạy thử trên một ca thật trong phiên mới, thêm eval đếm được và sổ feedback, cài vào Claude Code hoặc Cursor. Kèm `bto-create-skill/TEMPLATE.md`, template `SKILL.md` một trang có ghi chú hướng dẫn tiếng Việt. Đã cài bằng `setup` thì chạy lại `git pull` và `setup` để nhận skill mới.

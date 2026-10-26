@@ -1,6 +1,6 @@
 # Hướng dẫn cài skill Agent Workflows (wave 2)
 
-Tài liệu này dành cho người dùng **chưa từng cài skill**. Bảy skill mới bổ sung cho ba skill Buổi 2–3 (`bto-secrets`, `bto-researchmarket`, `bto-teardown`), cộng `bto-create-skill` để bạn tự tạo skill của riêng mình.
+Tài liệu này dành cho người dùng **chưa từng cài skill**. Các skill của repo có mười một workflow: mười skill `bto-*` và một skill dùng chung tên `market-research`.
 
 Repo: [github.com/0xdonniechu/BYFA-skills](https://github.com/0xdonniechu/BYFA-skills)
 
@@ -48,7 +48,7 @@ Skill hỏi bạn năm câu, viết `SKILL.md` theo [template một trang](bto-c
 
 Mở **Claude Code**, dán nguyên câu này:
 
-> Cài byfa-skills: chạy `git clone https://github.com/0xdonniechu/BYFA-skills.git ~/.claude/skills/byfa-skills && ~/.claude/skills/byfa-skills/setup` rồi xác nhận mười một skill `bto-*` đã nhận.
+> Cài byfa-skills: chạy `git clone https://github.com/0xdonniechu/BYFA-skills.git ~/.claude/skills/byfa-skills && ~/.claude/skills/byfa-skills/setup` rồi xác nhận mười một skill đã nhận (mười tên `bto-*` và `market-research`).
 
 Hoặc tự chạy trong Terminal:
 
@@ -57,11 +57,11 @@ git clone https://github.com/0xdonniechu/BYFA-skills.git ~/.claude/skills/byfa-s
 ~/.claude/skills/byfa-skills/setup
 ```
 
-Script `setup` tạo **symlink** từ repo vào `~/.claude/skills/<tên-skill>/`. Chạy lại nhiều lần vẫn an toàn.
+Script `setup` tạo **symlink** từ repo vào `~/.claude/skills/<tên-skill>/` và gỡ symlink `bto-researchmarket` đã cũ nếu nó vẫn trỏ chính xác tới thư mục skill đã bỏ. Chạy lại nhiều lần vẫn an toàn.
 
 ### Cách B: Chỉ một skill
 
-Ví dụ chỉ `bto-sdlc`:
+Ví dụ chỉ `bto-sdlc` (skill đơn file):
 
 ```bash
 mkdir -p ~/.claude/skills/bto-sdlc
@@ -70,6 +70,8 @@ curl -o ~/.claude/skills/bto-sdlc/SKILL.md \
 ```
 
 Đổi `bto-sdlc` thành tên skill bạn cần.
+
+`market-research` có kèm playbook, hướng dẫn biểu đồ và script/assets; cài riêng skill này bằng các lệnh đầy đủ ở phần **Installation → Claude Code** trong [README.md](README.md). Chỉ tải `SKILL.md` sẽ thiếu tài liệu và công cụ được skill tham chiếu.
 
 ### Kiểm đã cài (Claude Code)
 
@@ -101,10 +103,22 @@ Cursor đọc skill từ `~/.cursor/skills/` (cá nhân) hoặc `.cursor/skills/
 ```bash
 git clone https://github.com/0xdonniechu/BYFA-skills.git ~/.cursor/skills/byfa-skills
 mkdir -p ~/.cursor/skills
-for d in ~/.cursor/skills/byfa-skills/bto-*/; do
+for d in ~/.cursor/skills/byfa-skills/*/; do
+  [ -f "$d/SKILL.md" ] || continue
   name=$(basename "$d")
   ln -sfn "$d" ~/.cursor/skills/"$name"
 done
+legacy="$HOME/.cursor/skills/bto-researchmarket"
+if [ -L "$legacy" ] && [ "$(readlink "$legacy")" = "$HOME/.cursor/skills/byfa-skills/bto-researchmarket" ]; then
+  rm "$legacy"
+fi
+```
+
+Nếu chỉ cài `market-research` cho Cursor, clone repo và link nguyên thư mục skill để có đủ references và chart assets:
+
+```bash
+git clone https://github.com/0xdonniechu/BYFA-skills.git ~/.cursor/skills/byfa-skills
+ln -s ~/.cursor/skills/byfa-skills/market-research ~/.cursor/skills/market-research
 ```
 
 ### Cách B: Một skill
@@ -148,7 +162,7 @@ Mở phiên agent **mới** sau khi pull.
 | Agent không nhắc quy trình skill | Phiên mở **trước** khi cài | Đóng, mở phiên mới |
 | `setup` báo "bo qua … đã tồn tại" | Bạn đã có folder skill trùng tên (tự viết) | Đổi tên folder cũ, hoặc chỉ curl một file SKILL.md |
 | `git clone` báo folder đã có | Clone lần 2 | `cd ~/.claude/skills/byfa-skills && git pull` |
-| Cursor không thấy skill | Đặt sai chỗ (`skills-cursor` là của Cursor, **không** ghi vào đó) | Dùng `~/.cursor/skills/bto-*/` |
+| Cursor không thấy skill | Đặt sai chỗ (`skills-cursor` là của Cursor, **không** ghi vào đó) | Link thư mục skill từ `~/.cursor/skills/byfa-skills/`, gồm cả `market-research/` |
 | Symlink hỏng sau khi xóa repo | Xóa nhầm thư mục clone | Clone lại + chạy `setup` |
 | Skill tiếng Anh (`bto-optimize-mac`) agent trả lời lẫn ngôn ngữ | Body skill là English | Bình thường; hỏi bằng tiếng Việt vẫn được |
 
