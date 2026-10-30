@@ -18,16 +18,17 @@ All principles are distilled from production engineering experience: secrets man
 | Skill | Core Capability & Usage Context |
 |---|---|
 | `/market-research` | Decision-oriented research across markets, competitors, investors, and vendors; source tiers, counter-evidence, explicit sizing assumptions, pricing/funding matrices, and uncertainty labels. |
-| `/bto-teardown` | Clean-room competitor teardowns: core features, monetization models, tech stack analysis, and end-to-end user experience flows. |
-| `/bto-secrets` | Guard sensitive credentials: scan API keys, `.env` files, auth tokens, and secrets prior to commit or push. |
-| `/bto-sdlc` | Structured software development: specification before code, discrete implementation phases, and verified testing gates. |
-| `/bto-agent-team` | Multi-agent orchestration: single-approval pipelines (build → independent review → fix → merge → verify) across execution waves. |
-| `/bto-whats-next` | Session wrap-up: audit pending work items, recommend next steps, and log progress. |
-| `/bto-page-quality` | Post-launch site audits: page load performance, Core Web Vitals, and UI layout stability. |
-| `/bto-optimize-mac` | Safe disk reclamation, RAM inspection, and developer environment hygiene for macOS. |
-| `/bto-event-review` | Conference and meetup synthesis: reconstruct complete talks from slide decks and transcripts. |
-| `/bto-posthog` | Production analytics with PostHog: event tracking setup, proxy configuration, and executive dashboards. |
-| `/bto-create-skill` | Standard template and workflow for building and customizing agent skills. |
+| `/byfa-teardown` | Clean-room competitor teardowns: core features, monetization models, tech stack analysis, and end-to-end user experience flows. |
+| `/byfa-secrets` | Guard sensitive credentials: scan API keys, `.env` files, auth tokens, and secrets prior to commit or push. |
+| `/byfa-sdlc` | Structured software development: specification before code, discrete implementation phases, and verified testing gates. |
+| `/byfa-agent-team` | Multi-agent orchestration: single-approval pipelines (build → independent review → fix → merge → verify) across execution waves. |
+| `/byfa-whats-next` | Session wrap-up: audit pending work items, recommend next steps, and log progress. |
+| `/byfa-page-quality` | Post-launch site audits: page load performance, Core Web Vitals, and UI layout stability. |
+| `/byfa-optimize-mac` | Safe disk reclamation, RAM inspection, and developer environment hygiene for macOS. |
+| `/byfa-event-review` | Conference and meetup synthesis: reconstruct complete talks from slide decks and transcripts. |
+| `/byfa-posthog` | Production analytics with PostHog: event tracking setup, proxy configuration, and executive dashboards. |
+| `/byfa-create-skill` | Standard template and workflow for building and customizing agent skills. |
+| `/master-winning-product` | Weekly scan for winning products (verified revenue, funding, traffic) by industry, niche and keywords; fit scored against your own profile, with a debrief. |
 
 ---
 

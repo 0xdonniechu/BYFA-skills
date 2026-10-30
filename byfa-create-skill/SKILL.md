@@ -1,9 +1,9 @@
 ---
-name: bto-create-skill
+name: byfa-create-skill
 description: Helps you turn a recurring job into your own skill, written from a one-page SKILL.md template, trialed on a real case, with a countable eval and a feedback log, then installed into Claude Code or Cursor. Use when saying "create a skill", "turn this into a skill", "write a skill", "new skill", "fix a skill", or when you catch yourself pasting the same prompt a second time. Not for one-off work (a prompt is enough), or when a machine-blockable error needs a hook or script.
 ---
 
-# /bto-create-skill
+# /byfa-create-skill
 
 The skill that creates skills. You describe a job you do often, the agent asks back a few questions, writes `SKILL.md`
 from [TEMPLATE.md](TEMPLATE.md), trials it on a real case, then installs it on your machine.
@@ -53,7 +53,7 @@ Anything still unclear gets another question — don't guess then write. When no
 
 Copy [TEMPLATE.md](TEMPLATE.md), fill in from the five answers. Writing rules:
 
-- **`name`**: lowercase, digits, hyphens (`kebab-case`), matching the folder name, English. Prefix personal skills with `bto-`; keep `market-research` for the shared research workflow.
+- **`name`**: lowercase, digits, hyphens (`kebab-case`), matching the folder name, English. Prefix personal skills with `byfa-`; keep `market-research` for the shared research workflow.
 - **`description`**: what it does (one sentence) · when to use (phrases you actually say) ·
   when not to use. Say **when to use**, don't summarize all steps: the agent reads
   the description then follows the description while skipping the body. Agents invoke skills **less**
@@ -68,7 +68,7 @@ Copy [TEMPLATE.md](TEMPLATE.md), fill in from the five answers. Writing rules:
 - **Tightness follows risk.** Touching money, secrets, production, outbound sends: write exact commands
   and stop-to-ask-you points. Judgment work: write goals and constraints.
 - **No secrets, tokens, or personal machine paths** in skills. Skills get
-  reshared often, and a key in a shared file is a leaked key (see the `bto-secrets`
+  reshared often, and a key in a shared file is a leaked key (see the `byfa-secrets`
   skill in this same set). Where "which repo, which folder" is needed, write "the open repo" or
   a relative path, never `/Users/…`.
 

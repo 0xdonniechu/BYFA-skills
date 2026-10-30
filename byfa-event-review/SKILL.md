@@ -1,9 +1,9 @@
 ---
-name: bto-event-review
+name: byfa-event-review
 description: From a talk recording or transcript, plus slide photos or slide files, rewrite each talk fully and faithfully (never a summary), one HTML page per talk plus one index page. Use when you want to fully understand the talks at a conference, meetup, or event you attended, when saying "event review", "write up these talks", or handing over a transcript with a slide-photo folder. The output language is selectable; prose is written in that language while technical terms stay in English. Not for short summaries, single-video notes, or event social media posts.
 ---
 
-# /bto-event-review
+# /byfa-event-review
 
 Finished a deep talk but didn't catch everything? Give the agent slide photos and the transcript (or video); it rewrites the whole talk as a re-readable document: every idea, correct order, prose in your language with English technical terms, slides placed correctly, reviewed by a second agent. Example output: [homus.dev](https://homus.dev). Original: [0xdonniechu/event-review](https://github.com/0xdonniechu/event-review).
 
@@ -11,7 +11,7 @@ Finished a deep talk but didn't catch everything? Give the agent slide photos an
 
 A reader who missed nothing should be able to read the page instead of re-watching the talk. The output is a **full rewrite**, in the talk's order, keeping every idea, example, number, story and joke. It is never a summary.
 
-Paths to `scripts/`, `assets/` and `references/` below are relative to this skill's folder (for example `~/.claude/skills/bto-event-review/`).
+Paths to `scripts/`, `assets/` and `references/` below are relative to this skill's folder (for example `~/.claude/skills/byfa-event-review/`).
 
 ## Inputs
 - One transcript per talk (from your recording/transcription tool), exported as Markdown into `<event_dir>/raw/<slug>.md`:

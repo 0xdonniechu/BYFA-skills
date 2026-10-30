@@ -1,9 +1,9 @@
 ---
-name: bto-posthog
-description: Audit and upgrade your product's PostHog against a complete standard — project setup, SDK wiring per site type, identify and reset on sign-in/sign-out, key events, reverse proxy, and an overview dashboard set as the Home page so opening the project shows all numbers. Use when saying "posthog", "add tracking", "analytics", "audit tracking", "events not arriving", "overview dashboard", "open posthog and see numbers", or when about to launch a site that needs user measurement. Not for page speed and deep Core Web Vitals (use `bto-page-quality`), or when asking for one stray number inside PostHog.
+name: byfa-posthog
+description: Audit and upgrade your product's PostHog against a complete standard — project setup, SDK wiring per site type, identify and reset on sign-in/sign-out, key events, reverse proxy, and an overview dashboard set as the Home page so opening the project shows all numbers. Use when saying "posthog", "add tracking", "analytics", "audit tracking", "events not arriving", "overview dashboard", "open posthog and see numbers", or when about to launch a site that needs user measurement. Not for page speed and deep Core Web Vitals (use `byfa-page-quality`), or when asking for one stray number inside PostHog.
 ---
 
-# /bto-posthog
+# /byfa-posthog
 
 Wiring PostHog is easy — paste one snippet and numbers appear. The hard part is three months later:
 numbers mixed with dev-machine traffic, no idea who is who because identify used email,
@@ -19,7 +19,7 @@ the Home dashboard** · **re-measure** to confirm numbers land in the right plac
   merge unrelated domains into one project, because funnels, retention, and
   filters all compute per project.
 - Agent access to PostHog: PostHog MCP (recommended) or a personal API key
-  in `.env`, never pasted into chat. See `bto-secrets`.
+  in `.env`, never pasted into chat. See `byfa-secrets`.
 - The site repo, if you want to edit code.
 
 ## Step 1 — Audit (read-only, change nothing)

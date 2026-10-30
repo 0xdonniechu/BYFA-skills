@@ -30,7 +30,7 @@ Or tell your agent: "fork 0xdonniechu/BYFA-skills, fix X, open a PR for me".
    be accepted. This entire repo is written on that principle.
 2. **Write in English, keep technical terms as-is.** A `webhook` is a webhook.
 3. **No keys, no secrets, no real-person data, no personal machine paths** in any file.
-4. **New skill names follow the `bto-<english-name>` form** (the existing shared exception is `market-research`), one folder
+4. **New skill names follow the `byfa-<english-name>` form** (the existing shared exception is `market-research`), one folder
    per `SKILL.md`, runnable right after symlinking.
 5. To propose replacing an entire workflow, open an issue to discuss first — don't send
    a PR rewriting a whole file outright.

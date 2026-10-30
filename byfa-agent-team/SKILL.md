@@ -1,9 +1,9 @@
 ---
-name: bto-agent-team
-description: A one-approval run-to-done playbook — build → independent review → fix → merge → verify — with multiple role agents (backend, frontend, design, data) across waves. Use when saying "split waves", "one approval run to done", "/bto-agent-team", or handing over a multi-part change at once.
+name: byfa-agent-team
+description: A one-approval run-to-done playbook — build → independent review → fix → merge → verify — with multiple role agents (backend, frontend, design, data) across waves. Use when saying "split waves", "one approval run to done", "/byfa-agent-team", or handing over a multi-part change at once.
 ---
 
-# /bto-agent-team
+# /byfa-agent-team
 
 The model: gather all context → **one approval** → agents run to done (build, review, fix, merge, test, verify) → you only check the final result.
 

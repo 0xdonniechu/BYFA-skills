@@ -1,9 +1,9 @@
 ---
-name: bto-secrets
+name: byfa-secrets
 description: Keep API keys and passwords safe when delegating work to an AI agent, and push code to GitHub without leaking anything. Use when touching API keys, secrets, .env, 1Password, environment variables, when connecting a new API or MCP, before a commit or push, when setting up CI, when letting a second person or another agent into the repo, and when hitting "merged but the page didn't change". Distilled from real failures; every rule comes with a story of what happened.
 ---
 
-# /bto-secrets
+# /byfa-secrets
 
 Delegate work to agents without handing over the keys, and push code without leaking anything.
 
