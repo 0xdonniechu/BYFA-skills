@@ -8,13 +8,6 @@ SRC="$(cd "$(dirname "$0")" && pwd)"
 DEST="$HOME/.claude/skills"
 mkdir -p "$DEST"
 
-# Retire the old BTO research skill only if this setup script created the exact symlink.
-legacy="$DEST/bto-researchmarket"
-if [ -L "$legacy" ] && [ "$(readlink "$legacy")" = "$SRC/bto-researchmarket" ]; then
-  rm "$legacy"
-  echo "da go skill cu bto-researchmarket"
-fi
-
 for d in "$SRC"/*/; do
   name="$(basename "$d")"
   [ -f "$d/SKILL.md" ] || continue

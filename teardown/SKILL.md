@@ -1,9 +1,9 @@
 ---
-name: byfa-teardown
+name: teardown
 description: Decompose an existing product to understand its insides, write it up as a clean specification, then build your own version in a fresh working session that reads only the spec. The two-team clean-room method the tech industry uses to learn from competitors without breaking the law. Triggered when saying "teardown", "decompose a product", "reverse engineer", "build something like X", "how does product X work".
 ---
 
-# /byfa-teardown
+# /teardown
 
 Learn from competitors by decomposing, not by copying. Two teams, one wall:
 team A reads the original product and writes the spec, team B reads only the spec

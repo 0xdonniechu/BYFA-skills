@@ -1,9 +1,9 @@
 ---
-name: byfa-optimize-mac
+name: optimize-mac
 description: Measure first, then safely reclaim RAM and disk on macOS. Regenerable caches are cleaned automatically; personal data is listed for your approval; never kill processes blindly. Use when the disk is full, RAM is high (memory pressure), the machine is slow, or before a heavy build. Invoke with "clean up my machine", "disk full", "optimize RAM", "optimize mac".
 ---
 
-# /byfa-optimize-mac
+# /optimize-mac
 
 Playbook for developers running multiple agents, local servers, and large `node_modules` trees.
 

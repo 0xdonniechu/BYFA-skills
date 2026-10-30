@@ -1,9 +1,9 @@
 ---
-name: byfa-page-quality
+name: page-quality
 description: Measure and improve web page quality — speed, Core Web Vitals, per-country experience, search visibility, edge cache. Use when asking "slow page", LCP/INP/CLS, per-country bounce, Lighthouse scores, or before/after frontend changes. Matches Session 5 (logs, alerts) and Session 8 (post-launch measurement).
 ---
 
-# /byfa-page-quality
+# /page-quality
 
 One question: **is the site good, and for whom?** Answer it from multiple sources — never one tab alone.
 

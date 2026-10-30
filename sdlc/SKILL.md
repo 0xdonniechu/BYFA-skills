@@ -1,9 +1,9 @@
 ---
-name: byfa-sdlc
-description: The intent → plan → build → verify → ship artifact chain for any repo work big enough. Use when starting a new feature, a large refactor, or saying "write the intent", "follow the plan", "/byfa-sdlc". Not for one-line fixes, quick diagnosis, or one-off ops work.
+name: sdlc
+description: The intent → plan → build → verify → ship artifact chain for any repo work big enough. Use when starting a new feature, a large refactor, or saying "write the intent", "follow the plan", "/sdlc". Not for one-line fixes, quick diagnosis, or one-off ops work.
 ---
 
-# /byfa-sdlc
+# /sdlc
 
 Each phase ends with an artifact committed to the repo. The next session (or another agent) only needs to read that file — no chat history required.
 

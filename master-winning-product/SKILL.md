@@ -3,7 +3,7 @@ name: master-winning-product
 description: Find winning products — products already proven to work and already paid for — by industry, niche, keywords and time window. Starts from TrustMRR, YC and a16z Speedrun, then Product Hunt and Hacker News; ranks by verified revenue, then funding raised, then traffic; enriches each entry with website, founder, X and other social; scores fit against the user's own profile (strengths, resources, customers); exports to a spreadsheet or Notion and writes a debrief for the team. Runs weekly. Triggers on "find winning product", "winning product", "scan winning products this week", "Master week 1 assignment" (also Vietnamese: "tìm winning product", "sản phẩm win", "quét sản phẩm win tuần này", "bài tập tuần 1 Master").
 metadata:
   category: product
-  scope: byfa-master
+  scope: master
   owner: Sơn Piaz
   executor: internal agent
   version: "0.0.3"

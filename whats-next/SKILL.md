@@ -1,5 +1,5 @@
 ---
-name: byfa-whats-next
+name: whats-next
 description: |
   Triage the working session — answer "what next?" by sweeping the whole session for unfinished work, proposing next steps and dependencies of large changes. Use when saying "what next", "what's left", "session recap". Read and propose only — never start doing the work.
 allowed-tools:
@@ -9,7 +9,7 @@ allowed-tools:
   - Glob
 ---
 
-# /byfa-whats-next
+# /whats-next
 
 Answer **"what should I do next?"**. Summarize the current session state with clear priorities. **Read-only** — gather evidence, propose; **never** start working.
 
