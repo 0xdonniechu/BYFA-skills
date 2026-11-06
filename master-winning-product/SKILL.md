@@ -1,10 +1,10 @@
 ---
 name: master-winning-product
-description: Find winning products — products already proven to work and already paid for — by industry, niche, keywords and time window. Starts from TrustMRR, YC and a16z Speedrun, then Product Hunt and Hacker News; ranks by verified revenue, then funding raised, then traffic; enriches each entry with website, founder, X and other social; scores fit against the user's own profile (strengths, resources, customers); exports to a spreadsheet or Notion and writes a debrief for the team. Runs weekly. Triggers on "find winning product", "winning product", "scan winning products this week", "Master week 1 assignment" (also Vietnamese: "tìm winning product", "sản phẩm win", "quét sản phẩm win tuần này", "bài tập tuần 1 Master").
+description: Find winning products — products already proven to work and already paid for — by industry, niche, keywords and time window. Starts from TrustMRR, YC and a16z Speedrun, then Product Hunt and Hacker News; ranks by verified revenue, then funding raised, then traffic; enriches each entry with website, founder, X and other social; scores fit against the user's own profile (strengths, resources, customers); exports to a spreadsheet or Notion and writes a debrief for the team. Runs weekly. Triggers on "find winning product", "winning product", "scan winning products this week", "Master week 1 assignment".
 metadata:
   category: product
   scope: master
-  owner: Sơn Piaz
+  owner: Son Piaz
   executor: internal agent
   version: "0.0.3"
 ---
@@ -18,7 +18,7 @@ Find **all** products that have been proven to work and that other people alread
 > "A product that someone has invested in has already passed the idea stage."
 > "Don't read with your eyes. Put the AI on the web."
 >
-> Sơn, Master session 1, 25/10/2026
+> Son, Master session 1, 25/10/2026
 
 ## Division of work: agent vs. you
 
@@ -113,7 +113,7 @@ At the end of each run, the agent writes `debrief-<date>.md` next to the config 
 3. Blockers (blocked pages, missing keys, missing figures) and how each was handled.
 4. What to do differently next time.
 
-Write the debrief in the language the user works in (Vietnamese by default). This is the winning-product part of the 15-minute opening talk in the team session (the customer-profile part comes from assignment 2): "this past week I found a winning product, here is the customer profile, here is what I chose and why". When submitting the assignment on Campus, attach the debrief. Scheduled runs send the debrief to the report channel.
+Write the debrief in the language the user works in (English by default). This is the winning-product part of the 15-minute opening talk in the team session (the customer-profile part comes from assignment 2): "this past week I found a winning product, here is the customer profile, here is what I chose and why". When submitting the assignment on Campus, attach the debrief. Scheduled runs send the debrief to the report channel.
 
 ## Output
 
@@ -176,10 +176,10 @@ How to measure: E1 to E5 on the tables submitted to Campus after session 2. E6 f
 |---|---|---|
 | 22/10/2026 | first version `bto-product-diagnosis`, diagnosis of four boxes | |
 | 25/10/2026 | renamed to winning product; rewritten to match the skill description from session 1 | sources, ranking, enrich, spreadsheet, weekly run |
-| 25/10/2026 | Sơn: "sounds like what I already said"; needs a sample output with images; use the Kyma API first; 10 is the assignment, not a limit; find everything by industry, niche, keywords, time; output location is up to the user; do not talk about copying | rewritten in Sơn's words from the session 1 recording, added a sample output, Tools section prefers Kyma, removed the count limit |
+| 25/10/2026 | Son: "sounds like what I already said"; needs a sample output with images; use the Kyma API first; 10 is the assignment, not a limit; find everything by industry, niche, keywords, time; output location is up to the user; do not talk about copying | rewritten in Son's words from the session 1 recording, added a sample output, Tools section prefers Kyma, removed the count limit |
 | 25/10/2026 | review round 5 | the line "Few, but good quality" about where to search moved to step 1; Y Combinator naming; Kyma fee and key location; E7 no omissions |
-| 25/10/2026 | Sơn chose A, C, E (learned from MEGA HQ Challenges); Kyma `sonar` test: founder 6/6, X 1/3 (`sonar-pro` 2/3), price 0/6 | added My profile + the Fit for me step; division-of-work table; Debrief tied to the opening 15 minutes; prices taken from the pricing page |
-| 25/10/2026 | Sơn: put Goal first; key link is kymaapi.com/keys; leave blank if unreadable; sample table must look good: aligned, spaced, font adjusted | Goal moved to the top, key link fixed, "unknown" removed, `render-table.py` added |
+| 25/10/2026 | Son chose A, C, E (learned from MEGA HQ Challenges); Kyma `sonar` test: founder 6/6, X 1/3 (`sonar-pro` 2/3), price 0/6 | added My profile + the Fit for me step; division-of-work table; Debrief tied to the opening 15 minutes; prices taken from the pricing page |
+| 25/10/2026 | Son: put Goal first; key link is kymaapi.com/keys; leave blank if unreadable; sample table must look good: aligned, spaced, font adjusted | Goal moved to the top, key link fixed, "unknown" removed, `render-table.py` added |
 
 ## Self-improvement
 
