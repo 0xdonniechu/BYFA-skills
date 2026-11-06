@@ -174,7 +174,7 @@ How to measure: E1 to E5 on the tables submitted to Campus after session 2. E6 f
 
 | Date | Feedback | What was changed |
 |---|---|---|
-| 22/10/2026 | first version `bto-product-diagnosis`, diagnosis of four boxes | |
+| 22/10/2026 | first version `byfa-product-diagnosis`, diagnosis of four boxes | |
 | 25/10/2026 | renamed to winning product; rewritten to match the skill description from session 1 | sources, ranking, enrich, spreadsheet, weekly run |
 | 25/10/2026 | Son: "sounds like what I already said"; needs a sample output with images; use the Kyma API first; 10 is the assignment, not a limit; find everything by industry, niche, keywords, time; output location is up to the user; do not talk about copying | rewritten in Son's words from the session 1 recording, added a sample output, Tools section prefers Kyma, removed the count limit |
 | 25/10/2026 | review round 5 | the line "Few, but good quality" about where to search moved to step 1; Y Combinator naming; Kyma fee and key location; E7 no omissions |
