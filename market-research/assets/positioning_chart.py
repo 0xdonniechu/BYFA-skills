@@ -78,7 +78,8 @@ def build(data, inline):
            for p in data["products"]]
     cands = [dict(c, value=value_of(c["functionality"], c["effective_per_year"]), label=c["name"], kind="candidate")
              for c in data.get("candidates", [])]
-    ymax = max(5, math.ceil(max(p["value"] for p in pts + cands if math.isfinite(p["value"])) + 1))
+    max_v = max((p["value"] for p in pts + cands if math.isfinite(p["value"])), default=1.0)
+    ymax = round(max_v * 1.18, 1) if max_v < 3.0 else max(5, math.ceil(max_v + 1))
     sx = lambda f: L + f / xmax * (W - L - R)
     sy = lambda v: H - B - min(v, ymax) / ymax * (H - T - B)
     groups = data.get("groups", {})
@@ -104,9 +105,11 @@ def build(data, inline):
     for i in range(0, xmax + 1, step):
         s.append(f'<line x1="{sx(i):.1f}" y1="{T}" x2="{sx(i):.1f}" y2="{H - B}" {style("grid", {"stroke": "#eceef2"})}/>'
                  f'<text x="{sx(i):.1f}" y="{H - B + 20}" text-anchor="middle" font-size="12" {style("tick", {"fill": "#5b5f6a"})}>{i}</text>')
-    for v in range(0, ymax + 1):
+    y_ticks = [round(i * (ymax / 6), 1) for i in range(7)] if ymax < 5 else list(range(0, int(ymax) + 1))
+    for v in y_ticks:
+        lbl = f"{v:.1f}" if isinstance(ymax, float) and ymax < 5 else f"{int(v)}"
         s.append(f'<line x1="{L}" y1="{sy(v):.1f}" x2="{W - R}" y2="{sy(v):.1f}" {style("grid", {"stroke": "#eceef2"})}/>'
-                 f'<text x="{L - 10}" y="{sy(v) + 4:.1f}" text-anchor="end" font-size="12" {style("tick", {"fill": "#5b5f6a"})}>{v}</text>')
+                 f'<text x="{L - 10}" y="{sy(v) + 4:.1f}" text-anchor="end" font-size="12" {style("tick", {"fill": "#5b5f6a"})}>{lbl}</text>')
     s.append(f'<text x="{(L + W - R) / 2:.1f}" y="{H - 40}" text-anchor="middle" font-size="13" {style("axis", {"fill": "#1C1A33"})}>Functionality →</text>')
     s.append(f'<text transform="translate(28 {(T + H - B) / 2:.1f}) rotate(-90)" text-anchor="middle" font-size="13" {style("axis", {"fill": "#1C1A33"})}>Value for money →</text>')
 

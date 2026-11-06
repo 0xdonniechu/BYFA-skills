@@ -62,3 +62,17 @@ Before handoff, check that:
 ## Improve from use
 
 After substantial research, score scope, evidence coverage, counter-evidence, calculation accuracy and decision usefulness from 1–5. Note missing evidence and corrections the user had to make. Update this skill only when a real case demonstrates a reusable improvement; keep a short dated note of the observed failure and resulting change. Recheck time-sensitive tools, prices and metrics at their primary sources before relying on them.
+
+## Mandatory Depth, Unblocking, and Report Formatting Rules
+
+- **Blocked review and community sources (`read-blocked`):** Never skip G2, Capterra, or Reddit due to HTTP 403/Cloudflare/DataDome. First search for exact product/thread URLs (`site:g2.com/products`, `site:capterra.com/p/`, `site:reddit.com`), then run `~/.claude/skills/read-blocked/scripts/read.sh "<url>"` (using a Bash-capable subagent) to fetch full reviews and threads via Bright Data Scraping Browser (`brd-read.mjs`), Wayback, and Arctic Shift.
+- **Commercial viability & unit-economics stress-testing:**
+  1. **COGS, Reroll/Waste Multiplier & Gross Margin Stress-Test:** Compute *cost per usable output* (accounting for failed/rerolled generations) and stress-test gross margins across Light, Average, and Power/Abuse users (especially on Unlimited tiers).
+  2. **Distribution Wedge & CAC vs LTV:** Identify primary acquisition channels and whether entry-tier LTV can sustain paid CAC or requires organic/affiliate/PLG/MCP wedges.
+  3. **Tourist Churn vs Daily Habit:** Cross-check cumulative MRR claims against trailing 30-day revenue to detect novelty churn.
+  4. **Upstream & Downstream Platform Risk:** Evaluate dependency on upstream APIs/subsidized credits and downstream marketplace algorithm penalties (e.g., TikTok Shop, YouTube AIGC filters).
+  5. **Core JTBD Depth vs Feature Breadth:** Identify the 2–3 core jobs-to-be-done that drive 80% of willingness-to-pay rather than equating feature count with market victory.
+- **Strict report formatting (One item per line — never merge list items):**
+  1. **One sentence / one entity per bullet line:** When listing companies, competitors, metrics, or arguments, place each item on its own bullet line. Never stuff 4–5 companies and metrics into a single long comma-separated paragraph line.
+  2. **HTML-safe Markdown list syntax (`python-markdown` / `sane_lists`):** Always leave **one blank line (`\n\n`)** before any list (`1. `, `- `, `* `, including inside `>` blockquotes) and use **4-space indentation (`    - ` or `    1. `)** for nested sub-lists so HTML compilers never collapse list items onto a single `<p>` or `<li>` line.
+  3. **Mobile-safe charts:** Export positioning charts to standalone `.svg`/`.png` (2x Retina) files and embed via `<img>` / `![alt](url)` rather than raw inline `<svg>` in Markdown when sanitizers may strip fill/opacity attributes on mobile.
