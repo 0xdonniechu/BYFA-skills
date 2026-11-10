@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.0.13 · 2026-11-10
+
+- `sdlc`: replaced with the newer version. Adds `clarify` (an intent cannot reach `approved` while an open point remains), a `## Tasks` section in the plan that feeds each builder's contract, and `converge` (lists changed files outside the plan's tasks, tasks left untouched and Proof items without a result). The skill now ships `sdlc/scripts/` (`sdlc-check.py`, `dispatch.py`, `contract.py`, standard library only), so it is no longer a single-file skill; the old `sdlc/SKILL.md` is gone.
+
 ## 0.0.12 · 2026-10-26
 
 - `market-research`: substantial research now defaults to a browser-viewable HTML report with a verified direct URL using existing authorized hosting; keeps sensitive research private and does not create hosting accounts.

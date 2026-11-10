@@ -61,15 +61,15 @@ The `setup` script creates **symlinks** from the repo into `~/.claude/skills/<sk
 
 ### Method B: A single skill
 
-Example with just `sdlc` (single-file skill):
+Example with just `whats-next` (single-file skill):
 
 ```bash
-mkdir -p ~/.claude/skills/sdlc
-curl -o ~/.claude/skills/sdlc/SKILL.md \
-  https://raw.githubusercontent.com/0xdonniechu/BYFA-skills/main/sdlc/SKILL.md
+mkdir -p ~/.claude/skills/whats-next
+curl -o ~/.claude/skills/whats-next/SKILL.md \
+  https://raw.githubusercontent.com/0xdonniechu/BYFA-skills/main/whats-next/SKILL.md
 ```
 
-Swap `sdlc` for the skill name you need.
+Swap `whats-next` for the skill name you need. `sdlc` is not single-file: it ships `sdlc/scripts/`, so use Method A for it.
 
 `market-research` ships with a playbook, chart guide, and scripts/assets; install that skill alone with the full commands in **Installation → Claude Code** in [README.md](README.md). Downloading only `SKILL.md` will miss the referenced docs and tools.
 
