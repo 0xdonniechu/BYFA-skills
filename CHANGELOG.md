@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.0.14 · 2026-11-10
+
+- The coding-specific skills left this repo: `sdlc`, `agent-team`, `whats-next`, `create-skill` and `secrets` are no longer here (the 0.0.13 `sdlc` update went with it). Seven skills remain: `market-research`, `teardown`, `master-winning-product`, `page-quality`, `posthog`, `optimize-mac`, `event-review`. `setup` now removes a symlink of an earlier install whose skill left this repo.
+
 ## 0.0.13 · 2026-11-10
 
 - `sdlc`: replaced with the newer version. Adds `clarify` (an intent cannot reach `approved` while an open point remains), a `## Tasks` section in the plan that feeds each builder's contract, and `converge` (lists changed files outside the plan's tasks, tasks left untouched and Proof items without a result). The skill now ships `sdlc/scripts/` (`sdlc-check.py`, `dispatch.py`, `contract.py`, standard library only), so it is no longer a single-file skill; the old `sdlc/SKILL.md` is gone.

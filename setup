@@ -20,6 +20,15 @@ for d in "$SRC"/*/; do
   echo "da link $name"
 done
 
+# Remove symlinks of an earlier install whose skill has left this repo (no dangling links).
+for link in "$DEST"/*; do
+  [ -L "$link" ] || continue
+  target="$(readlink "$link")"
+  case "$target" in
+    "$SRC"/*) [ -e "$link" ] || { rm -f "$link"; echo "removed dangling link $(basename "$link")"; } ;;
+  esac
+done
+
 echo ""
 echo "Xong. Mo mot phien Claude Code moi de agent nhan skill."
 echo "Kiem tra: hoi agent 'toi sap noi mot API moi, co luat nao phai theo khong'"

@@ -4,7 +4,7 @@
 
 A skill is a structured instruction set that an agent autonomously loads and executes when encountering a specific operational domain. You do not need to memorize workflows or repeatedly paste prompts — the agent detects context, loads the guidelines, and executes with precision.
 
-All principles are distilled from production engineering experience: secrets management, rigorous market research with multi-tier source verification, clean-room product teardowns, structured software development life cycles (SDLC), and multi-agent coordination.
+All principles are distilled from production engineering experience: rigorous market research with multi-tier source verification, clean-room product teardowns, winning-product scans, post-launch page quality and product analytics, event write-ups, and developer-machine hygiene.
 
 ## Research
 
@@ -19,15 +19,10 @@ All principles are distilled from production engineering experience: secrets man
 |---|---|
 | `/market-research` | Decision-oriented research across markets, competitors, investors, and vendors; source tiers, counter-evidence, explicit sizing assumptions, pricing/funding matrices, and uncertainty labels. |
 | `/teardown` | Clean-room competitor teardowns: core features, monetization models, tech stack analysis, and end-to-end user experience flows. |
-| `/secrets` | Guard sensitive credentials: scan API keys, `.env` files, auth tokens, and secrets prior to commit or push. |
-| `/sdlc` | Structured software development: specification before code, discrete implementation phases, and verified testing gates. |
-| `/agent-team` | Multi-agent orchestration: single-approval pipelines (build → independent review → fix → merge → verify) across execution waves. |
-| `/whats-next` | Session wrap-up: audit pending work items, recommend next steps, and log progress. |
 | `/page-quality` | Post-launch site audits: page load performance, Core Web Vitals, and UI layout stability. |
 | `/optimize-mac` | Safe disk reclamation, RAM inspection, and developer environment hygiene for macOS. |
 | `/event-review` | Conference and meetup synthesis: reconstruct complete talks from slide decks and transcripts. |
 | `/posthog` | Production analytics with PostHog: event tracking setup, proxy configuration, and executive dashboards. |
-| `/create-skill` | Standard template and workflow for building and customizing agent skills. |
 | `/master-winning-product` | Weekly scan for winning products (verified revenue, funding, traffic) by industry, niche and keywords; fit scored against your own profile, with a debrief. |
 
 ---
